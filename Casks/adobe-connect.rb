@@ -1,15 +1,15 @@
 cask "adobe-connect" do
-  version "11,2021.6.27"
-  sha256 "4037e55aadfe96964eb200c57913dbc51e3c6ecec64bfe9fbf212febcc73fedf"
+  version "11,2022.7.183"
+  sha256 "15fd90c919147c628855338806fd2d7c243efc7c4fbcd98dbee729d54d2940e8"
 
-  url "https://download.adobe.com/pub/connect/updaters/meeting/#{version.before_comma.dots_to_underscores}/AdobeConnect_#{version.after_comma.dots_to_underscores}.dmg"
+  url "https://download.adobe.com/pub/connect/updaters/meeting/#{version.csv.first.dots_to_underscores}/AdobeConnect_#{version.csv.second.dots_to_underscores}.dmg"
   name "Adobe Connect"
   desc "Virtual meeting client"
   homepage "https://www.adobe.com/products/adobeconnect.html"
 
   livecheck do
     url "https://www.adobe.com/go/ConnectMac11Plus"
-    regex(%r{/(\d+(?:[._]\d+)*)/AdobeConnect[._-]?(\d+(?:[._]\d+)*)\.dmg}i)
+    regex(%r{/(\d+(?:[._]\d+)*)/AdobeConnect[._-]?(\d+(?:[._]\d+)+)\.dmg}i)
     strategy :header_match do |headers, regex|
       match = headers["location"]&.match(regex)
       next if match.blank?

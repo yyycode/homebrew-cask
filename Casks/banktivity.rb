@@ -1,6 +1,6 @@
 cask "banktivity" do
-  version "8.4.2"
-  sha256 "b8af25fdc121388e0540e5010cba131562dc6879b4be7023869781509c2c8668"
+  version "8.8.1"
+  sha256 "ed3a0ba8f363cde31966bd89ca39414aa5b3b994fa8327b412ba76199c655ac1"
 
   url "https://www.iggsoft.com/banktivity/Banktivity#{version}.dmg",
       verified: "iggsoft.com/"
@@ -10,7 +10,7 @@ cask "banktivity" do
 
   livecheck do
     url "https://www.iggsoft.com/banktivity/banktivity-versions-feed.json"
-    regex(/"version"\s*:\s*"(\d+(?:\.\d+)*)"/i)
+    regex(/"version"\s*:\s*"(\d+(?:\.\d+)+)"/i)
   end
 
   depends_on macos: ">= :catalina"

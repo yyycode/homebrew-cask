@@ -1,27 +1,23 @@
 cask "tabby" do
-  version "1.0.155"
+  arch arm: "arm64", intel: "x86_64"
 
-  if Hardware::CPU.intel?
-    sha256 "f0d6358cf340e3b1c2b847db8e0b9a0fdc9b29c035574f11cef43e4ef84f5617"
+  version "1.0.184"
+  sha256 arm:   "aaded8ac525b6a3945f06a789e018368c95112874d6985a34ac8705d1f8eaa74",
+         intel: "c670121c84f19eab809e286f27c4d9922722262cfa4b9611d24cedd347f6808d"
 
-    url "https://github.com/Eugeny/tabby/releases/download/v#{version}/tabby-#{version}-macos-x86_64.zip",
-        verified: "github.com/Eugeny/tabby/"
-  else
-    sha256 "47fb72d97cdac5092e7d717ab9e4dd212d449124ef2e04d6d6fd325e2d3a1564"
-
-    url "https://github.com/Eugeny/tabby/releases/download/v#{version}/tabby-#{version}-macos-arm64.zip",
-        verified: "github.com/Eugeny/tabby/"
-  end
-
+  url "https://github.com/Eugeny/tabby/releases/download/v#{version}/tabby-#{version}-macos-#{arch}.zip",
+      verified: "github.com/Eugeny/tabby/"
   name "Tabby"
   name "Terminus"
   desc "Terminal emulator, SSH and serial client"
   homepage "https://eugeny.github.io/tabby/"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://github.com/Eugeny/tabby/releases/latest"
+    strategy :header_match
   end
+
+  auto_updates true
 
   app "Tabby.app"
 

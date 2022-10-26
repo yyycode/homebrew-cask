@@ -1,5 +1,5 @@
 cask "adobe-acrobat-pro" do
-  version "21.005.20058"
+  version "22.003.20258"
   sha256 :no_check
 
   url "https://trials.adobe.com/AdobeProducts/APRO/Acrobat_HelpX/osx10/Acrobat_DC_Web_WWMUI.dmg",
@@ -11,25 +11,27 @@ cask "adobe-acrobat-pro" do
 
   livecheck do
     url "https://armmf.adobe.com/arm-manifests/mac/AcrobatDC/acrobat/current_version.txt"
-    regex(/(\d+(?:\.\d+)*)/i)
+    regex(/^(\d+(?:\.\d+)+)$/i)
   end
 
-  pkg "Acrobat DC/Acrobat DC Installer.pkg"
+  auto_updates true
+
+  pkg "Acrobat/Acrobat DC Installer.pkg"
 
   uninstall pkgutil:   [
-    "com.adobe.acrobat.DC.*",
-    "com.adobe.PDApp.AdobeApplicationManager.installer.pkg",
-    "com.adobe.AcroServicesUpdater",
-    "com.adobe.armdc.app.pkg",
-  ],
+              "com.adobe.acrobat.DC.*",
+              "com.adobe.AcroServicesUpdater",
+              "com.adobe.armdc.app.pkg",
+              "com.adobe.PDApp.AdobeApplicationManager.installer.pkg",
+            ],
             launchctl: [
               "Adobe_Genuine_Software_Integrity_Service",
               "com.adobe.AAM.Startup-1.0",
               "com.adobe.AAM.Updater-1.0",
+              "com.adobe.agsservice",
               "com.adobe.ARMDC.Communicator",
               "com.adobe.ARMDC.SMJobBlessHelper",
               "com.adobe.ARMDCHelper.cc24aef4a1b90ed56a725c38014c95072f92651fb65e1bf9c8e43c37a23d420d",
-              "com.adobe.agsservice",
             ],
             delete:    "/Applications/Adobe Acrobat DC/"
 

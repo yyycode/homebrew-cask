@@ -1,6 +1,6 @@
 cask "onionshare" do
-  version "2.3.3"
-  sha256 "3d003ab5b8fdb3a09eae305670db0666a9fe71751bde8ff24beecdea7b6eaaaf"
+  version "2.6"
+  sha256 "eb6cfd17003fbcbde9da49d7bfb18c9bd54ff901568c2f21af3b2482844982e1"
 
   url "https://onionshare.org/dist/#{version}/OnionShare-#{version}.dmg"
   name "OnionShare"
@@ -13,4 +13,10 @@ cask "onionshare" do
   end
 
   app "OnionShare.app"
+
+  zap trash: [
+    "~/Library/Application Support/OnionShare",
+    "~/Library/Preferences/org.onionshare.onionshare.plist",
+    "~/Library/Saved Application State/org.onionshare.onionshare.savedState",
+  ]
 end

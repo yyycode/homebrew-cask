@@ -1,11 +1,21 @@
 cask "rocks-n-diamonds" do
-  version "4.2.1.0"
-  sha256 "896a2b5f4f14632d46b4afcfb0788c2089eb9f4507a3135cdfba524e214b7733"
+  version "4.3.2.1"
+  sha256 "6499fe6382eec6506cc625b0f372a29918640cfb6ebdca3ee3e6b97d83ff458c"
 
   url "https://www.artsoft.org/RELEASES/macosx/rocksndiamonds/rocksndiamonds-#{version}.dmg"
-  appcast "https://www.artsoft.org/RELEASES/macosx/rocksndiamonds/"
   name "Rocks'n'Diamonds"
+  desc "Arcade-style game"
   homepage "https://www.artsoft.org/rocksndiamonds/"
 
+  livecheck do
+    url "https://www.artsoft.org/RELEASES/macosx/rocksndiamonds/"
+    regex(/href=.*?rocksndiamonds[._-]?v?(\d+(?:\.\d+)+)\.dmg/i)
+  end
+
   app "Rocks'n'Diamonds.app"
+
+  zap trash: [
+    "~/Documents/Rocks'n'Diamonds",
+    "~/Library/Saved Application State/org.artsoft.rocksndiamonds.savedState",
+  ]
 end

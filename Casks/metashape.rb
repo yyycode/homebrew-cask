@@ -1,6 +1,6 @@
 cask "metashape" do
-  version "1.7.4"
-  sha256 "53463e9c3a25e952597b3285c6802e7aab5567a863e8e9ad0e2fe4be24156256"
+  version "1.8.4"
+  sha256 "24ccba8fa6cae1b76b2fa6777e398e9d251f65cae442a8d30ce41e7c96ad038f"
 
   url "http://download.agisoft.com/metashape_#{version.dots_to_underscores}.dmg"
   name "Agisoft Metashape Standard Edition"
@@ -13,4 +13,9 @@ cask "metashape" do
   end
 
   app "Metashape.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.agisoft.Metashape.plist",
+    "~/Library/Saved Application State/com.agisoft.metashape.standard.savedState",
+  ]
 end

@@ -1,18 +1,21 @@
 cask "resolutionator" do
-  version "2.1.0,118"
-  sha256 "3318c5754f935b3e052ff5c20ef33d90896b14149c367404b89bcd9e26810645"
+  version "2.3.0,124"
+  sha256 "ab0c9ab5c7b9ebf03a478532985aab77018be7b6c71f56948014f5b2bb419862"
 
-  url "https://manytricks.com/download/_do_not_hotlink_/resolutionator#{version.before_comma.no_dots}.dmg"
+  url "https://manytricks.com/download/_do_not_hotlink_/resolutionator#{version.csv.first.no_dots}.dmg"
   name "Resolutionator"
   desc "Use any of your display's available resolutions"
   homepage "https://manytricks.com/resolutionator/"
 
   livecheck do
     url "https://manytricks.com/resolutionator/appcast/"
-    strategy :sparkle do |feed|
-      short_version = feed.short_version
-      short_version += ".0" if short_version.split(".").length < 3
-      "#{short_version},#{feed.version}"
+    strategy :sparkle do |item|
+      next if item.short_version.blank? || item.version.blank?
+
+      short_version = item.short_version
+      short_version += ".0" if item.short_version.count(".") < 2
+
+      "#{short_version},#{item.version}"
     end
   end
 

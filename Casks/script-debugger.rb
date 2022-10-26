@@ -1,6 +1,6 @@
 cask "script-debugger" do
-  version "8.0-8A32"
-  sha256 "14ab79bd3f6792d19ce6e5244b047b5d7796429900dbe068405a59f0cf2d2838"
+  version "8.0.5-8A61"
+  sha256 "cd523928a29e82f2988a2120e0b629854f3f0758269ada70d43b0e9cd3142862"
 
   url "https://s3.amazonaws.com/latenightsw.com/ScriptDebugger#{version}.dmg",
       verified: "s3.amazonaws.com/latenightsw.com/"
@@ -10,7 +10,7 @@ cask "script-debugger" do
 
   livecheck do
     url "https://latenightsw.com/download/"
-    regex(%r{action=.*?/ScriptDebugger(\d+(?:\.\d+)*-\d+A\d+)\.dmg}i)
+    regex(/action=.*?ScriptDebugger(\d+(?:\.\d+)+-\d+A\d+)\.dmg/i)
   end
 
   depends_on macos: ">= :mojave"

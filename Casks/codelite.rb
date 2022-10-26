@@ -1,6 +1,6 @@
 cask "codelite" do
-  version "15.0.0"
-  sha256 "4757fb3a16751ab541d53d07976d4ca59257bf77f94d7e96b86f64f415a7c199"
+  version "16.0.0"
+  sha256 "42906c5ffbf4d206426aee4f9f7cf70c51e258e5131248e8467e611abdbeb030"
 
   url "https://downloads.codelite.org/codelite/#{version}/codelite.app.tar.gz"
   name "CodeLite"
@@ -11,6 +11,8 @@ cask "codelite" do
     url "https://downloads.codelite.org/"
     strategy :page_match do |page|
       match = page.match(/CodeLite\s*(\d+\.\d+)((?:\.\d+)*)\s*-\s*Stable\s*Release/i)
+      next if match.blank?
+
       "#{match[1]}#{match[2].presence || ".0"}"
     end
   end

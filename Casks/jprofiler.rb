@@ -1,6 +1,6 @@
 cask "jprofiler" do
-  version "12.0.3"
-  sha256 "388ec46461302fae0d1cacf4cf5374d07954fd4310b1caf7c5e7da27a99c81e0"
+  version "13.0.4"
+  sha256 "54ea19c0b8a550c84f169b9e32cbf2d18b50e64928da7f975f713ecb839b0916"
 
   url "https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_macos_#{version.dots_to_underscores}.dmg"
   name "JProfiler"
@@ -9,8 +9,7 @@ cask "jprofiler" do
 
   livecheck do
     url "https://www.ej-technologies.com/feeds/jprofiler/"
-    strategy :page_match
-    regex(/JProfiler\s*Release\s*(\d+(?:\.\d+)*)/i)
+    regex(/JProfiler\s*Release\s*v?(\d+(?:\.\d+)+)/i)
   end
 
   app "JProfiler.app"

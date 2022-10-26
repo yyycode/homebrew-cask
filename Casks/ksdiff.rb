@@ -1,25 +1,31 @@
 cask "ksdiff" do
-  version "2.4.1,125:apr-6-2021"
-  sha256 "30217646096671f49f5d84b7f03ce3ab34a1c5dacc4bf41933f73edcc114c754"
+  version "3.3,146"
+  sha256 "8039f5642afead0eac18306b2303cffb477bf7fdf1ebd550ec82cbe9d54464dc"
 
-  url "https://updates.kaleidoscope.app/v2/prod/ksdiff-#{version.before_comma}-#{version.after_comma.before_colon}-#{version.after_colon}.zip"
+  url "https://updates.kaleidoscope.app/v#{version.major}/prod/ksdiff-#{version.csv.first}-#{version.csv.second}.zip"
   name "ksdiff"
   desc "Command-line tool for the App Store version of Kaleidoscope"
-  homepage "https://kaleidoscope.app/ksdiff2"
+  homepage "https://kaleidoscope.app/ksdiff#{version.major}"
 
   livecheck do
     url "https://kaleidoscope.app/download/latest/ksdiff"
     strategy :header_match do |headers|
-      match = headers["location"].match(%r{/ksdiff-(\d+(?:\.\d+)*)-(\d+)-(\w+(?:-\d+)*)\.zip}i)
-      "#{match[1]},#{match[2]}:#{match[3]}"
+      match = headers["location"].match(%r{/ksdiff[._-]v?(\d+(?:\.\d+)+)[._-](\d+)\.zip}i)
+      next if match.blank?
+
+      "#{match[1]},#{match[2]}"
     end
   end
 
-  conflicts_with cask: "kaleidoscope"
+  conflicts_with cask: [
+    "kaleidoscope",
+    "homebrew/cask-versions/kaleidoscope2",
+    "homebrew/cask-versions/ksdiff2",
+  ]
 
-  pkg "ksdiff-#{version.before_comma}/Install ksdiff.pkg"
+  pkg "ksdiff-#{version.csv.first}/Install ksdiff.pkg"
 
-  uninstall pkgutil: "com.blackpixel.kaleidoscope.ksdiff.installer.pkg"
+  uninstall pkgutil: "app.kaleidoscope.v#{version.major}.ksdiff.installer.pkg"
 
   caveats <<~EOS
     The #{token} Cask is not needed when installing Kaleidoscope via Cask. It

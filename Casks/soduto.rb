@@ -4,15 +4,22 @@ cask "soduto" do
 
   url "https://soduto.com/downloads/Soduto_v#{version}.dmg"
   name "Soduto"
+  desc "Communicate and share information between devices"
   homepage "https://soduto.com/"
 
   livecheck do
     url "https://soduto.com/downloads/"
-    strategy :page_match
     regex(%r{href=.*?/Soduto_v?(\d+(?:\.\d+)*)\.dmg}i)
   end
 
   depends_on macos: ">= :sierra"
 
   app "Soduto.app"
+
+  zap trash: [
+    "~/Library/Containers/com.soduto.Soduto",
+    "~/Library/Containers/com.soduto.SodutoBrowser",
+    "~/Library/Containers/com.soduto.SodutoLauncher",
+    "~/Library/Saved Application State/com.soduto.SodutoBrowser.savedState",
+  ]
 end

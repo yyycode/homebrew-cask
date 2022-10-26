@@ -1,14 +1,11 @@
 cask "pycharm" do
-  version "2021.2.1,212.5080.64"
+  arch arm: "-aarch64"
 
-  if Hardware::CPU.intel?
-    sha256 "b875d12f1e45ee36e01a0429809329993a91aa9c2f8f56adb07e86f94960975a"
-    url "https://download.jetbrains.com/python/pycharm-professional-#{version.before_comma}.dmg"
-  else
-    sha256 "aff795b7cf46a20f49e31364955f37a7045371a387e453e58d8553f63f79c7be"
-    url "https://download.jetbrains.com/python/pycharm-professional-#{version.before_comma}-aarch64.dmg"
-  end
+  version "2022.2.3,222.4345.23"
+  sha256 arm:   "59d9553ab01de9460984f082c12fb0586aeb84eb00a4501bab358e516f1f6847",
+         intel: "920326a35589fee80e70b84d23184daf1d3efc8ecf4ec8c273c2bf2ec764a5b7"
 
+  url "https://download.jetbrains.com/python/pycharm-professional-#{version.csv.first}#{arch}.dmg"
   name "PyCharm"
   name "PyCharm Professional"
   desc "IDE for professional Python development"
@@ -30,7 +27,7 @@ cask "pycharm" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "charm") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -38,13 +35,13 @@ cask "pycharm" do
   end
 
   zap trash: [
+    "~/Library/Application Support/JetBrains/PyCharm#{version.major_minor}",
+    "~/Library/Application Support/PyCharm#{version.major_minor}",
+    "~/Library/Caches/JetBrains/PyCharm#{version.major_minor}",
+    "~/Library/Logs/JetBrains/PyCharm#{version.major_minor}",
     "~/Library/Preferences/com.jetbrains.pycharm.plist",
     "~/Library/Preferences/jetbrains.pycharm.*.plist",
     "~/Library/Preferences/PyCharm#{version.major_minor}",
-    "~/Library/Application Support/PyCharm#{version.major_minor}",
-    "~/Library/Application Support/JetBrains/PyCharm#{version.major_minor}",
-    "~/Library/Caches/JetBrains/PyCharm#{version.major_minor}",
-    "~/Library/Logs/JetBrains/PyCharm#{version.major_minor}",
     "~/Library/Saved Application State/com.jetbrains.pycharm.savedState",
   ]
 end

@@ -9,13 +9,13 @@ cask "sourcetree" do
     version "3.2.1,225"
     sha256 "4bd82affa3402814c3d07ff613fbc8f45da8b0cda294d498ffbb0667bf729c9f"
 
-    url "https://product-downloads.atlassian.com/software/sourcetree/ga/Sourcetree_#{version.before_comma}_#{version.after_comma}.zip",
+    url "https://product-downloads.atlassian.com/software/sourcetree/ga/Sourcetree_#{version.csv.first}_#{version.csv.second}.zip",
         verified: "atlassian.com/software/sourcetree/"
   else
-    version "4.1.3,239"
-    sha256 "a5206c04579fe6e68a35e2bb8e73aceb6a9106800ecf67047e10b3f5c93e3823"
+    version "4.2.0,246"
+    sha256 "9446452c552fef4ca62066de7d73de697c2fb0517a2093ec463525c0b9a51c88"
 
-    url "https://product-downloads.atlassian.com/software/sourcetree/ga/Sourcetree_#{version.before_comma}_#{version.after_comma}.zip",
+    url "https://product-downloads.atlassian.com/software/sourcetree/ga/Sourcetree_#{version.csv.first}_#{version.csv.second}.zip",
         verified: "atlassian.com/software/sourcetree/"
   end
 
@@ -24,7 +24,7 @@ cask "sourcetree" do
   homepage "https://www.sourcetreeapp.com/"
 
   livecheck do
-    url "https://product-downloads.atlassian.com/software/sourcetree/Appcast/SparkleAppcastGroup0.xml"
+    url "https://product-downloads.atlassian.com/software/sourcetree/Appcast/SparkleAppcast.xml"
     strategy :sparkle
   end
 
@@ -38,11 +38,11 @@ cask "sourcetree" do
             quit:      "com.torusknot.SourceTreeNotMAS"
 
   zap trash: [
-    "~/Library/Application Support/SourceTree",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.torusknot.sourcetreenotmas.sfl2",
+    "~/Library/Application Support/SourceTree",
     "~/Library/Caches/com.torusknot.SourceTreeNotMAS",
-    "~/Library/Preferences/com.torusknot.SourceTreeNotMAS.plist",
     "~/Library/Preferences/com.torusknot.SourceTreeNotMAS.LSSharedFileList.plist",
+    "~/Library/Preferences/com.torusknot.SourceTreeNotMAS.plist",
     "~/Library/Saved Application State/com.torusknot.SourceTreeNotMAS.savedState",
   ]
 end

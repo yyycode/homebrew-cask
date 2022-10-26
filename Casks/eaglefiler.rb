@@ -1,6 +1,6 @@
 cask "eaglefiler" do
-  version "1.9.5"
-  sha256 "38b5049d3014ce70e940e650b6dec1dae373cf1df68d52e5966909a938204a1f"
+  version "1.9.9"
+  sha256 "52218067e46eec17d134824c17cb7ea86aabf0d85caf4075e64960d51b47cadb"
 
   url "https://c-command.com/downloads/EagleFiler-#{version}.dmg"
   name "EagleFiler"
@@ -9,9 +9,21 @@ cask "eaglefiler" do
 
   livecheck do
     url :homepage
-    strategy :page_match
-    regex(%r{href=.*?/EagleFiler-(\d+(?:\.\d+)*)\.dmg}i)
+    regex(%r{href=.*?/EagleFiler[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
   app "EagleFiler.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.c-command.EagleFiler.EagleFilerShare",
+    "~/Library/Application Support/EagleFiler",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.c-command.eaglefiler.sfl2",
+    "~/Library/Caches/com.c-command.EagleFiler",
+    "~/Library/Containers/com.c-command.EagleFiler.EagleFilerShare",
+    "~/Library/HTTPStorages/com.c-command.EagleFiler",
+    "~/Library/Logs/EagleFiler",
+    "~/Library/PDF Services/Save PDF to EagleFiler",
+    "~/Library/Preferences/com.c-command.EagleFiler.plist",
+    "~/Library/Saved Application State/com.c-command.EagleFiler.savedState",
+  ]
 end

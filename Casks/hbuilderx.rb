@@ -1,6 +1,6 @@
 cask "hbuilderx" do
-  version "3.2.2.20210818"
-  sha256 "db4e1adc714d0ac73be1eae73bab96e6424bec0cabbae39ab6f56fbd33426875"
+  version "3.6.4.20220922"
+  sha256 "1e1e32428bb67a1d24bdd6ce1bf2dfd615db6660cbe8c7200f23fe910d9fccfa"
 
   url "https://download1.dcloud.net.cn/download/HBuilderX.#{version}.dmg",
       verified: "download1.dcloud.net.cn/"
@@ -16,4 +16,8 @@ cask "hbuilderx" do
   end
 
   app "HBuilderX.app"
+
+  zap trash: [
+    "~/Library/Application Support/HBuilder X",
+  ]
 end

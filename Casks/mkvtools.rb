@@ -9,9 +9,13 @@ cask "mkvtools" do
 
   livecheck do
     url "https://www.emmgunn.com/mkvtools-home/mkvtools-downloads/"
-    strategy :page_match
     regex(%r{href=.*?/mkvtools(\d+(?:\.\d+)*)\.zip}i)
   end
 
   app "mkvtools#{version}/MKVtools.app"
+
+  zap trash: [
+    "~/Library/Application Support/EmmGunn",
+    "~/Library/Preferences/com.emmgunn.MKVtools#{version.major}.plist",
+  ]
 end

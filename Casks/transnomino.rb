@@ -1,6 +1,6 @@
 cask "transnomino" do
-  version "6.0"
-  sha256 "7b2f8bfe6ed55c464ffed372e62bd6cf6d1265d81abf2e4ea9e2443f082f5215"
+  version "6.4"
+  sha256 "961576d82065630c2b5d317185a18e022e93dd3fa2a335c2c9e0b75815d2ee3a"
 
   url "https://transnomino.bastiaanverreijt.com/download/Transnomino-#{version}.dmg"
   name "Transnomino"
@@ -16,4 +16,10 @@ cask "transnomino" do
   depends_on macos: ">= :high_sierra"
 
   app "Transnomino.app"
+
+  zap trash: [
+    "~/Library/Caches/com.apple.helpd/Generated/com.bastiaanverreijt.Transnomino.help*",
+    "~/Library/HTTPStorages/com.bastiaanverreijt.Transnomino",
+    "~/Library/Preferences/com.bastiaanverreijt.Transnomino.plist",
+  ]
 end

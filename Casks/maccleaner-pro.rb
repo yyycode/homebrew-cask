@@ -1,5 +1,5 @@
 cask "maccleaner-pro" do
-  version "2.6.1,313"
+  version "2.9.2,347"
   sha256 :no_check
 
   url "https://nektony.com/download/mac-cleaner-pro/dmg/mac-cleaner-pro.dmg"
@@ -12,9 +12,9 @@ cask "maccleaner-pro" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :el_capitan"
 
-  app "MacCleaner #{version.major} Pro"
+  app "MacCleaner 3 Pro"
 
   zap trash: [
     "~/Library/Application Scripts/com.nektony.MacCleaner-PRO-SII",

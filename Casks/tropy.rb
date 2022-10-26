@@ -1,8 +1,11 @@
 cask "tropy" do
-  version "1.9.0"
-  sha256 "513269f1fd2bfd47c901fbf6b92871fc985b7715b2d90b442c1ed30bed78d5c3"
+  arch arm: "-arm64"
 
-  url "https://github.com/tropy/tropy/releases/download/#{version}/tropy-#{version}.dmg",
+  version "1.12.0"
+  sha256 arm:   "d730a8747596a1a6d0c869cadbdc3bdff5ed371e05b205fad6b397dc5a4b872f",
+         intel: "ef8e62028cd991ed8e668797035286f4e5220190a9d70591fe7e853be90b862d"
+
+  url "https://github.com/tropy/tropy/releases/download/v#{version}/tropy-#{version}#{arch}.dmg",
       verified: "github.com/tropy/tropy/"
   name "Tropy"
   desc "Research photo management"
@@ -17,9 +20,9 @@ cask "tropy" do
 
   zap trash: [
     "~/Library/Application Support/Tropy",
-    "~/Library/Caches/Tropy",
-    "~/Library/Caches/org.tropy.tropy",
     "~/Library/Caches/org.tropy.tropy.ShipIt",
+    "~/Library/Caches/org.tropy.tropy",
+    "~/Library/Caches/Tropy",
     "~/Library/Logs/Tropy",
     "~/Library/Preferences/org.tropy.tropy.plist",
     "~/Library/Saved Application State/org.tropy.tropy.savedState",

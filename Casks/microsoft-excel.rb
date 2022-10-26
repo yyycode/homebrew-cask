@@ -1,9 +1,23 @@
 cask "microsoft-excel" do
-  version "16.52.21080801"
-  sha256 "18a03abb8b6515342460ca32ecc36debe9f4594e2c2e1403d6d42af25134755e"
+  if MacOS.version <= :el_capitan
+    version "16.16.20101200"
+    sha256 "bdd23b696d54e5ffeb40f30a9bd7f968d2936380ab78a6eaf29d05f5fc8eb78e"
+  elsif MacOS.version <= :sierra
+    version "16.30.19101301"
+    sha256 "9886b661067f4a99de544d140980fb0f8ef2f4871baa519024781fb814a02fe5"
+  elsif MacOS.version <= :high_sierra
+    version "16.43.20110804"
+    sha256 "2711a1b8864f7474458086b4b0a56673fee0097d2049f276788c50e004c47d72"
+  elsif MacOS.version <= :mojave
+    version "16.54.21101001"
+    sha256 "e09fe9f49a36b37af3745673a385be4de9ae8ec774965fd1753f8479a775fc54"
+  else
+    version "16.66.22101101"
+    sha256 "94148628c6f143f07555b3d2a70cea61cef817d963539d281b092834496f8f16"
+  end
 
-  url "https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_#{version}_Installer.pkg",
-      verified: "officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/"
+  url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Excel_#{version}_Installer.pkg",
+      verified: "officecdnmac.microsoft.com/"
   name "Microsoft Excel"
   desc "Spreadsheet software"
   homepage "https://products.office.com/en-US/excel"
@@ -16,7 +30,6 @@ cask "microsoft-excel" do
   auto_updates true
   conflicts_with cask: "microsoft-office"
   depends_on cask: "microsoft-auto-update"
-  depends_on macos: ">= :sierra"
 
   pkg "Microsoft_Excel_#{version}_Installer.pkg",
       choices: [
@@ -28,10 +41,11 @@ cask "microsoft-excel" do
       ]
 
   uninstall pkgutil:   [
-    "com.microsoft.package.Microsoft_Excel.app",
-    "com.microsoft.pkg.licensing",
-  ],
-            launchctl: "com.microsoft.office.licensingV2.helper"
+              "com.microsoft.package.Microsoft_Excel.app",
+              "com.microsoft.pkg.licensing",
+            ],
+            launchctl: "com.microsoft.office.licensingV2.helper",
+            quit:      "com.microsoft.autoupdate2"
 
   zap trash: [
     "~/Library/Application Scripts/com.microsoft.Excel",

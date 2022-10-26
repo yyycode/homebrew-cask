@@ -1,6 +1,6 @@
 cask "rhino" do
-  version "7.9.21222.15002"
-  sha256 "add87c51408273822d972d7aaf087717ca626787a777c8bdfcf7f65d847c95da"
+  version "7.23.22282.13002"
+  sha256 "1eb1518cd2316c124638fa58c5e2c856566b0b7ec3e8a15b1addc125ea0a95eb"
 
   url "https://files.mcneel.com/rhino/#{version.major}/mac/releases/rhino_#{version}.dmg",
       verified: "mcneel.com/"
@@ -19,8 +19,8 @@ cask "rhino" do
   app "Rhino #{version.major}.app"
 
   zap trash: [
-    "~/Library/Preferences/com.mcneel.rhinoceros.plist",
-    "~/Library/Caches/com.mcneel.rhinoceros",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mcneel.rhinoceros.sfl*",
+    "~/Library/Caches/com.mcneel.rhinoceros",
+    "~/Library/Preferences/com.mcneel.rhinoceros.plist",
   ]
 end

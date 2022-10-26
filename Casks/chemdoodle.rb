@@ -1,6 +1,6 @@
 cask "chemdoodle" do
-  version "11.6.0"
-  sha256 "c00c91c09af5d909b4856038f549eb424eb5044761353d77cca1bb9bd05c62fc"
+  version "11.11.0"
+  sha256 "b66cbbd7b61efd4fd194d16e5b3b160d44f27641ec53474225ee5f7079827133"
 
   url "https://www.ichemlabs.com/downloads/ChemDoodle-macos-#{version}.dmg"
   name "ChemDoodle"

@@ -1,5 +1,5 @@
 cask "airfoil" do
-  version "5.10.4"
+  version "5.11.2"
   sha256 :no_check
 
   url "https://rogueamoeba.com/airfoil/mac/download/Airfoil.zip"
@@ -8,8 +8,8 @@ cask "airfoil" do
   homepage "https://www.rogueamoeba.com/airfoil/mac/"
 
   livecheck do
-    url "https://rogueamoeba.com/airfoil/mac/releasenotes.php"
-    regex(/ra-version=["']?(\d+(?:\.\d+)+)["' >]/i)
+    url "https://rogueamoeba.net/ping/versionCheck.cgi?format=sparkle&system=1231&bundleid=com.rogueamoeba.airfoil&platform=osx&version=#{version.no_dots}8000"
+    strategy :sparkle
   end
 
   auto_updates true

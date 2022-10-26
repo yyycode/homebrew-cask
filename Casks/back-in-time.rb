@@ -9,8 +9,7 @@ cask "back-in-time" do
 
   livecheck do
     url "https://www.tri-edre.com/download/download/backintime.html"
-    strategy :page_match
-    regex(/Back-In-Time\s*(\d+(?:\.\d+)*)/i)
+    regex(/Back-In-Time\s*(\d+(?:\.\d+)+)/i)
   end
 
   app "Back-In-Time #{version.major}.app"

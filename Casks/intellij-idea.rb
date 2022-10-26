@@ -1,16 +1,11 @@
 cask "intellij-idea" do
-  version "2021.2.1,212.5080.55"
+  arch arm: "-aarch64"
 
-  if Hardware::CPU.intel?
-    sha256 "a1879b1ccd503e5abbb8141c70b31dcf28db5b2705b667075aff5fd2166bd1b3"
+  version "2022.2.3,222.4345.14"
+  sha256 arm:   "9e5c32fffd17d651d8d875c2588a067902a9ebb9bf815d06aabfd75b9f4ee3cd",
+         intel: "df780c841398532e090adc2c6af35a7fbcdd29fddb37e5a68f33d61a9032d5a3"
 
-    url "https://download.jetbrains.com/idea/ideaIU-#{version.before_comma}.dmg"
-  else
-    sha256 "e62dcae761ab363bfd0a5cd97edf1436779e7488ab83f8a4f0561b994eb24b8c"
-
-    url "https://download.jetbrains.com/idea/ideaIU-#{version.before_comma}-aarch64.dmg"
-  end
-
+  url "https://download.jetbrains.com/idea/ideaIU-#{version.csv.first}#{arch}.dmg"
   name "IntelliJ IDEA Ultimate"
   desc "Java IDE by JetBrains"
   homepage "https://www.jetbrains.com/idea/"
@@ -31,7 +26,7 @@ cask "intellij-idea" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "idea") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -39,12 +34,12 @@ cask "intellij-idea" do
   end
 
   zap trash: [
-    "~/Library/Preferences/com.jetbrains.intellij.plist",
-    "~/Library/Preferences/jetbrains.idea.*.plist",
-    "~/Library/Preferences/IntelliJIdea#{version.major_minor}",
+    "~/Library/Application Support/JetBrains/IntelliJIdea#{version.major_minor}",
     "~/Library/Caches/JetBrains/IntelliJIdea#{version.major_minor}",
     "~/Library/Logs/JetBrains/IntelliJIdea#{version.major_minor}",
-    "~/Library/Application Support/JetBrains/IntelliJIdea#{version.major_minor}",
+    "~/Library/Preferences/com.jetbrains.intellij.plist",
+    "~/Library/Preferences/IntelliJIdea#{version.major_minor}",
+    "~/Library/Preferences/jetbrains.idea.*.plist",
     "~/Library/Saved Application State/com.jetbrains.intellij.savedState",
   ]
 end

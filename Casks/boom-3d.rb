@@ -1,5 +1,5 @@
 cask "boom-3d" do
-  version "1.3.12,101.3.12012"
+  version "1.3.17,101.3.17005"
   sha256 :no_check
 
   url "https://dfvk972795zr9.cloudfront.net/Boom3Dmac/webstore/Boom3D.dmg",
@@ -13,14 +13,12 @@ cask "boom-3d" do
     strategy :extract_plist
   end
 
-  depends_on macos: ">= :yosemite"
-
   app "Boom 3D.app"
 
   uninstall launchctl: [
-    "com.globaldelight.Boom3D",
-    "com.globaldelight.Boom3DHelper",
-  ],
+              "com.globaldelight.Boom3D",
+              "com.globaldelight.Boom3DHelper",
+            ],
             quit:      "com.globaldelight.Boom3D"
 
   zap trash: [

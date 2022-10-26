@@ -1,8 +1,8 @@
 cask "serial" do
-  version "2.0.11,02001.17.50"
-  sha256 "43139a79a004510c1f8d21dee355cdc0bad1acef5fabf37635e81987bc9f9a62"
+  version "2.0.14,02001.47.50"
+  sha256 "56710424e83ce6b4736bf23d9d3dcf412ec4153097e5a2d87a6380d6b912bc21"
 
-  url "https://download.decisivetactics.com/downloads/serial/Serial_#{version.before_comma}.zip"
+  url "https://download.decisivetactics.com/downloads/serial/Serial_#{version.csv.first}.zip"
   name "Serial"
   desc "Connect to almost anything with a serial port"
   homepage "https://www.decisivetactics.com/products/serial/"
@@ -13,6 +13,7 @@ cask "serial" do
   end
 
   auto_updates true
+  depends_on macos: ">= :el_capitan"
 
   app "Serial.app"
 end

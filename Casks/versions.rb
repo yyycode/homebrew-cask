@@ -1,8 +1,8 @@
 cask "versions" do
-  version "2.0.6,2009"
-  sha256 "e8a8cbc951e2f40b212fbeb6b3d7f8441dda9ed4ee53f6cf78b952ed63efb44c"
+  version "2.4.1,2032"
+  sha256 "75521751729563a8df7105fb45763575312fda7c2143bf97a8c4016157c12bdf"
 
-  url "https://updates.versionsapp.com/v#{version.major}/prod/Versions-#{version.before_comma}-#{version.after_comma}.zip"
+  url "https://updates.versionsapp.com/v#{version.major}/prod/Versions-#{version.csv.first}-#{version.csv.second}.zip"
   name "Versions"
   desc "Subversion client"
   homepage "https://versionsapp.com/"
@@ -15,4 +15,11 @@ cask "versions" do
   depends_on macos: ">= :catalina"
 
   app "Versions.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.versionsapp.v#{version.major}",
+    "~/Library/Application Support/Versions",
+    "~/Library/Caches/com.versionsapp.v#{version.major}",
+    "~/Library/Preferences/com.versionsapp.v#{version.major}.plist",
+  ]
 end

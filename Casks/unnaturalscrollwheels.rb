@@ -1,6 +1,6 @@
 cask "unnaturalscrollwheels" do
-  version "1.2.2"
-  sha256 "1df6542af46cf5f48a1099598dabcc3fc3b8d8caa8817b0c4261071efd76db21"
+  version "1.3.0"
+  sha256 "191c4b5a05aeb3b2bbf990b15f4cdeeeff79a4c2b9bab020f8b11d3681a3dbb0"
 
   url "https://github.com/ther0n/UnnaturalScrollWheels/releases/download/#{version}/UnnaturalScrollWheels-#{version}.dmg"
   name "UnnaturalScrollWheels"

@@ -1,6 +1,6 @@
 cask "texstudio" do
-  version "3.1.2"
-  sha256 "8b5b23690554c2d0f8be08e9ea3f6d62d9f79b95fcb7b041c583dffab18aa303"
+  version "4.3.1"
+  sha256 "cf42128117a833490805564fe632da59c7fb1938b868b8083811b36c25a97a92"
 
   url "https://github.com/texstudio-org/texstudio/releases/download/#{version}/texstudio-#{version}-osx.dmg",
       verified: "github.com/texstudio-org/texstudio/"
@@ -8,7 +8,7 @@ cask "texstudio" do
   desc "LaTeX editor"
   homepage "https://texstudio.org/"
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :big_sur"
 
   app "texstudio.app"
 

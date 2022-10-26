@@ -1,6 +1,6 @@
 cask "virtualgl" do
-  version "2.6.90"
-  sha256 "86f6da29c0129420209d07f0af23d72da20220fb59ea0057966963e395ced8b9"
+  version "3.0.2"
+  sha256 "15defd6407c1285860f02497544ce7aae38b6eecf3b4afce50b3154bf6bcc7b1"
 
   url "https://downloads.sourceforge.net/virtualgl/VirtualGL-#{version}.dmg",
       verified: "downloads.sourceforge.net/virtualgl/"

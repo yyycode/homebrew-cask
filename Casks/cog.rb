@@ -1,16 +1,20 @@
 cask "cog" do
-  version "1570,3f6cb1bc"
-  sha256 "ac32874a03f879f179d2e69d543e73ff97ec1754452167fdccc08349bdc37f08"
+  version "2702,b1f97f33"
+  sha256 "1bbc45cc982a908f4c2a4af505163c060dd88d8a81b41e0673cba0dee1566a50"
 
-  url "https://f.losno.co/cog/Cog-#{version.after_comma}.zip"
+  url "https://cogcdn.cog.losno.co/Cog-#{version.csv.second}.zip"
   name "Cog"
   desc "Audio player"
   homepage "https://cog.losno.co/"
 
   livecheck do
-    url "https://balde.losno.co/cog/mercury.xml"
-    strategy :sparkle do |item|
-      item.version.split("-g", 2).join(",")
+    url "https://cogcdn.cog.losno.co/mercury.xml"
+    regex(%r{/Cog[._-](\h+)\.zip}i)
+    strategy :sparkle do |item, regex|
+      match = item.url&.match(regex)
+      next if !item&.short_version || match.blank?
+
+      "#{item.short_version},#{match[1]}"
     end
   end
 
@@ -22,7 +26,7 @@ cask "cog" do
   uninstall quit: "org.cogx.cog"
 
   zap trash: [
-    "~/Library/Caches/org.cogx.cog",
     "~/Library/Application Support/Cog",
+    "~/Library/Caches/org.cogx.cog",
   ]
 end

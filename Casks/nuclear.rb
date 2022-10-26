@@ -1,12 +1,16 @@
 cask "nuclear" do
-  version "0.6.16"
-  sha256 "4487cb19350f30e7731e259f368773f507c99675e92573eafbfbd24cbd4c7a89"
+  version "3f9007"
+  sha256 "e383f8ac88691140c793f5c8ed9332d42f7a37eee0cddeeed550856076971753"
 
-  url "https://github.com/nukeop/nuclear/releases/download/v#{version}/nuclear-v#{version}.dmg",
+  url "https://github.com/nukeop/nuclear/releases/download/#{version}/nuclear-#{version}.dmg",
       verified: "github.com/nukeop/nuclear/"
   name "Nuclear"
   desc "Streaming music player"
   homepage "https://nuclear.js.org/"
+
+  livecheck do
+    skip "Releases are tagged as partial commit hashes"
+  end
 
   app "nuclear.app"
 

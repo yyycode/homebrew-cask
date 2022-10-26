@@ -1,15 +1,18 @@
 cask "plex" do
-  version "1.33.0.2444-a220eae4"
-  sha256 "3fb9008512e43237d66bf13063547f865c6b08e9bac45f7b8aeae320ccd7080e"
+  version "1.55.0.3278,c6164b3c"
+  sha256 "d654be872ea2532d0cdf10ff7ff4b6bc43def36f9479b9f3b098497f1bb32de0"
 
-  url "https://downloads.plex.tv/plex-desktop/#{version}/macos/Plex-#{version}-x86_64.zip"
+  url "https://downloads.plex.tv/plex-desktop/#{version.csv.first}-#{version.csv.second}/macos/Plex-#{version.csv.first}-#{version.csv.second}-x86_64.zip"
   name "Plex"
   desc "Home media player"
   homepage "https://www.plex.tv/"
 
   livecheck do
     url "https://plex.tv/api/downloads/6.json"
-    regex(/"version"\s*:\s*"(\d(?:\.\d+)*-[a-f0-9]{8})"/i)
+    regex(/"version"\s*:\s*"(\d(?:\.\d+)*)-([a-f0-9]{8})"/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
+    end
   end
 
   auto_updates true

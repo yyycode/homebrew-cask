@@ -1,16 +1,18 @@
 cask "volanta" do
-  version "1.0.29,4ba3ea3c"
-  sha256 "e974850e2b4bc2da9c03dd3effbf049f58fa12e4d61fd5e30c34f34133b9fa3d"
+  version "1.3.13,d4988f9f"
+  sha256 "e69dac68c574fa3782787d01776b4cba385450d6f4ac991f8149a1218d9468a9"
 
-  url "https://cdn.volanta.app/software/volanta-app/#{version.before_comma}-#{version.after_comma}/volanta-#{version.before_comma}.dmg"
+  url "https://cdn.volanta.app/software/volanta-app/#{version.csv.first}-#{version.csv.second}/volanta-#{version.csv.first}.dmg"
   name "Volanta"
   desc "Personal flight tracker"
-  homepage "https://volanta.app/roadmap/"
+  homepage "https://volanta.app/"
 
   livecheck do
     url "https://api.volanta.app/api/v1/ClientUpdate/latest-mac.yml"
     strategy :page_match do |page|
-      match = page.match(%r{volanta-app/(\d+(?:\.\d+)*)-(.+)/}i)
+      match = page.match(%r{volanta-app/(\d+(?:\.\d+)+)-(.+)/}i)
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end

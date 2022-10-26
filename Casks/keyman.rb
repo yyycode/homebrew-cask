@@ -1,6 +1,6 @@
 cask "keyman" do
-  version "14.0.280"
-  sha256 "8465f512b23900f8b6527cf4a2f21c550d526bac7135607b3abfd1609608b91a"
+  version "15.0.271"
+  sha256 "bfd3858e4cb73a012ee386edc16cfbef824a4f5eabeb021603f9a76cda530922"
 
   url "https://downloads.keyman.com/mac/stable/#{version}/keyman-#{version}.dmg"
   name "Keyman"
@@ -11,8 +11,6 @@ cask "keyman" do
     url "https://downloads.keyman.com/mac/stable"
     regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
-
-  depends_on macos: ">= :yosemite"
 
   input_method "Install Keyman.app/Contents/MacOS/Keyman.app"
 

@@ -1,6 +1,6 @@
 cask "gretl" do
-  version "2021c"
-  sha256 "1252c3ab200b78b92cc64f747ce1ffaaa455b370c6b54e34fe5f4f61f8faccf9"
+  version "2022b"
+  sha256 "9ad558d0881194c96664615c9561b5198ddb48db888dfdefda3e4c068f1f3c1a"
 
   url "https://downloads.sourceforge.net/gretl/gretl-#{version}-macos-intel.pkg",
       verified: "downloads.sourceforge.net/gretl/"
@@ -11,7 +11,7 @@ cask "gretl" do
   livecheck do
     url "http://gretl.sourceforge.net/osx.html"
     strategy :page_match
-    regex(/gretl-(\d+\w)-macos-intel\.pkg/i)
+    regex(/gretl[._-]v?(\d+\w)[._-]macos[._-]intel\.pkg/i)
   end
 
   pkg "gretl-#{version}-macos-intel.pkg"

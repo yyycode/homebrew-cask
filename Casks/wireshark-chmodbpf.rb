@@ -1,6 +1,6 @@
 cask "wireshark-chmodbpf" do
-  version "3.4.8"
-  sha256 "5e9ac6bc088b1bcca1b34c6848213d66ff8fc1efa4974b9bb1f137198e14f855"
+  version "4.0.0"
+  sha256 "3880cd9ad35ccdb233a757461ddc8821f26be0a4771fcbc46ccd6d7adca15903"
 
   url "https://www.wireshark.org/download/osx/Wireshark%20#{version}%20Intel%2064.dmg"
   name "Wireshark-ChmodBPF"
@@ -13,7 +13,7 @@ cask "wireshark-chmodbpf" do
   end
 
   conflicts_with cask: "wireshark"
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :mojave"
 
   pkg "Install ChmodBPF.pkg"
 

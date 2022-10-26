@@ -1,6 +1,6 @@
 cask "medibangpaintpro" do
-  version "27.0"
-  sha256 "2e830bf03768d0acd400380e16f7c667c474b51d694a4ac3cb3ad740ebbeb4f9"
+  version "28.3"
+  sha256 "e4d3cd4adefadc6027dddc1ac9f21ebbd97b4c3a29857be7b254fd33cd4c557f"
 
   url "https://medibangpaint.com/static/installer/MediBangPaintPro/MediBangPaintPro-#{version}.dmg"
   name "MediBang Paint Pro"
@@ -9,13 +9,15 @@ cask "medibangpaintpro" do
 
   livecheck do
     url "https://medibangpaint.com/en/app-download/"
-    strategy :page_match
     regex(%r{href=.*?/MediBangPaintPro-(\d+(?:\.\d+)*)\.dmg}i)
   end
 
   app "MediBangPaintPro.app"
 
   zap trash: [
+    "~/Library/Application Support/Medibang",
+    "~/Library/Application Support/CloudDocs/session/containers/iCloud.com.medibang.MediBangPaintTablet.plist",
+    "~/Library/Application Support/CloudDocs/session/containers/iCloud.com.medibang.MediBangPaintTablet",
     "~/Library/Preferences/com.medibang.cloudalpaca.plist",
     "~/Library/Saved Application State/com.medibang.cloudalpaca.savedState",
   ]

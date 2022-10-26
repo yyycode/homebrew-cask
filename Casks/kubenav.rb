@@ -1,16 +1,12 @@
 cask "kubenav" do
-  version "3.7.0"
+  arch arm: "arm64", intel: "amd64"
 
-  if Hardware::CPU.intel?
-    sha256 "550bb6289741ef1b7fce06478c117bbcbe486db5c9362ee3a3a2afb45720fe90"
-    url "https://github.com/kubenav/kubenav/releases/download/#{version}/kubenav-darwin-amd64.zip",
-        verified: "github.com/kubenav/kubenav/"
-  else
-    sha256 "82c9ceaaaedffa3db6f2a274077a4fbff6e74b1e855c659e2f21dfdc1b78043d"
-    url "https://github.com/kubenav/kubenav/releases/download/#{version}/kubenav-darwin-arm64.zip",
-        verified: "github.com/kubenav/kubenav/"
-  end
+  version "3.9.0"
+  sha256 arm:   "ad3d0778d85cad9271ba5942f9bc6de0130edcb28d1ecc9cfdb0ee3e4c040222",
+         intel: "81dfd86497a1a5081cec1c4a544eb7959218db0107ddc3758b0b3e5367db950f"
 
+  url "https://github.com/kubenav/kubenav/releases/download/#{version}/kubenav-darwin-#{arch}.zip",
+      verified: "github.com/kubenav/kubenav/"
   name "kubenav"
   desc "Navigator for your Kubernetes clusters right in your pocket"
   homepage "https://kubenav.io/"

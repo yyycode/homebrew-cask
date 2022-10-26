@@ -1,6 +1,6 @@
 cask "parallels" do
-  version "17.0.0-51461"
-  sha256 "df9fe6f571bd761e4aa1c4d9bf82a953ea626841bfae95c3ffa3904421e2f7d2"
+  version "18.0.2-53077"
+  sha256 "cab0a0deaafde925021e64f720017bf7f1daf8bf365779c80ba1dbe6e817a069"
 
   url "https://download.parallels.com/desktop/v#{version.major}/#{version}/ParallelsDesktop-#{version}.dmg"
   name "Parallels Desktop"
@@ -13,7 +13,15 @@ cask "parallels" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  conflicts_with cask: [
+    "homebrew/cask-versions/parallels12",
+    "homebrew/cask-versions/parallels13",
+    "homebrew/cask-versions/parallels14",
+    "homebrew/cask-versions/parallels15",
+    "homebrew/cask-versions/parallels16",
+    "homebrew/cask-versions/parallels17",
+  ]
+  depends_on macos: ">= :mojave"
 
   app "Parallels Desktop.app"
 
@@ -35,23 +43,30 @@ cask "parallels" do
   end
 
   uninstall delete: [
-    "/usr/local/bin/prl_convert",
-    "/usr/local/bin/prl_disk_tool",
-    "/usr/local/bin/prl_perf_ctl",
-    "/usr/local/bin/prlcore2dmp",
-    "/usr/local/bin/prlctl",
-    "/usr/local/bin/prlexec",
-    "/usr/local/bin/prlsrvctl",
-  ]
+              "/usr/local/bin/prl_convert",
+              "/usr/local/bin/prl_disk_tool",
+              "/usr/local/bin/prl_perf_ctl",
+              "/usr/local/bin/prlcore2dmp",
+              "/usr/local/bin/prlctl",
+              "/usr/local/bin/prlexec",
+              "/usr/local/bin/prlsrvctl",
+              "/Library/Preferences/Parallels",
+            ],
+            signal: ["TERM", "com.parallels.desktop.console"]
 
   zap trash: [
     "~/.parallels_settings",
+    "~/Applications (Parallels)",
+    "~/Library/Application Scripts/*.com.parallels.Desktop",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.parallels.desktop.console.sfl*",
     "~/Library/Application Scripts/com.parallels.desktop*",
     "~/Library/Caches/com.apple.helpd/Generated/com.parallels.desktop.console.help*",
     "~/Library/Caches/com.parallels.desktop.console",
     "~/Library/Caches/Parallels Software/Parallels Desktop",
     "~/Library/Containers/com.parallels.desktop*",
+    "~/Library/Group Containers/*.com.parallels.Desktop",
     "~/Library/Logs/parallels.log",
+    "~/Library/Parallels/Applications Menus",
     "~/Library/Parallels/Parallels Desktop",
     "~/Library/Preferences/com.parallels.desktop.console.LSSharedFileList.plist",
     "~/Library/Preferences/com.parallels.desktop.console.plist",
@@ -60,5 +75,12 @@ cask "parallels" do
     "~/Library/Preferences/com.parallels.Parallels Desktop.plist",
     "~/Library/Preferences/com.parallels.Parallels.plist",
     "~/Library/Preferences/com.parallels.PDInfo.plist",
+    "~/Library/Preferences/Parallels",
+    "~/Library/Saved Application State/com.parallels.desktop.console.savedState",
+  ], rmdir: [
+    "/Users/Shared/Parallels",
+    "~/Library/Caches/Parallels Software",
+    "~/Library/Parallels",
+    "~/Parallels",
   ]
 end

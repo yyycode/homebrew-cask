@@ -1,31 +1,28 @@
 cask "zulufx" do
-  version "15.0.4,15.34.17-ca"
+  arch arm: "aarch64", intel: "x64"
+  choice = on_arch_conditional arm: "arm", intel: "x86"
 
-  if Hardware::CPU.intel?
-    sha256 "776fc9a3e9d71497a3368bb49f58bacb04fa97c9964c26ff2a54631dc89e3054"
+  version "17.0.5,17.38.21-ca"
+  sha256 arm:   "c118d74f223a57d14b4607cd59ea5dcd94c443f2a5fbbf17746931350324a755",
+         intel: "da720e89bbb6a5881d80f9fccfea4232dbfb51789ca5df3c16ab7e385282e1a1"
 
-    url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-fx-jdk#{version.before_comma}-macosx_x64.dmg",
-        referer: "https://www.azul.com/downloads/"
-  else
-    sha256 "71cc95214219f8dddc0674cbfdd56ced99007727a99c6f31a2645efccafc2d0b"
-
-    url "https://cdn.azul.com/zulu/bin/zulu#{version.after_comma}-fx-jdk#{version.before_comma}-macosx_aarch64.dmg",
-        referer: "https://www.azul.com/downloads/"
-  end
-
+  url "https://cdn.azul.com/zulu/bin/zulu#{version.csv.second}-fx-jdk#{version.csv.first}-macosx_#{arch}.dmg",
+      referer: "https://www.azul.com/downloads/"
   name "ZuluFX"
   desc "Azul ZuluFX Java Standard Edition Development Kit"
   homepage "https://www.azul.com/downloads/"
 
   livecheck do
-    url "https://api.azul.com/zulu/download/community/v1.0/bundles/latest/?jdk_version=#{version.major}&ext=dmg&os=macos"
+    url "https://api.azul.com/zulu/download/community/v1.0/bundles/latest/?jdk_version=#{version.major}&bundle_type=jdk&javafx=true&ext=dmg&os=macos&arch=#{choice}"
     strategy :page_match do |page|
-      match = page.match(%r{url"\s*:\s*"https:.*?/zulu(\d+(?:\.\d+)*-.*?)-jdk(\d+(?:\.\d+)*)-macos}i)
+      match = page.match(/zulu(\d+(?:\.\d+)*-.*?)-fx-jdk(\d+(?:\.\d+)*)-macosx_#{arch}\.dmg/i)
+      next if match.blank?
+
       "#{match[2]},#{match[1]}"
     end
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :mojave"
 
   pkg "Double-Click to Install Azul Zulu JDK #{version.major}.pkg"
 

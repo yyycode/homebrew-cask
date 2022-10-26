@@ -1,17 +1,27 @@
 cask "vmware-fusion" do
-  version "12.1.2-17964953"
-  sha256 "873049d4080168b56085c5b67be1d4eeb14debc0e6cf176dbd52c78518d0b883"
+  if MacOS.version <= :catalina
+    livecheck_folder = "core"
+    version "12.1.2,17964953"
+    sha256 "873049d4080168b56085c5b67be1d4eeb14debc0e6cf176dbd52c78518d0b883"
 
-  url "https://download3.vmware.com/software/fusion/file/VMware-Fusion-#{version}.dmg"
+    url "https://download3.vmware.com/software/fusion/file/VMware-Fusion-#{version.csv.first}-#{version.csv.second}.dmg"
+  else
+    livecheck_folder = "x86"
+    version "12.2.4,20071091"
+    sha256 "0b0516f4d5f70e759ae08a40d2e14f487c0b66d84ee467e38972ad013e1f6c7f"
+
+    url "https://download3.vmware.com/software/FUS-#{version.csv.first.no_dots}/VMware-Fusion-#{version.csv.first}-#{version.csv.second}_x86.dmg"
+  end
+
   name "VMware Fusion"
   desc "Create, manage, and run virtual machines"
   homepage "https://www.vmware.com/products/fusion.html"
 
   livecheck do
     url "https://softwareupdate.vmware.com/cds/vmw-desktop/fusion.xml"
-    strategy :page_match do |page|
-      scan = page.scan(%r{fusion/(\d+(?:\.\d+)+)/(\d+)/core}i)
-      scan.map { |v| "#{v[0]}-#{v[1]}" }
+    regex(%r{fusion/(\d+(?:\.\d+)+)/(\d+)/#{livecheck_folder}}i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
     end
   end
 

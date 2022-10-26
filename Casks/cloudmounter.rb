@@ -1,5 +1,5 @@
 cask "cloudmounter" do
-  version "3.10,694"
+  version "3.11,698"
   sha256 :no_check
 
   url "https://cdn.eltima.com/download/cloudmounter.dmg"
@@ -13,4 +13,11 @@ cask "cloudmounter" do
   end
 
   app "CloudMounter.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.eltima.cloudmounter",
+    "~/Library/Caches/com.eltima.cloudmounter",
+    "~/Library/Logs/CloudMounter.log",
+    "~/Library/Preferences/com.eltima.cloudmounter.plist",
+  ]
 end

@@ -1,6 +1,6 @@
 cask "dmm-player" do
-  version "2.1.8"
-  sha256 "ac45719e1fe4d225fe813d2abdff3e5f34fb23253f3d1f960fe981c68e8c1e3b"
+  version "2.2.0"
+  sha256 "ea7f3914a7130b480806e8452d1517d07596116478a9136441c6050bbffd97ff"
 
   url "https://portalapp.dmm.com/dmmplayerv#{version.major}/dmm/#{version.dots_to_underscores}/DMMPlayerV#{version.major}Installer_#{version.dots_to_underscores}.pkg"
   name "DMM Player"

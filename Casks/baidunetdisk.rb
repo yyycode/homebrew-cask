@@ -1,9 +1,19 @@
 cask "baidunetdisk" do
-  version "3.9.5"
-  sha256 "2d2957d64ccadef5c9cc69a794102902d51bf3eadaa4f23ac45f0aa0f3a5657d"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://wppkg.baidupcs.com/issue/netdisk/MACguanjia/BaiduNetdisk_mac_#{version}.dmg",
-      verified: "baidupcs.com/issue/netdisk/MACguanjia/"
+  version "4.14.7"
+
+  on_intel do
+    sha256 "716d9a658661d2fcfdf7e84aca3db3b2f5e27c4468673ba73166a9a874c53b98"
+    url "https://issuepcdn.baidupcs.com/issue/netdisk/MACguanjia/#{version}/BaiduNetdisk_mac_#{version}_#{arch}.dmg",
+        verified: "issuepcdn.baidupcs.com/issue/netdisk/MACguanjia/"
+  end
+  on_arm do
+    sha256 "3853603b2383c16473023fde4ae77cb0a70055067b7205ae7aa42b2fb8d25ca8"
+    url "https://issuepcdn.baidupcs.com/issue/netdisk/MACguanjia/#{version}/BaiduNetdisk_mac_#{version}_#{arch}.dmg",
+        verified: "issuepcdn.baidupcs.com/issue/netdisk/MACguanjia/"
+  end
+
   name "Baidu NetDisk"
   name "百度网盘"
   desc "Cloud storage service"
@@ -11,25 +21,28 @@ cask "baidunetdisk" do
 
   livecheck do
     url "https://pan.baidu.com/disk/cmsdata?do=client"
-    regex(/BaiduNetdisk[._-]mac[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+    regex(/BaiduNetdisk[._-]mac[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
   end
 
-  depends_on macos: ">= :yosemite"
+  auto_updates true
 
   app "BaiduNetdisk_mac.app"
 
   zap trash: [
-    "~/Library/Application Support/com.baidu.BaiduNetdisk-mac",
-    "~/Library/Caches/com.baidu.BaiduNetdisk-mac",
-    "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.baidu.BaiduNetdisk-mac",
-    "~/Library/Cookies/com.baidu.BaiduNetdisk-mac.binarycookies",
-    "~/Library/Preferences/com.baidu.BaiduNetdisk-mac.plist",
-    "~/Library/sapi/wappass.baidu.com",
-    "~/Library/Saved Application State/com.baidu.BaiduNetdisk-mac.savedState",
-  ],
-      rmdir:
-             [
-               "~/Library/Caches/com.plausiblelabs.crashreporter.data",
-               "~/Library/sapi",
-             ]
+        "~/Library/Application Scripts/com.baidu.BaiduNetdisk-mac.FinderSync",
+        "~/Library/Application Support/baidunetdisk",
+        "~/Library/Application Support/com.baidu.BaiduNetdisk-mac",
+        "~/Library/Caches/com.baidu.BaiduNetdisk-mac",
+        "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.baidu.BaiduNetdisk-mac",
+        "~/Library/Containers/com.baidu.BaiduNetdisk-mac.FinderSync",
+        "~/Library/Cookies/com.baidu.BaiduNetdisk-mac.binarycookies",
+        "~/Library/HTTPStorages/com.baidu.BaiduNetdisk-mac",
+        "~/Library/Preferences/com.baidu.BaiduNetdisk-mac.plist",
+        "~/Library/sapi/wappass.baidu.com",
+        "~/Library/Saved Application State/com.baidu.BaiduNetdisk-mac.savedState",
+      ],
+      rmdir: [
+        "~/Library/Caches/com.plausiblelabs.crashreporter.data",
+        "~/Library/sapi",
+      ]
 end

@@ -1,6 +1,6 @@
 cask "crossover" do
-  version "21.0.0.33720"
-  sha256 "d5c7d72c198940467ffb53fc88684f0796a5a75f25051252d979e8dc57ee24c2"
+  version "22.0.1.35507"
+  sha256 "2581a768f72cd920c5ceadeca61ed5bc679e8276a57de7a7d9c53f693adc5db2"
 
   url "https://media.codeweavers.com/pub/crossover/cxmac/demo/crossover-#{version.major_minor_patch}.zip"
   name "CrossOver"
@@ -12,7 +12,7 @@ cask "crossover" do
     strategy :sparkle
   end
 
-  depends_on macos: "<= :big_sur"
+  auto_updates true
 
   app "CrossOver.app"
 
@@ -23,7 +23,7 @@ cask "crossover" do
     "~/Library/Caches/com.apple.helpd/Generated/CrossOver Help*",
     "~/Library/Caches/com.codeweavers.CrossOver",
     "~/Library/Cookies/com.codeweavers.CrossOver.binarycookies",
-    "~/Library/HTTPStorages/com.codeweavers.CrossOver.binarycookies",
+    "~/Library/HTTPStorages/com.codeweavers.CrossOver*",
     "~/Library/Logs/CrossOver",
     "~/Library/Logs/DiagnosticReports/CrossOver*",
     "~/Library/Preferences/com.codeweavers.*",

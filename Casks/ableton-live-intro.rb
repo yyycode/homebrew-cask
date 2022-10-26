@@ -1,16 +1,20 @@
 cask "ableton-live-intro" do
-  version "11.0.6"
-  sha256 "7d016bdc8b6613fa133ef5723a06320fec49edd1632b27ea616599870701c9d0"
+  arch = "intel"
+  version "11.2.5"
+  sha256 "68ae4aa7c1a4286f77de340f5e2556442ea17a73976c3f90c9dce1c75dc8234a"
 
-  url "https://cdn-downloads.ableton.com/channels/#{version}/ableton_live_intro_#{version}_64.dmg"
+  on_mojave :or_newer do
+    arch = "universal"
+    sha256 "95b12615d28ef5d0b48a93e231da7736291be84fb0ed8f99e350b9fc703cf98e"
+  end
+
+  url "https://cdn-downloads.ableton.com/channels/#{version}/ableton_live_intro_#{version}_#{arch}.dmg"
   name "Ableton Live Intro"
   desc "Sound and music editor"
   homepage "https://www.ableton.com/en/live/"
 
   livecheck do
-    url "https://www.ableton.com/en/release-notes/live-#{version.major}/"
-    strategy :page_match
-    regex(/(\d+(?:\.\d+)*)\s*Release\s*Notes/i)
+    cask "ableton-live-suite"
   end
 
   auto_updates true
@@ -21,9 +25,9 @@ cask "ableton-live-intro" do
   uninstall quit: "com.ableton.live"
 
   zap trash: [
+    "~/Library/Application Support/Ableton",
     "~/Library/Application Support/CrashReporter/Ableton *_*.plist",
     "~/Library/Application Support/CrashReporter/Live_*.plist",
-    "~/Library/Application Support/Ableton",
     "~/Library/Caches/Ableton",
     "~/Library/Preferences/Ableton",
     "~/Library/Preferences/com.ableton.live.plist*",

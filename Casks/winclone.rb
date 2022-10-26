@@ -1,6 +1,6 @@
 cask "winclone" do
-  version "9.0,48405"
-  sha256 "9326ff03d0a386da89389b9c500cd2b6b2331784d0ffc8f89d735c7780a9c19b"
+  version "10.2,50072"
+  sha256 "e7f5f5d5370d9a4bbfaffb034a8c3b38823d98621126adbcfbd76a29cffeb53b"
 
   url "https://twocanoes-software-updates.s3.amazonaws.com/Winclone#{version.major}.dmg",
       verified: "twocanoes-software-updates.s3.amazonaws.com/"

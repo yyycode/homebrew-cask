@@ -1,9 +1,10 @@
 cask "gyazo" do
-  version "3.8.1"
-  sha256 "358daa0ae8f15191711f7e79646d4603ea08cc4702c35db3686df5eeae70d59c"
+  version "3.9.4"
+  sha256 "28bfd9bc3001f1020cc8c7b364a4b79e0d4f2d1e43ace2fc692513a205cd31a1"
 
   url "https://files.gyazo.com/setup/Gyazo-#{version}.dmg"
   name "Nota Gyazo GIF"
+  desc "Screenshot and screen recording tool"
   homepage "https://gyazo.com/"
 
   livecheck do

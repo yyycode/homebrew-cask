@@ -1,19 +1,18 @@
 cask "vnote" do
-  version "2.10"
-  sha256 "9adc4d003bcfea3d3386a952b09ab5012fb6a4d22dc2ec1e313b6c3350f26059"
+  version "3.15.1"
+  sha256 "846110bf9b2eb804dba2038ca7318fa99675330f9cac538f6e455ad0f99b9035"
 
-  url "https://github.com/vnotex/vnote/releases/download/v#{version}/VNote-#{version}-x64.dmg",
+  url "https://github.com/vnotex/vnote/releases/download/v#{version}/vnote-mac-x64-qt5.15.2_v#{version}.dmg",
       verified: "github.com/vnotex/vnote/"
   name "VNote"
-  desc "Note-taking application that knows programmers and Markdown better"
+  desc "Note-taking platform"
   homepage "https://vnotex.github.io/vnote/"
 
-  # We need to check all releases since the current latest release is a beta version.
-  livecheck do
-    url "https://github.com/vnotex/vnote/releases"
-    strategy :page_match
-    regex(%r{href=.*?/VNote-(?:mac-x64)?v?(\d+(?:\.\d+)*)(?:-x64)?\.(?:dmg|zip)}i)
-  end
-
   app "VNote.app"
+
+  zap trash: [
+    "~/Library/Application Support/VNote",
+    "~/Library/Preferences/com.vnotex.vnote.plist",
+    "~/Library/Preferences/VNote",
+  ]
 end

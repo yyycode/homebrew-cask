@@ -1,18 +1,19 @@
 cask "tower" do
-  version "7.0,290:51eb1327"
-  sha256 "f8e3efa13e46a8397fbb21bc16e52778e4f95699a5cad4c0c1b25c8b88df545a"
+  version "9.0,342,26634c15"
+  sha256 "3db6e2b22ac59fdf40dfc879d01c9c461c408cb8f9b102f6794f00a03e35e497"
 
-  url "https://fournova-app-updates.s3.amazonaws.com/apps/tower3-mac/#{version.after_comma.before_colon}-#{version.after_colon}/Tower-#{version.before_comma}-#{version.after_comma.before_colon}.zip",
-      verified: "fournova-app-updates.s3.amazonaws.com/"
+  url "https://www.git-tower.com/apps/tower3-mac/#{version.csv.second}-#{version.csv.third}/Tower-#{version.csv.first}-#{version.csv.second}.zip"
   name "Tower"
   desc "Git client focusing on power and productivity"
   homepage "https://www.git-tower.com/"
 
   livecheck do
-    url "https://updates.fournova.com/tower3-mac/stable/releases/latest/download"
+    url "https://www.git-tower.com/updates/tower3-mac/stable/releases/latest/download"
     strategy :header_match do |headers|
-      match = headers["location"].match(%r{(\d+(?:\.\d+)*)-([a-z0-9]+)/Tower-(\d+(?:\.\d+)*)-(\d+(?:\.\d+)*)\.zip}i)
-      "#{match[3]},#{match[1]}:#{match[2]}"
+      match = headers["location"].match(%r{(\d+(?:\.\d+)*)-([a-z0-9]+)/Tower-(\d+(?:\.\d+)+)-(\d+(?:\.\d+)*)\.zip}i)
+      next if match.blank?
+
+      "#{match[3]},#{match[1]},#{match[2]}"
     end
   end
 
@@ -22,9 +23,9 @@ cask "tower" do
   binary "#{appdir}/Tower.app/Contents/MacOS/gittower"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.fournova.tower*.sfl2",
     "~/Library/Application Support/com.fournova.Tower*",
     "~/Library/Caches/com.fournova.Tower*",
     "~/Library/Preferences/com.fournova.Tower*.plist",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.fournova.tower*.sfl2",
   ]
 end

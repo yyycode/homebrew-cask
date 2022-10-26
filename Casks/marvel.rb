@@ -1,8 +1,8 @@
 cask "marvel" do
-  version "10.9.4,5027"
-  sha256 "4d5c438cc74940090aa3191c25a047f1c2c0197758fb1b08010e7e81520282dc"
+  version "10.9.9,5094"
+  sha256 "6278d47ea009bcb12b8422e69ae39cae03c75b3aad1d674facf26148d5b99914"
 
-  url "https://storage.googleapis.com/sketch-plugin/#{version.before_comma}/Marvel.zip",
+  url "https://storage.googleapis.com/sketch-plugin/#{version.csv.first}/Marvel.zip",
       verified: "storage.googleapis.com/sketch-plugin/"
   name "Marvel"
   desc "Prototyping, testing and handoff tools"
@@ -14,4 +14,6 @@ cask "marvel" do
   end
 
   app "Marvel.app"
+
+  zap trash: "~/Library/Caches/com.marvelprototyping.marvelmacos"
 end

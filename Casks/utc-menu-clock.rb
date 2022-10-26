@@ -1,12 +1,19 @@
 cask "utc-menu-clock" do
-  version "1.2"
-  sha256 "8a6d26228495aa802b3f9f80e43ee58bff92097e7de41de86dae994a9350d9b2"
+  version "1.3"
+  sha256 "099a638a7a45cb9085d29e75769caf44ed142fd74b9e4665fca2de7e4a641081"
 
-  url "https://github.com/downloads/netik/UTCMenuClock/UTCMenuClock_#{version}_installer.pkg"
+  url "https://github.com/netik/UTCMenuClock/raw/master/downloads/UTCMenuClock_v#{version}_universal.zip"
   name "UTCMenuClock"
+  desc "Menu bar clock"
   homepage "https://github.com/netik/UTCMenuClock"
 
-  pkg "UTCMenuClock_#{version}_installer.pkg"
+  livecheck do
+    url "https://github.com/netik/UTCMenuClock/tree/master/downloads"
+    strategy :page_match
+    regex(%r{href=.*?/UTCMenuClock[._-]v?(\d+(?:\.\d+)+)[._-]universal\.zip}i)
+  end
 
-  uninstall pkgutil: "net.retina.utcmenuclock.*"
+  app "UTCMenuClock.app"
+
+  zap trash: "~/Library/Preferences/net.retina.UTCMenuClock.plist"
 end

@@ -1,12 +1,14 @@
 cask "betterdiscord-installer" do
-  version "1.0.0-hotfix"
-  sha256 "d9c499f810292504d0638db04ca6f7f0c114f09739d479a0201c775a22205c7b"
+  version "1.1.2"
+  sha256 "1778faa23fcddcedc8d07def60498085bb9717378fb91df1b3e2caade4f3c286"
 
   url "https://github.com/BetterDiscord/Installer/releases/download/v#{version}/BetterDiscord-Mac.zip",
       verified: "github.com/BetterDiscord/Installer/"
-  name "betterdiscord"
+  name "BetterDiscord"
   desc "Installer for BetterDiscord"
   homepage "https://betterdiscord.app/"
+
+  depends_on cask: "discord"
 
   app "BetterDiscord.app"
 

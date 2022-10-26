@@ -1,5 +1,5 @@
 cask "activedock" do
-  version "2.99,2199"
+  version "2.223,2223"
   sha256 :no_check
 
   url "https://macplus-software.com/downloads/ActiveDock.zip",
@@ -13,7 +13,7 @@ cask "activedock" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :high_sierra"
 
-  app "ActiveDock #{version.before_comma.major}.app"
+  app "ActiveDock #{version.csv.first.major}.app"
 end

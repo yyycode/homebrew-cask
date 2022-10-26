@@ -1,6 +1,6 @@
 cask "vine-server" do
-  version "5.3.0"
-  sha256 "0b82154ebff425e2d6374ee00ba75f00ba2fd0342843b7760413450d5345c6ca"
+  version "5.3.1"
+  sha256 "f3e22c807332df25ce2e37d06ff9552c973d69ee54d2ba9a376358d9d9337af2"
 
   url "https://github.com/stweil/OSXvnc/releases/download/V#{version.dots_to_underscores}/VineServer-#{version}.dmg"
   name "Vine Server"
@@ -9,8 +9,10 @@ cask "vine-server" do
 
   livecheck do
     url :url
-    strategy :github_latest
-    regex(%r{href=.*?/VineServer-(\d+(?:\.\d+)*)\.dmg}i)
+    regex(%r{href=["']?[^"' >]*?/tag/[^"' >]*?(\d+(?:[._-]\d+)+[a-z]?)["' >]}i)
+    strategy :github_latest do |page, regex|
+      page.scan(regex).map { |match| match[0].tr("_", ".") }
+    end
   end
 
   depends_on macos: ">= :sierra"

@@ -1,17 +1,17 @@
 cask "brackets" do
-  version "1.14.2"
-  sha256 "716be1a75099079aa1a22dedab403c9839155c4b99aab6677d8a24589f7f9a15"
+  version "2.1.2"
+  sha256 "6399d43315e0c8921c11d27325b697d26d8a524bfc1455a83173a13a6c6048a2"
 
-  url "https://github.com/adobe/brackets/releases/download/release-#{version}/Brackets.Release.#{version}.dmg",
-      verified: "github.com/adobe/brackets/"
+  url "https://github.com/brackets-cont/brackets/releases/download/v#{version}-release/brackets.#{version}.dmg",
+      verified: "github.com/brackets-cont/brackets/"
   name "Brackets"
   desc "Open-source code editor for web-developement"
-  homepage "http://brackets.io/"
+  homepage "https://brackets.io/"
 
   livecheck do
     url :url
     strategy :github_latest
-    regex(%r{href=.*?/Brackets\.Release\.(\d+(?:\.\d+)*)\.dmg}i)
+    regex(%r{href=.*?/brackets\.(\d+(?:\.\d+)+)\.dmg}i)
   end
 
   app "Brackets.app"

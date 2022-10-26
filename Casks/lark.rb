@@ -1,37 +1,30 @@
 cask "lark" do
-  if Hardware::CPU.intel?
-    version "4.5.6,f9ffce"
-    sha256 "e239a9e6eb956a1040f64bca3855523302f19dd171630e8cc75bf4cb3bfae01a"
+  arch arm: "arm64", intel: "x64"
 
-    url "https://sf16-va.larksuitecdn.com/obj/lark-artifact-storage/#{version.after_comma}/Lark-darwin_x64-#{version.before_comma}-signed.dmg",
-        verified: "sf16-va.larksuitecdn.com/obj/lark-artifact-storage/"
-
-    livecheck do
-      url "https://www.larksuite.com/api/downloads"
-      strategy :page_match do |page|
-        match = page.match(%r{/lark-artifact-storage/(\w+)/Lark-darwin_x64-(\d+(?:\.\d+)*)-signed\.dmg}i)
-        "#{match[2]},#{match[1]}"
-      end
-    end
-  else
-    version "4.4.10,3eac8c"
-    sha256 "29fb4f611a03f3ba54ae1e96a8503039515ac5af3ed5d05edad637acde4ab25b"
-
-    url "https://sf16-va.larksuitecdn.com/obj/lark-artifact-storage/#{version.after_comma}/Lark-darwin_arm64-#{version.before_comma}-signed.dmg",
-        verified: "sf16-va.larksuitecdn.com/obj/lark-artifact-storage/"
-
-    livecheck do
-      url "https://www.larksuite.com/api/downloads"
-      strategy :page_match do |page|
-        match = page.match(%r{/lark-artifact-storage/(\w+)/Lark-darwin_arm64-(\d+(?:\.\d+)*)-signed\.dmg}i)
-        "#{match[2]},#{match[1]}"
-      end
-    end
+  on_intel do
+    version "5.20.10,23ea9d"
+    sha256 "caba67db9b14184f20b373c6b06d88341a7830f676fd79f5e710bb6575cc1010"
+  end
+  on_arm do
+    version "5.20.10,fa353d"
+    sha256 "0c8e521f6a535cc4bd5da9bc8e6842dabb8f72febc5533137681dc4bf3ce6f02"
   end
 
+  url "https://sf16-va.larksuitecdn.com/obj/lark-artifact-storage/#{version.csv.second}/Lark-darwin_#{arch}-#{version.csv.first}-signed.dmg",
+      verified: "sf16-va.larksuitecdn.com/obj/lark-artifact-storage/"
   name "Lark"
   desc "Project management software"
   homepage "https://www.larksuite.com/"
+
+  livecheck do
+    url "https://www.larksuite.com/api/downloads"
+    strategy :page_match do |page|
+      match = page.match(%r{/lark-artifact-storage/(\h+)/Lark-darwin_#{arch}[._-]v?(\d+(?:\.\d+)+)-signed\.dmg}i)
+      next if match.blank?
+
+      "#{match[2]},#{match[1]}"
+    end
+  end
 
   auto_updates true
 

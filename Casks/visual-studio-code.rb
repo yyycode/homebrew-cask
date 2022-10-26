@@ -1,23 +1,19 @@
 cask "visual-studio-code" do
-  version "1.60.0"
+  arch arm: "darwin-arm64", intel: "darwin"
 
-  if Hardware::CPU.intel?
-    sha256 "eb9ff84e3aee5c188ac5e619dffcd3555adda10254e92ec149952e4a2f7367a0"
-    url "https://update.code.visualstudio.com/#{version}/darwin/stable"
-  else
-    sha256 "31fab29c6b67e76cfe987180cee55ccafb7a2a47cf2039b8f522fbb898767a62"
-    url "https://update.code.visualstudio.com/#{version}/darwin-arm64/stable"
-  end
+  version "1.72.2"
+  sha256 arm:   "1603596646ba4d9230b157b2a1ce25455f2c03d3e866137de682bfbed4cf9ce7",
+         intel: "03f8542c504f3348106698bd31ddbcf05374f4b721c2fe9b602fef2ce4593349"
 
+  url "https://update.code.visualstudio.com/#{version}/#{arch}/stable"
   name "Microsoft Visual Studio Code"
   name "VS Code"
   desc "Open-source code editor"
   homepage "https://code.visualstudio.com/"
 
   livecheck do
-    url "https://update.code.visualstudio.com/api/update/darwin-universal/stable/VERSION"
-    strategy :page_match
-    regex(/"productVersion"\s*:\s*"(\d+(:?\.\d+)*)"/)
+    url "https://update.code.visualstudio.com/api/update/#{arch}/stable/VERSION"
+    regex(/"productVersion"\s*:\s*"(\d+(:?\.\d+)+)"/i)
   end
 
   auto_updates true
@@ -26,14 +22,14 @@ cask "visual-studio-code" do
   binary "#{appdir}/Visual Studio Code.app/Contents/Resources/app/bin/code"
 
   zap trash: [
+    "~/.vscode",
     "~/Library/Application Support/Code",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.microsoft.vscode.sfl*",
-    "~/Library/Caches/com.microsoft.VSCode",
     "~/Library/Caches/com.microsoft.VSCode.ShipIt",
+    "~/Library/Caches/com.microsoft.VSCode",
     "~/Library/Preferences/ByHost/com.microsoft.VSCode.ShipIt.*.plist",
     "~/Library/Preferences/com.microsoft.VSCode.helper.plist",
     "~/Library/Preferences/com.microsoft.VSCode.plist",
     "~/Library/Saved Application State/com.microsoft.VSCode.savedState",
-    "~/.vscode",
   ]
 end

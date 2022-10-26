@@ -1,9 +1,9 @@
 cask "dangerzone" do
-  version "0.2.1"
-  sha256 "689a567b4c21b44c4e098a6efc6b2a8a0110a23ff8f656cf0951ffd82587e83d"
+  version "0.3.2"
+  sha256 "95fa7bc2feff03715d33b84fd5a51d0271ffb07902ee616de0106513e4a411d8"
 
-  url "https://github.com/firstlookmedia/dangerzone/releases/download/v#{version}/Dangerzone-#{version}.dmg",
-      verified: "github.com/firstlookmedia/dangerzone/"
+  url "https://github.com/freedomofpress/dangerzone/releases/download/v#{version}/Dangerzone-#{version}.dmg",
+      verified: "github.com/freedomofpress/dangerzone/"
   name "Dangerzone"
   desc "Convert potentially dangerous PDFs or Office documents into safe PDFs"
   homepage "https://dangerzone.rocks/"

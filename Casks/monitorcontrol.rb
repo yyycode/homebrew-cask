@@ -1,18 +1,29 @@
 cask "monitorcontrol" do
-  version "3.0.0-rc2"
-  sha256 "2f41d28b20411d9b37bb0d07feeb09d78748c267533bd80895bbd300fa5e0eb1"
+  if MacOS.version <= :high_sierra
+    version "2.1.0"
+    sha256 "c02a1a96a002a3e9f1072e3924ea66226233a227b5c971d617b3ef4f12acf206"
+
+    livecheck do
+      skip "Legacy version for Sierra and High Sierra"
+    end
+  elsif MacOS.version <= :mojave
+    version "3.1.1"
+    sha256 "41fa75f378e2a1d0ec0b90fae9cfe4f6859d1628fecf32d23ad7b5447beb78e1"
+
+    livecheck do
+      skip "Legacy version for Mojave"
+    end
+  else
+    version "4.1.0"
+    sha256 "89ac4cf63efc4aad441f94c2636e3437e0f96c6eaaba4d9d663f13ee7b7d013a"
+  end
 
   url "https://github.com/MonitorControl/MonitorControl/releases/download/v#{version}/MonitorControl.#{version}.dmg"
   name "MonitorControl"
   desc "Tool to control external monitor brightness & volume"
   homepage "https://github.com/MonitorControl/MonitorControl"
 
-  livecheck do
-    url "https://github.com/MonitorControl/MonitorControl/releases/"
-    strategy :page_match
-    regex(/MonitorControl[._-]?v?(\d+(?:\.\d+)*(?:-rc\d+))/i)
-  end
-
+  auto_updates true
   depends_on macos: ">= :sierra"
 
   app "MonitorControl.app"

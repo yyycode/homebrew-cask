@@ -1,8 +1,8 @@
 cask "nordlocker" do
-  version "2.13.3,146"
-  sha256 "99db2d8efe2970a26b5139e6a960a646498ad36b010c00276dbac2c30e817c3c"
+  version "3.5.0,163"
+  sha256 "05e1e400de422f98f371c4de4f2daa16d080cff8c88e4b9425ca806c779f2a4c"
 
-  url "https://downloads.nordcdn.com/apps/macos/generic/NordLocker/#{version.before_comma}/NordLocker.pkg",
+  url "https://downloads.nordcdn.com/apps/macos/generic/NordLocker/#{version.csv.first}/NordLocker.pkg",
       verified: "https://downloads.nordcdn.com/"
   name "NordLocker"
   desc "Store and sync files securely"
@@ -19,9 +19,9 @@ cask "nordlocker" do
   pkg "NordLocker.pkg"
 
   uninstall quit:       [
-    "com.nordlocker.macos",
-    "com.nordlocker.macos.launcher",
-  ],
+              "com.nordlocker.macos",
+              "com.nordlocker.macos.launcher",
+            ],
             launchctl:  [
               "com.nordlocker.nordfs.Mounter.Helper",
               "com.nordlocker.macos.launcher",

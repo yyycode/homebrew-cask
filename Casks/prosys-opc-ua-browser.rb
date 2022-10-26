@@ -1,15 +1,23 @@
 cask "prosys-opc-ua-browser" do
-  version "4.0.6-268"
-  sha256 "ebcbd868c2ff4d14607dcb7d9db4fd26cbcedc368ac8b8ee43fff6c13a00fe0e"
+  arch arm: "aarch64", intel: "x64"
 
-  url "https://www.prosysopc.com/opcua/apps/UaBrowser/dist/#{version}/prosys-opc-ua-browser-macos-#{version}.dmg"
+  version "4.3.0,82"
+  sha256 arm:   "7856e1be727523d6a5c7b1915bd4858fd7537cc0afa2f596d122bc7f982e7e8a",
+         intel: "2e58c7615169b6c8d9527b88bde79b6d742c2e5a2cb4a2b3d2b8c5acb731977f"
+
+  url "https://www.prosysopc.com/opcua/apps/UaBrowser/dist/#{version.csv.first}-#{version.csv.second}/prosys-opc-ua-browser-mac-#{arch}-#{version.csv.first}-#{version.csv.second}.dmg"
   name "Prosys OPC UA Browser"
-  homepage "https://www.prosysopc.com/products/opc-ua-client/"
+  desc "Browse and visualize data from OPC UA servers"
+  homepage "https://www.prosysopc.com/products/opc-ua-browser/"
 
   livecheck do
     url "https://downloads.prosysopc.com/opc-ua-browser-downloads.php"
-    strategy :page_match
-    regex(%r{href=.*?/prosys-opc-ua-browser-macos-(\d+(?:\.\d+)*-\d+)\.dmg}i)
+    strategy :page_match do |page|
+      match = page.match(/href=.*?prosys-opc-ua-browser-mac-#{arch}[._-]v?(\d+(?:\.\d+)+)-(\d+)\.dmg/i)
+      next if match.blank?
+
+      "#{match[1]},#{match[2]}"
+    end
   end
 
   installer script: {

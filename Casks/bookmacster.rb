@@ -1,9 +1,10 @@
 cask "bookmacster" do
-  version "2.11.8"
-  sha256 :no_check
+  version "3.0.5"
+  sha256 "0480a2b08d3592f5e2621472ae677327f7c79d2a481ed0f085ecdd179b8de5f0"
 
-  url "https://sheepsystems.com/bookmacster/BookMacster.zip"
+  url "https://sheepsystems.com/bookmacster/BookMacster_#{version}.zip"
   name "BookMacster"
+  desc "Bookmarks manager"
   homepage "https://sheepsystems.com/products/bookmacster.html"
 
   livecheck do
@@ -12,7 +13,7 @@ cask "bookmacster" do
   end
 
   auto_updates true
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :mojave"
 
   app "BookMacster.app"
 

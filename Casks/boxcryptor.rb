@@ -1,15 +1,15 @@
 cask "boxcryptor" do
   if MacOS.version <= :catalina
-    version "2.41.1307"
-    sha256 "4f2d9957a96566d17cf98f6fd4e06acb0d4db86c7ecbefb9afa718340add2dfa"
+    version "2.46.1667"
+    sha256 "386defb15f934561541929ddfe9305fb6a44121b59804810f641b52986996a0b"
 
     livecheck do
       url "https://www.boxcryptor.com/en/help/about/macos/"
       regex(/Download\s+v?(\d+(?:\.\d+)+)\s+for\s+macOS\s+10\.1[0-5]/i)
     end
   else
-    version "2.41.1308"
-    sha256 "8f94c02f2d11f7dc71c6127ac994fdb067ee8cda7d0bafb5cc3ff48687278cb1"
+    version "3.11.318"
+    sha256 "68101ebfc005ecb0806405d33c67286d286f43f3f8e178a78def83459764c696"
 
     livecheck do
       url "https://www.boxcryptor.com/l/download-macosx"
@@ -26,6 +26,13 @@ cask "boxcryptor" do
 
   app "Boxcryptor.app"
 
+  uninstall delete: [
+    "/Library/LaunchDaemons/com.boxcryptor.BCFS.Mounter.Helper.plist",
+    "/Library/LaunchDaemons/com.boxcryptor.osx.PrivilegedHelper.plist",
+    "/Library/PrivilegedHelperTools/com.boxcryptor.BCFS.Mounter.Helper",
+    "/Library/PrivilegedHelperTools/com.boxcryptor.osx.PrivilegedHelper",
+  ]
+
   zap trash: [
     "~/Library/Application Scripts/com.boxcryptor.osx.Rednif",
     "~/Library/Application Support/Boxcryptor",
@@ -34,9 +41,5 @@ cask "boxcryptor" do
     "~/Library/Containers/com.boxcryptor.osx.Rednif",
     "~/Library/Logs/Boxcryptor",
     "~/Library/Preferences/com.boxcryptor.osx.plist",
-    "/Library/LaunchDaemons/com.boxcryptor.BCFS.Mounter.Helper.plist",
-    "/Library/LaunchDaemons/com.boxcryptor.osx.PrivilegedHelper.plist",
-    "/Library/PrivilegedHelperTools/com.boxcryptor.BCFS.Mounter.Helper",
-    "/Library/PrivilegedHelperTools/com.boxcryptor.osx.PrivilegedHelper",
   ]
 end

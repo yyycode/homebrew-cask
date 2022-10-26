@@ -1,8 +1,8 @@
 cask "calendar-366" do
-  version "2.9.10,3387"
-  sha256 "f01f2657915497f8fb2b875faa196474423db989833c6c4740ab75b03d97bc3f"
+  version "2.12.4,3431"
+  sha256 "4783deee1962c654289cea82fef8516421f328a0c40654ddab302a223b89f748"
 
-  url "https://nspektor.com/downloads/Calendar366_v#{version.before_comma}.dmg"
+  url "https://nspektor.com/downloads/Calendar366_v#{version.csv.first}.dmg"
   name "Calendar 366 II"
   desc "Menu bar calendar for events and reminders"
   homepage "https://nspektor.com/calendar366/mac"

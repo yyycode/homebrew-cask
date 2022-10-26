@@ -1,8 +1,11 @@
 cask "jasper" do
-  version "1.0.5"
-  sha256 "87f4b8ccac6c7eecd53c2a77c21d6728699a23e76bad0530ff96349dd45e8452"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://github.com/jasperapp/jasper/releases/download/v#{version}/jasper_v#{version}_mac.zip",
+  version "1.1.1"
+  sha256 arm:   "860a6d48cfc4542a0060746e10d2bfe06a3da66a0a3aeef028f02454afb3cd66",
+         intel: "8c30e53b39ab87c94eff5c76c52b7403125efeb33b76e0cc6250c134aaf55fe3"
+
+  url "https://github.com/jasperapp/jasper/releases/download/v#{version}/jasper_v#{version}_mac_#{arch}.zip",
       verified: "github.com/jasperapp/jasper/"
   name "Jasper"
   desc "Issue reader for GitHub"

@@ -1,8 +1,11 @@
 cask "rider" do
-  version "2021.2.1,212.5080.71"
-  sha256 "6d3d71c5a7ea0443427903e6749e19d808dbb9280f51d96d61584d6f2e105500"
+  arch arm: "-aarch64"
 
-  url "https://download.jetbrains.com/rider/JetBrains.Rider-#{version.before_comma}.dmg"
+  version "2022.2.3,222.4167.23"
+  sha256 arm:   "5dd892ed16dd1bc819a97ffb62cdfbb3b60c6019581ba18358afc5c0a39585f5",
+         intel: "aa02c2c621d356486a0b698a45d773f5830ff4ef431940059f82e8d3c17a2335"
+
+  url "https://download.jetbrains.com/rider/JetBrains.Rider-#{version.csv.first}#{arch}.dmg"
   name "JetBrains Rider"
   desc ".NET IDE"
   homepage "https://www.jetbrains.com/rider/"
@@ -23,7 +26,7 @@ cask "rider" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "rider") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -34,8 +37,8 @@ cask "rider" do
     "~/Library/Application Support/Rider#{version.major_minor}",
     "~/Library/Caches/Rider#{version.major_minor}",
     "~/Library/Logs/Rider#{version.major_minor}",
-    "~/Library/Preferences/Rider#{version.major_minor}",
     "~/Library/Preferences/jetbrains.rider.71e559ef.plist",
+    "~/Library/Preferences/Rider#{version.major_minor}",
     "~/Library/Saved Application State/com.jetbrains.rider.savedState",
   ]
 end

@@ -1,20 +1,18 @@
 cask "securesafe" do
-  version "2.11.0"
-  sha256 "9ba4ab371485ea493ca5faf511132fe3d2aab04c3802a109e31684b1947482db"
+  version "2.17.0"
+  sha256 "bc8e0123c92496fa28b716fa57ace41db421c0891a1684c2c7cd214c85f2c906"
 
-  url "https://www.dswiss.com/userdata/downloads/securesafe-#{version}.pkg",
-      verified: "dswiss.com/userdata/downloads/"
+  url "https://www.securesafe.com/userdata/downloads/securesafe-#{version}.pkg"
   name "SecureSafe"
   desc "Highly secure online storage with password manager"
   homepage "https://www.securesafe.com/"
 
   livecheck do
     url "https://www.securesafe.com/en/downloads"
-    strategy :page_match
-    regex(/securesafe-(\d+(?:\.\d+)*)\.pkg/i)
+    regex(/securesafe-(\d+(?:\.\d+)+)\.pkg/i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :mojave"
 
   pkg "securesafe-#{version}.pkg"
 

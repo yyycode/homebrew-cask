@@ -1,8 +1,8 @@
 cask "codekit" do
-  version "3.14.4,34127"
-  sha256 "97f083870ba8f760d998f07260db784cffcd604172a97d6eb9ddccb2fb560c00"
+  version "3.19,34434"
+  sha256 "6afbd0a3203c107e81da15c4df591870d08a8a4a4b739de1d82b76fbcfa19c46"
 
-  url "https://codekitapp.com/binaries/codekit-#{version.after_comma}.zip"
+  url "https://codekitapp.com/binaries/codekit-#{version.csv.second}.zip"
   name "CodeKit"
   desc "App for building websites"
   homepage "https://codekitapp.com/"
@@ -13,6 +13,7 @@ cask "codekit" do
   end
 
   auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "CodeKit.app"
 

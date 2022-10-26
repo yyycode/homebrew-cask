@@ -1,5 +1,5 @@
 cask "hazeover" do
-  version "1.8.9,1050"
+  version "1.9.3,1120"
   sha256 :no_check
 
   url "https://hazeover.com/HazeOver.dmg"
@@ -11,6 +11,8 @@ cask "hazeover" do
     url "https://hazeover.com/updates.xml"
     strategy :sparkle
   end
+
+  depends_on macos: ">= :monterey"
 
   app "HazeOver.app"
 

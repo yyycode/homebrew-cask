@@ -1,15 +1,18 @@
 cask "ivpn" do
-  version "3.3.20"
-  sha256 "14d4f51e2167a9c07e56d35de7632570168c69ed93beb4711128e5ddd04ca67f"
+  arch arm: "-arm64"
 
-  url "https://repo.ivpn.net/macos/bin/IVPN-#{version}.dmg"
+  version "3.9.32"
+  sha256 arm:   "74a640f30c22a5197b26de7b2fbc4f2b21cdfe848ed7869ec13d6d94253bee35",
+         intel: "f2c5ff37ec33c427694ff8680f4e3567ae207ee24038eb7fe41faf7e05e1a417"
+
+  url "https://repo.ivpn.net/macos/bin/IVPN-#{version}#{arch}.dmg"
   name "IVPN"
   desc "VPN client"
   homepage "https://www.ivpn.net/apps-macos"
 
   livecheck do
     url :homepage
-    regex(/href=.*?IVPN[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+    regex(/href=.*?IVPN[._-]v?(\d+(?:\.\d+)+)#{arch}\.dmg/i)
   end
 
   auto_updates true
@@ -22,9 +25,9 @@ cask "ivpn" do
   end
 
   uninstall delete:    [
-    "/Library/Application Support/IVPN",
-    "/Library/PrivilegedHelperTools/net.ivpn.client.Helper",
-  ],
+              "/Library/Application Support/IVPN",
+              "/Library/PrivilegedHelperTools/net.ivpn.client.Helper",
+            ],
             launchctl: "net.ivpn.client.Helper",
             quit:      "net.ivpn.client.IVPN"
 

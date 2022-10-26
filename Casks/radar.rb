@@ -1,10 +1,10 @@
 cask "radar" do
-  version "1.0.4"
-  sha256 "277eb68d38847c9039784f114b11032537f016160b3da1f041da9cc48abdd1d1"
+  version "2.5.1"
+  sha256 "ffef235dc3bdd94c244da5a8ba6be5995e877fadae85a69c3550653e1dde7f4c"
 
   url "https://getradar.co/download/v#{version}.dmg"
-  name "radar"
-  desc "Check the important metrics from the menubar"
+  name "Radar"
+  desc "Check important metrics from the menubar"
   homepage "https://getradar.co/"
 
   livecheck do

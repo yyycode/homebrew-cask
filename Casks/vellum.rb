@@ -1,8 +1,8 @@
 cask "vellum" do
-  version "2.8.6,28600"
-  sha256 "92f9c4df332cfa6a6e21ea922d7d3062547de77783497b092184fb062f37c7df"
+  version "3.3.6,33600"
+  sha256 "ce765c8ba49a62b68e35f0d74450a68c786205de1a244d7e94403c5bc374a607"
 
-  url "https://180g.s3.amazonaws.com/downloads/Vellum-#{version.after_comma}.zip",
+  url "https://180g.s3.amazonaws.com/downloads/Vellum-#{version.csv.second}.zip",
       verified: "180g.s3.amazonaws.com/downloads/"
   name "Vellum"
   desc "Ebook creation software"
@@ -14,7 +14,7 @@ cask "vellum" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :catalina"
 
   app "Vellum.app"
 

@@ -1,8 +1,11 @@
 cask "inkscape" do
-  version "1.1"
-  sha256 "5f3308c00119ee9bc3732c7e9cbde208357b57e6d58f1edc08da9e10330c2d9d"
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://media.inkscape.org/dl/resources/file/Inkscape-#{version}.0.dmg"
+  version "1.2.1"
+  sha256 arm:   "a8e9b49a3c9c92bc82a3914ef47290166c11c542712dd0ea63e3b9e017d5c450",
+         intel: "8117d5d864358c9f626ce574d07d2f121ad96fc96a535cc3fddaba3c74bd3279"
+
+  url "https://media.inkscape.org/dl/resources/file/Inkscape-#{version}_#{arch}.dmg"
   name "Inkscape"
   desc "Vector graphics editor"
   homepage "https://inkscape.org/"
@@ -18,7 +21,7 @@ cask "inkscape" do
   binary shimscript, target: "inkscape"
 
   preflight do
-    IO.write shimscript, <<~EOS
+    File.write shimscript, <<~EOS
       #!/bin/sh
       exec '#{staged_path}/Inkscape.app/Contents/MacOS/inkscape' "$@"
     EOS

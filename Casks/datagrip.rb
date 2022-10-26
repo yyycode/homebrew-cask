@@ -1,16 +1,11 @@
 cask "datagrip" do
-  version "2021.2.2,212.5284.17"
+  arch arm: "-aarch64"
 
-  if Hardware::CPU.intel?
-    sha256 "1843ebd4223eae84b94f06dc93f677c90f8f473e4336303ffa06820228a170f5"
+  version "2022.2.5,222.4345.5"
+  sha256 arm:   "8ff78e440e4753adc8dbd4ee408fde114f7d9c65ee780f012b917498b63993ee",
+         intel: "cdf0302b0ab65d3dfce4e48004ef45873c9912c844d2e3c82bfe19de2b11cfda"
 
-    url "https://download.jetbrains.com/datagrip/datagrip-#{version.before_comma}.dmg"
-  else
-    sha256 "a762e81050ae28519877314039eb474eeada160fd1a55cf3ca1d6843a077f0dd"
-
-    url "https://download.jetbrains.com/datagrip/datagrip-#{version.before_comma}-aarch64.dmg"
-  end
-
+  url "https://download.jetbrains.com/datagrip/datagrip-#{version.csv.first}#{arch}.dmg"
   name "DataGrip"
   desc "Databases & SQL IDE"
   homepage "https://www.jetbrains.com/datagrip/"
@@ -31,7 +26,7 @@ cask "datagrip" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "datagrip") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -39,9 +34,9 @@ cask "datagrip" do
   end
 
   zap trash: [
-    "~/Library/Application Support/JetBrains/DataGrip#{version.major_minor}",
-    "~/Library/Caches/JetBrains/DataGrip#{version.major_minor}",
-    "~/Library/Logs/JetBrains/DataGrip#{version.major_minor}",
+    "~/Library/Application Support/JetBrains/DataGrip*",
+    "~/Library/Caches/JetBrains/DataGrip*",
+    "~/Library/Logs/JetBrains/DataGrip*",
     "~/Library/Saved Application State/com.jetbrains.datagrip.savedState",
   ]
 end

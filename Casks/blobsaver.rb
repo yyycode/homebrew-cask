@@ -1,8 +1,11 @@
 cask "blobsaver" do
-  version "3.0.2"
-  sha256 "a651ff45bafb73cfee635f1a3ef8fbfa2ec394183415803520951dc8f4544b1e"
+  arch arm: "arm", intel: "intel"
 
-  url "https://github.com/airsquared/blobsaver/releases/download/v#{version}/blobsaver-#{version}.dmg"
+  version "3.2.1"
+  sha256 arm:   "0e510dd7315af465a9f1f333e7f303e16871fa9964ae9c1632145d38b6e32e04",
+         intel: "341dad87e5a36f7f6c1f14050a4f44128afa2da5651abea761af59054d5029c8"
+
+  url "https://github.com/airsquared/blobsaver/releases/download/v#{version}/blobsaver-#{arch}-#{version}.dmg"
   name "blobsaver"
   desc "GUI for automatically saving SHSH blobs"
   homepage "https://github.com/airsquared/blobsaver"

@@ -1,8 +1,8 @@
 cask "altserver" do
-  version "1.4.6,55"
-  sha256 "983fba5a785e753f9bc020b39e84b41516c1181cb5b9ffc492f9f54274be1f74"
+  version "1.5.1,70"
+  sha256 "af478c958e3bf9346b59a4a2af4b3120ef0d02fa653b14dab13b7a7ec56d80de"
 
-  url "https://cdn.altstore.io/file/altstore/altserver/#{version.before_comma.dots_to_underscores}.zip"
+  url "https://cdn.altstore.io/file/altstore/altserver/#{version.csv.first.dots_to_underscores}.zip"
   name "AltServer"
   desc "iOS App Store alternative"
   homepage "https://altstore.io/"
@@ -12,6 +12,7 @@ cask "altserver" do
     strategy :sparkle
   end
 
+  auto_updates true
   depends_on macos: ">= :mojave"
 
   app "AltServer.app"

@@ -1,6 +1,6 @@
 cask "emclient" do
-  version "8.2.1478"
-  sha256 "af2a094689d74baa78005f02cacf051fceca89854e501141765e4d2896579330"
+  version "9.1.2109"
+  sha256 "443fa1b48f092937ab27c859d490074a58b96bb2473856e42f5bdbaeaacc4047"
 
   url "https://cdn-dist.emclient.com/dist/v#{version}_Mac/setup.pkg"
   name "eM Client"
@@ -10,7 +10,7 @@ cask "emclient" do
   livecheck do
     url "https://www.emclient.com/dist/latest/setup.pkg"
     strategy :header_match do |headers|
-      headers["location"][/v(\d+(?:\.\d+)*)_Mac/i, 1]
+      headers["location"][/v?(\d+(?:\.\d+)+)_Mac/i, 1]
     end
   end
 

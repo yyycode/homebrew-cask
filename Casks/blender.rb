@@ -1,26 +1,22 @@
 cask "blender" do
-  version "2.93.4"
+  arch arm: "arm64", intel: "x64"
 
-  if Hardware::CPU.intel?
-    sha256 "9aab9e161e326f02d5ca51b9f77187e931ebc779bd85a604d797c187cd1611f4"
+  version "3.3.1"
+  sha256 arm:   "e4a19540ad98222ebb23115fb1fdac04ba04501f4d8aa3d8b82c61d8757e1cd6",
+         intel: "6af68af6d43ac184ff0899d0ced2fc29006984fffee6a805825d7e67c48ee23f"
 
-    url "https://download.blender.org/release/Blender#{version.major_minor}/blender-#{version}-macos-x64.dmg"
-  else
-    sha256 "0478a156829213a683b6be92cd12fe63c4f58fce3d0c2b4b839c157737eb14bf"
-
-    url "https://download.blender.org/release/Blender#{version.major_minor}/blender-#{version}-macos-arm64.dmg"
-  end
-
+  url "https://download.blender.org/release/Blender#{version.major_minor}/blender-#{version}-macos-#{arch}.dmg"
   name "Blender"
   desc "3D creation suite"
   homepage "https://www.blender.org/"
 
   livecheck do
     url "https://www.blender.org/download/"
-    regex(%r{href=.*?/blender[._-]v?(\d+(?:\.\d+)+)[._-]macos[._-]}i)
+    regex(%r{href=.*?/blender[._-]v?(\d+(?:\.\d+)+)[._-]macos[._-]#{arch}\.dmg}i)
   end
 
   conflicts_with cask: "homebrew/cask-versions/blender-lts"
+  depends_on macos: ">= :high_sierra"
 
   app "Blender.app"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
@@ -31,7 +27,7 @@ cask "blender" do
     # make __pycache__ directories writable, otherwise uninstall fails
     FileUtils.chmod "u+w", Dir.glob("#{staged_path}/*.app/**/__pycache__")
 
-    IO.write shimscript, <<~EOS
+    File.write shimscript, <<~EOS
       #!/bin/bash
       '#{appdir}/Blender.app/Contents/MacOS/Blender' "$@"
     EOS

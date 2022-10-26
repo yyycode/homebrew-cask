@@ -1,5 +1,5 @@
 cask "free-download-manager" do
-  version "6.15.1"
+  version "6.17.0"
   sha256 :no_check # required as upstream package is updated in-place
 
   url "https://dn3.freedownloadmanager.org/#{version.major}/latest/fdm.dmg"
@@ -18,18 +18,25 @@ cask "free-download-manager" do
   app "Free Download Manager.app"
 
   uninstall launchctl: [
-    "org.freedownloadmanager.fdm#{version.major}",
-    "org.freedownloadmanager.fdm#{version.major}.helper",
-  ],
+              "org.freedownloadmanager.fdm#{version.major}",
+              "org.freedownloadmanager.fdm#{version.major}.helper",
+            ],
             quit:      [
               "org.freedownloadmanager.fdm#{version.major}",
               "org.freedownloadmanager.fdm#{version.major}.launcher",
             ]
 
   zap trash: [
-    "~/Library/Application Support/Free Download Manager",
-    "~/Library/Caches/org.freedownloadmanager.fdm#{version.major}",
-    "~/Library/Preferences/org.freedownloadmanager.fdm#{version.major}.plist",
-    "~/Library/Saved Application State/org.freedownloadmanager.fdm#{version.major}.savedState",
-  ]
+        "~/Library/Application Support/Free Download Manager",
+        "~/Library/Application Support/Softdeluxe/Free Download Manager",
+        "~/Library/Caches/org.freedownloadmanager.fdm#{version.major}",
+        "~/Library/Caches/Softdeluxe/Free Download Manager",
+        "~/Library/Preferences/org.freedownloadmanager.fdm#{version.major}.plist",
+        "~/Library/Preferences/com.softdeluxe.Free Download Manager.plist",
+        "~/Library/Saved Application State/org.freedownloadmanager.fdm#{version.major}.savedState",
+      ],
+      rmdir: [
+        "~/Library/Application Support/Softdeluxe",
+        "~/Library/Caches/Softdeluxe/",
+      ]
 end

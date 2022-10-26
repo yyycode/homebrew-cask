@@ -1,6 +1,6 @@
 cask "zappy" do
-  version "2.10.1"
-  sha256 "422b8be2ebbc5ad56a7205534ab887739f325246a41fa03edbe22937da2282de"
+  version "3.1.3"
+  sha256 "e1ed595cef62d0550a2eac1591e35f9a7fff3d1d0e51d965bf986a1dffd94a25"
 
   url "https://zappy.zapier.com/releases/zappy-#{version}.dmg"
   name "Zappy"
@@ -13,7 +13,7 @@ cask "zappy" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :catalina"
 
   app "Zappy.app"
 

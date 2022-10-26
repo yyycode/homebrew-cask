@@ -10,9 +10,14 @@ cask "routebuddy" do
 
   livecheck do
     url "http://routebuddy.com/routebuddy-topo-map-software-for-windows-and-mac-os-x/"
-    strategy :page_match
     regex(%r{href=.*?/RouteBuddy_(\d+(?:\.\d+)*)\.dmg}i)
   end
 
   app "RouteBuddy.app"
+
+  zap trash: [
+    "~/Library/Application Support/RouteBuddy",
+    "~/Library/Caches/RouteBuddy",
+    "~/Library/Preferences/com.routebuddy.routebuddy.plist",
+  ]
 end

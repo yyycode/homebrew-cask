@@ -12,8 +12,7 @@ cask "diskmaker-x" do
 
     livecheck do
       url "https://diskmakerx.com/"
-      strategy :page_match
-      regex(/DiskMaker\s*X\s*(\d+(?:\.\d+)*)/i)
+      regex(/DiskMaker\s*X\s*(\d+(?:\.\d+)+)/i)
     end
   end
 
@@ -21,6 +20,4 @@ cask "diskmaker-x" do
   name "DiskMaker X"
   desc "Tool to build a system install disk"
   homepage "https://diskmakerx.com/"
-
-  depends_on macos: ">= :yosemite"
 end

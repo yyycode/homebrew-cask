@@ -1,17 +1,19 @@
 cask "1password-cli" do
-  version "1.11.4"
-  sha256 "e200b9ffa1161b551cd91dc7a74c30267a2657314a9c1ea4ae899936fb1c43ec"
+  version "2.7.2"
+  sha256 "a4bdfd57d00ed838c271695e72d79330270105955bdd15e627cc24e60c85a238"
 
-  url "https://cache.agilebits.com/dist/1P/op/pkg/v#{version}/op_apple_universal_v#{version}.pkg",
-      verified: "cache.agilebits.com/dist/1P/op/pkg/"
+  url "https://cache.agilebits.com/dist/1P/op2/pkg/v#{version}/op_apple_universal_v#{version}.pkg",
+      verified: "cache.agilebits.com/dist/1P/op2/pkg/"
   name "1Password CLI"
   desc "Command-line helper for the 1Password password manager"
-  homepage "https://support.1password.com/command-line/"
+  homepage "https://developer.1password.com/docs/cli"
 
   livecheck do
-    url "https://app-updates.agilebits.com/product_history/CLI"
+    url "https://app-updates.agilebits.com/product_history/CLI2"
     regex(%r{href=.*?/op_apple_universal[._-]v?(\d+(?:\.\d+)+)\.pkg}i)
   end
+
+  conflicts_with cask: "1password-cli1"
 
   pkg "op_apple_universal_v#{version}.pkg"
 

@@ -1,21 +1,25 @@
 cask "virtualbox" do
-  version "6.1.26,145957"
-  sha256 "c544b8500e7e0cc397a38c6210f4a1cf3f0cc30c9463bc61fb10c713a9c36ecc"
+  version "7.0.2,154219"
+  sha256 "2027a2334d4ffb32820864378667fd5277be9290b863517da785036a70325768"
 
-  url "https://download.virtualbox.org/virtualbox/#{version.before_comma}/VirtualBox-#{version.before_comma}-#{version.after_comma}-OSX.dmg"
+  url "https://download.virtualbox.org/virtualbox/#{version.csv.first}/VirtualBox-#{version.csv.first}-#{version.csv.second}-OSX.dmg"
   name "Oracle VirtualBox"
-  desc "Free and open-source hosted hypervisor for x86 virtualization"
+  desc "Virtualizer for x86 hardware"
   homepage "https://www.virtualbox.org/"
 
   livecheck do
     url "https://www.virtualbox.org/wiki/Downloads"
     strategy :page_match do |page|
-      match = page.match(/href=.*?VirtualBox-(\d+(?:\.\d+)*)-(\d+)-OSX.dmg/)
+      match = page.match(/href=.*?VirtualBox-(\d+(?:\.\d+)+)-(\d+)-OSX.dmg/)
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end
 
   conflicts_with cask: "homebrew/cask-versions/virtualbox-beta"
+  depends_on macos: ">= :high_sierra"
+  depends_on arch: :x86_64
 
   pkg "VirtualBox.pkg",
       choices: [
@@ -49,26 +53,19 @@ cask "virtualbox" do
   end
 
   uninstall script:  {
-    executable: "VirtualBox_Uninstall.tool",
-    args:       ["--unattended"],
-    sudo:       true,
-  },
+              executable: "VirtualBox_Uninstall.tool",
+              args:       ["--unattended"],
+              sudo:       true,
+            },
             pkgutil: "org.virtualbox.pkg.*",
             delete:  "/usr/local/bin/vboximg-mount"
 
   zap trash: [
-    "/Library/Application Support/VirtualBox",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.virtualbox.app.virtualbox.sfl*",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.virtualbox.app.virtualboxvm.sfl*",
-    "~/Library/Preferences/org.virtualbox.app.VirtualBox.plist",
-    "~/Library/Preferences/org.virtualbox.app.VirtualBoxVM.plist",
-    "~/Library/Saved Application State/org.virtualbox.app.VirtualBox.savedState",
-    "~/Library/Saved Application State/org.virtualbox.app.VirtualBoxVM.savedState",
-    "~/Library/VirtualBox",
-  ],
+        "/Library/Application Support/VirtualBox",
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.virtualbox.app.virtualbox*",
+        "~/Library/Preferences/org.virtualbox.app.VirtualBox*",
+        "~/Library/Saved Application State/org.virtualbox.app.VirtualBox*",
+        "~/Library/VirtualBox",
+      ],
       rmdir: "~/VirtualBox VMs"
-
-  caveats do
-    kext
-  end
 end

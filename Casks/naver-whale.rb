@@ -1,8 +1,10 @@
 cask "naver-whale" do
-  version "2.10.123.42"
+  arch arm: "ARM64"
+
+  version "3.17.145.12"
   sha256 :no_check
 
-  url "http://update.whale.naver.net/downloads/installers/NaverWhale.dmg",
+  url "http://update.whale.naver.net/downloads/installers/NaverWhale#{arch}.dmg",
       verified: "update.whale.naver.net/downloads/installers/"
   name "NAVER Whale"
   desc "Web browser"

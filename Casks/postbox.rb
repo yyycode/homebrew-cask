@@ -1,6 +1,6 @@
 cask "postbox" do
-  version "7.0.48"
-  sha256 "2f57f14f693ce3311168ddbfbde261e839099cbfc7667c6ab1d006d219a0a39a"
+  version "7.0.59"
+  sha256 "053e7cd2401931100d079f6472810c3be082f7daa14e774f123b18c4ada27cea"
 
   url "https://d3nx85trn0lqsg.cloudfront.net/mac/postbox-#{version}-mac64.dmg",
       verified: "d3nx85trn0lqsg.cloudfront.net/mac/"
@@ -10,8 +10,7 @@ cask "postbox" do
 
   livecheck do
     url "https://www.postbox-inc.com/download/success-mac"
-    strategy :page_match
-    regex(%r{href=.*?/postbox-(\d+(?:\.\d+)*)-mac64\.dmg}i)
+    regex(%r{href=.*?/postbox[._-]v?(\d+(?:\.\d+)+)[._-]mac64\.dmg}i)
   end
 
   auto_updates true

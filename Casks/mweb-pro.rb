@@ -1,26 +1,28 @@
 cask "mweb-pro" do
-  version "4.1.8"
+  version "4.3.7"
+  sha256 "4d8b3fa06c07211d50bd03ae7303eca418e11e9802b145c456d7792a773ffcde"
 
-  if MacOS.version <= :catalina
-    url "https://cdn.mwebapp.cn/MWebPro#{version.no_dots}_catalina.dmg",
-        verified: "cdn.mwebapp.cn/"
-    sha256 "a6cfb2671446295ee30087b4ab3e66cd46e423e8eb507aee04ce958bb56f34df"
-  else
-    url "https://cdn.mwebapp.cn/MWebPro#{version.no_dots}.dmg",
-        verified: "cdn.mwebapp.cn/"
-    sha256 "2710b95aac19a6f1c4c08d85488fc6c1d40f902aa2d7976bdecd832ef41a8be6"
-  end
-
+  url "https://cdn.mwebapp.cn/MWebPro#{version.no_dots}.dmg",
+      verified: "cdn.mwebapp.cn/"
   name "MWeb Pro"
   desc "Markdown writing, note taking, and static blog generator app"
   homepage "https://www.mweb.im/"
 
   livecheck do
-    url "https://www.mweb.im/download.html"
-    regex(/>Download\s*MWeb\s*Pro\s*(\d+(?:\.\d+)+)</i)
+    url "https://www.mweb.im/update_v4.json"
+    regex(/"version":"(\d+(?:\.\d+)+)"/i)
   end
 
   depends_on macos: ">= :high_sierra"
 
   app "MWeb Pro.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.coderforart.MWeb3",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.coderforart.mweb3.sfl*",
+    "~/Library/Application Support/MWeb",
+    "~/Library/Containers/com.coderforart.MWeb3",
+    "~/Library/Cookies/com.coderforart.MWeb3.binarycookies",
+    "~/Library/Preferences/com.coderforart.MWeb3.plist",
+  ]
 end

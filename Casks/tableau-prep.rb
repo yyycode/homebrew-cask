@@ -1,6 +1,6 @@
 cask "tableau-prep" do
-  version "2021.2.2"
-  sha256 "170080105060d9d78599d90a28a7410147e5606b88e003fe84792f086f277004"
+  version "2022.3.0"
+  sha256 "3adcaacde3356cf36fdc88cb7e11aafd984916943610786201491abd49216ca0"
 
   url "https://downloads.tableau.com/esdalt/tableau_prep/#{version}/TableauPrep-#{version.dots_to_hyphens}.dmg"
   name "Tableau Prep"
@@ -11,7 +11,7 @@ cask "tableau-prep" do
   livecheck do
     url "https://www.tableau.com/downloads/prep/mac"
     strategy :header_match do |headers|
-      headers["location"][/-(\d+-\d+-\d+)\.dmg/i, 1].tr("-", ".")
+      headers["location"][/TableauPrep-(\d+(?:-\d+)+)\.dmg/i, 1].tr("-", ".")
     end
   end
 
@@ -21,14 +21,14 @@ cask "tableau-prep" do
 
   uninstall pkgutil: [
     "com.amazon.redshiftodbc",
-    "simba.sparkodbc",
     "com.simba.sparkodbc",
     "com.simba.sqlserverodbc",
-    "com.tableausoftware.Maestro.app",
     "com.tableausoftware.desktopShortcut",
-    "com.tableausoftware.telemetry",
     "com.tableausoftware.FLEXNet.11.*",
+    "com.tableausoftware.Maestro.app",
     "com.tableausoftware.oracle",
     "com.tableausoftware.postgresql",
+    "com.tableausoftware.telemetry",
+    "simba.sparkodbc",
   ]
 end

@@ -1,27 +1,20 @@
 cask "mambaforge" do
-  version "4.10.3-4"
+  arch arm: "arm64", intel: "x86_64"
 
-  if Hardware::CPU.intel?
-    sha256 "b5fd40995aebd7631f761324eb425ee813fb4604ce8d8fde3c03cb60cac1716e"
-    url "https://github.com/conda-forge/miniforge/releases/download/#{version}/Mambaforge-#{version}-MacOSX-x86_64.sh"
+  version "4.14.0-0"
+  sha256 arm:   "35d05a65e19b8e5d596964936ddd6023ae66d664a25ba291a52fec18f06a73b6",
+         intel: "949f046b4404cc8e081807b048050e6642d8db5520c20d5158a7ef721fbf76c5"
 
-    installer script: {
-      executable: "Mambaforge-#{version}-MacOSX-x86_64.sh",
-      args:       ["-b", "-p", "#{caskroom_path}/base"],
-    }
-  else
-    sha256 "901f2c2b4be08cadf6968f408d4a1ee632ddb011a07ce4b480b83d8da142255f"
-    url "https://github.com/conda-forge/miniforge/releases/download/#{version}/Mambaforge-#{version}-MacOSX-arm64.sh"
-
-    installer script: {
-      executable: "Mambaforge-#{version}-MacOSX-arm64.sh",
-      args:       ["-b", "-p", "#{caskroom_path}/base"],
-    }
-  end
-
+  url "https://github.com/conda-forge/miniforge/releases/download/#{version}/Mambaforge-#{version}-MacOSX-#{arch}.sh"
   name "mambaforge"
   desc "Minimal installer for conda with preinstalled support for Mamba"
   homepage "https://github.com/conda-forge/miniforge"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+    regex(%r{href=.*?/tag/v?(\d+(?:[._-]\d+)+)["' >]}i)
+  end
 
   auto_updates true
   conflicts_with cask: [
@@ -30,6 +23,10 @@ cask "mambaforge" do
   ]
   container type: :naked
 
+  installer script: {
+    executable: "Mambaforge-#{version}-MacOSX-#{arch}.sh",
+    args:       ["-b", "-p", "#{caskroom_path}/base"],
+  }
   binary "#{caskroom_path}/base/condabin/conda"
 
   uninstall delete: "#{caskroom_path}/base"

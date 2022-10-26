@@ -1,8 +1,8 @@
 cask "local" do
-  version "6.1.2,5473"
-  sha256 "c862a65a3f33cdc46c0a13ae598a93ebc6b557867bf64e6d67d25da177cbf1fb"
+  version "6.4.3,6116"
+  sha256 "7ffe395ed0966909c7631ca498567baa845d72fd4566e4a7209781277e497d86"
 
-  url "https://cdn.localwp.com/releases-stable/#{version.before_comma}+#{version.after_comma}/local-#{version.before_comma}-mac.dmg"
+  url "https://cdn.localwp.com/releases-stable/#{version.csv.first}+#{version.csv.second}/local-#{version.csv.first}-mac.dmg"
   name "Local"
   desc "WordPress local development tool by Flywheel"
   homepage "https://localwp.com/"
@@ -10,10 +10,14 @@ cask "local" do
   livecheck do
     url "https://cdn.localwp.com/stable/latest/mac"
     strategy :header_match do |headers|
-      match = headers["location"].match(%r{/(\d+(?:\.\d+)*)\+(\d+)/})
+      match = headers["location"].match(%r{/(\d+(?:\.\d+)+)\+(\d+)/})
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end
+
+  auto_updates true
 
   app "Local.app"
 

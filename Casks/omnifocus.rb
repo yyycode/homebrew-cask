@@ -1,9 +1,5 @@
 cask "omnifocus" do
-  if MacOS.version <= :yosemite
-    version "2.7.4"
-    sha256 "a273e55c15f82540fe305344f9e49ad7d0d9c326ba2c37c312076ffd73780f80"
-    url "https://downloads.omnigroup.com/software/MacOSX/10.10/OmniFocus-#{version}.dmg"
-  elsif MacOS.version <= :el_capitan
+  if MacOS.version <= :el_capitan
     version "2.10"
     sha256 "e808a72e60cdff9ff5aa1046d856bf62d6418e4915248816c4640e32e52fd8e8"
     url "https://downloads.omnigroup.com/software/MacOSX/10.11/OmniFocus-#{version}.dmg"
@@ -15,10 +11,14 @@ cask "omnifocus" do
     version "3.4.6"
     sha256 "b770b046c2c59f6e55f54d0ad822d5aa755a18aa201d333341de14ebbbcc6a85"
     url "https://downloads.omnigroup.com/software/MacOSX/10.13/OmniFocus-#{version}.dmg"
-  else
+  elsif MacOS.version <= :mojave
     version "3.11.7"
     sha256 "21c0a63b6bd8c8ff3e5067f4ccd0ab16c9fd65815a7305e184ed27723bd0aa15"
     url "https://downloads.omnigroup.com/software/MacOSX/10.14/OmniFocus-#{version}.dmg"
+  else
+    version "3.14"
+    sha256 "28efe0e4ff75f5e4aef86d143370faae30ebf281442357d03d1404e698d82ce4"
+    url "https://downloads.omnigroup.com/software/macOS/11/OmniFocus-#{version}.dmg"
   end
 
   name "OmniFocus"
@@ -37,12 +37,12 @@ cask "omnifocus" do
   uninstall quit: "com.omnigroup.OmniFocus#{version.major}"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.omnigroup.omnifocus#{version}.sfl*",
+    "~/Library/Caches/Metadata/com.omnigroup.OmniFocus#{version}",
     "~/Library/Containers/com.omnigroup.OmniFocus#{version}",
+    "~/Library/Group Containers/34YW5XSRB7.com.omnigroup.OmniFocus",
     "~/Library/Preferences/com.omnigroup.OmniFocus#{version}.LSSharedFileList.plist",
     "~/Library/Preferences/com.omnigroup.OmniSoftwareUpdate.plist",
-    "~/Library/Caches/Metadata/com.omnigroup.OmniFocus#{version}",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.omnigroup.omnifocus#{version}.sfl*",
-    "~/Library/Group Containers/34YW5XSRB7.com.omnigroup.OmniFocus",
     "~/Library/Saved Application State/com.omnigroup.OmniFocus#{version}.savedState",
   ]
 end

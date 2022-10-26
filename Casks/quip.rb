@@ -1,6 +1,6 @@
 cask "quip" do
-  version "7.42.0"
-  sha256 "6067ea9b7bdfa42ff68a2ee8dc4be334f05e7d15deae14a02d85190fa2142b30"
+  version "7.70.0"
+  sha256 "342fa363f71fa20fe3b59de39bac8c6fd7f707776c7154f5ecd0bc9fd4cf0435"
 
   url "https://quip-clients.com/macosx_#{version}.dmg",
       verified: "quip-clients.com/"
@@ -14,7 +14,16 @@ cask "quip" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :mojave"
 
   app "Quip.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.quip.Desktop.Quick-Look-Preview",
+    "~/Library/Application Support/com.quip.Desktop",
+    "~/Library/Caches/com.quip.Desktop",
+    "~/Library/Containers/com.quip.Desktop.Quick-Look-Preview",
+    "~/Library/Preferences/com.quip.Desktop.plist",
+    "~/Library/WebKit/com.quip.Desktop",
+  ]
 end

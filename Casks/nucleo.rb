@@ -1,6 +1,6 @@
 cask "nucleo" do
-  version "3.1.0"
-  sha256 "9f5a2c7607cc0b41a9a0da2aa6b25c718b9d297aaf62ef7aaca75ccd600aecc1"
+  version "3.2.1"
+  sha256 "6958cb15850f611eefb87376fba72011869ac3a3df1337d68fe33ffd42ac3f24"
 
   url "https://nucleo-app-releases.s3.amazonaws.com/mac/Nucleo_#{version}.zip",
       verified: "nucleo-app-releases.s3.amazonaws.com/"
@@ -10,8 +10,15 @@ cask "nucleo" do
 
   livecheck do
     url "https://nucleoapp.com/updates"
-    regex(%r{href=.*?/Nucleo[._-]v?(\d+(?:\.\d+)+)\.zip}i)
+    regex(/href=.*?Nucleo[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
   app "Nucleo.app"
+
+  zap trash: [
+    "~/Library/Application Support/Nucleo",
+    "~/Library/Logs/Nucleo",
+    "~/Library/Preferences/co.ambercreative.nucleo.plist",
+    "~/Library/Saved Application State/co.ambercreative.nucleo.savedState",
+  ]
 end

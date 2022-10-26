@@ -1,8 +1,8 @@
 cask "ditto" do
-  version "1.8.0,1641"
-  sha256 "7a3597108a1d57e7f756b85b4463a4fcb834c4764702e5d4d02c4eb55cecfaf1"
+  version "1.10.0,1713"
+  sha256 "b7696e9d7702114330cf73f8adc9802054505f4bf999bdd9eda6f2c3ff2dd3ce"
 
-  url "https://download.airsquirrels.com/Ditto/App/Mac/Ditto-#{version.before_comma}.dmg"
+  url "https://download.airsquirrels.com/Ditto/App/Mac/Ditto-#{version.csv.first}.dmg"
   name "Ditto"
   desc "Screen mirroring and digital signage"
   homepage "https://www.airsquirrels.com/ditto"
@@ -17,5 +17,10 @@ cask "ditto" do
   uninstall quit: [
     "com.squirrels.Ditto",
     "com.squirrels.SquirrelsLoopbackAudioDriver",
+  ]
+
+  zap trash: [
+    "~/Library/Caches/com.squirrels.Ditto",
+    "~/Library/Preferences/com.squirrels.Ditto.plist",
   ]
 end

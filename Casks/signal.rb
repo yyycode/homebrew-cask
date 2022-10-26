@@ -1,8 +1,11 @@
 cask "signal" do
-  version "5.16.0"
-  sha256 "2bb213d4bbc24eb8135780bd5d9127b9a7eb9391129ca227734329b454d8fd86"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://updates.signal.org/desktop/signal-desktop-mac-#{version}.dmg"
+  version "5.62.0"
+  sha256 arm:   "a5161c13156f2d3efe8eb97392c63b218932e8d60d56661d7e43b758b48f291e",
+         intel: "41a78c8640eed895f04f2ce66014edcc2cce445a9c20224fb9aed73dc27442bf"
+
+  url "https://updates.signal.org/desktop/signal-desktop-mac-#{arch}-#{version}.dmg"
   name "Signal"
   desc "Instant messaging application focusing on security"
   homepage "https://signal.org/"

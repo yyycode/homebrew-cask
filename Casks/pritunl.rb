@@ -1,25 +1,17 @@
 cask "pritunl" do
-  version "1.2.2916.18"
+  arch arm: ".arm64"
 
-  if Hardware::CPU.intel?
-    sha256 "888c68a15916ce97e147ab9030974435290c991d925ac01b11b7594489632760"
+  version "1.3.3329.81"
+  sha256 arm:   "aca2a30ac2e0432c0413361fdb50106830caa0872038c8f653d4a93be2f374d8",
+         intel: "5387c2060bc09ba4cafb3702c4056dfe38f76dd3c270dd69751971278602d51e"
 
-    url "https://github.com/pritunl/pritunl-client-electron/releases/download/#{version}/Pritunl.pkg.zip",
-        verified: "github.com/pritunl/pritunl-client-electron/"
-
-    pkg "Pritunl.pkg"
-  else
-    sha256 "776b213a01dc51ca24597d56c9ff7545f29e9a52dba7470d51bfad0617f6a15a"
-
-    url "https://github.com/pritunl/pritunl-client-electron/releases/download/#{version}/Pritunl.arm64.pkg.zip",
-        verified: "github.com/pritunl/pritunl-client-electron/"
-
-    pkg "Pritunl.arm64.pkg"
-  end
-
+  url "https://github.com/pritunl/pritunl-client-electron/releases/download/#{version}/Pritunl#{arch}.pkg.zip",
+      verified: "github.com/pritunl/pritunl-client-electron/"
   name "Pritunl"
   desc "OpenVPN client"
   homepage "https://client.pritunl.com/"
+
+  pkg "Pritunl#{arch}.pkg"
 
   uninstall pkgutil:   "com.pritunl.pkg.Pritunl",
             launchctl: [

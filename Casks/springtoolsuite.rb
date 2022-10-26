@@ -1,8 +1,11 @@
 cask "springtoolsuite" do
-  version "4.11.1,4.20.0"
-  sha256 "6aae95483104417b61f25754fdd3f38724fda17e25535382fdc60203d8576427"
+  arch arm: "aarch64", intel: "x86_64"
 
-  url "https://download.springsource.com/release/STS#{version.major}/#{version.before_comma}.RELEASE/dist/e#{version.after_comma.major_minor}/spring-tool-suite-#{version.major}-#{version.before_comma}.RELEASE-e#{version.after_comma}-macosx.cocoa.x86_64.dmg",
+  version "4.16.0,4.25.0"
+  sha256 arm:   "8cfb81968fc854ed40fc98cedd161ec94f6c3c77f3bae4ecabcaf3ab56625cfb",
+         intel: "a83c85f640713dbef03f2e737e164f4b091106e99c51485bb531301cc06a9058"
+
+  url "https://download.springsource.com/release/STS#{version.major}/#{version.csv.first}.RELEASE/dist/e#{version.csv.second.major_minor}/spring-tool-suite-#{version.major}-#{version.csv.first}.RELEASE-e#{version.csv.second}-macosx.cocoa.#{arch}.dmg",
       verified: "download.springsource.com/release/"
   name "Spring Tool Suite"
   desc "Next generation tooling for Spring Boot"
@@ -12,8 +15,10 @@ cask "springtoolsuite" do
     url :homepage
     strategy :page_match do |page|
       match = page.match(
-        %r{href=.*?/spring-tool-suite-\d+-(\d+(?:\.\d+)*)\.RELEASE-e(\d+(?:\.\d+)*)-macosx\.cocoa\.x86_64\.dmg}i,
+        %r{href=.*?/spring-tool-suite-\d+-(\d+(?:\.\d+)+)\.RELEASE-e(\d+(?:\.\d+)+)-macosx\.cocoa\.#{arch}\.dmg}i,
       )
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end

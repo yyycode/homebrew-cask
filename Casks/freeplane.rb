@@ -1,26 +1,20 @@
 cask "freeplane" do
-  version "1.9.7"
+  arch arm: "apple", intel: "intel"
 
-  if Hardware::CPU.intel?
-    sha256 "5a008c4c99ba29a730feed83b793d6909834623f31cd3a6bf775ebaee63f7887"
+  version "1.10.4"
+  sha256 arm:   "63c4af9141d49a21c4efe0a523010e169cc586882119439db2de202278b72a82",
+         intel: "734d835e26763f7472df3f10918ae42a3b049645dbcfc3f8418a6aac5e2e12c1"
 
-    url "https://downloads.sourceforge.net/freeplane/Freeplane-#{version}-intel.dmg",
-        verified: "downloads.sourceforge.net/freeplane/"
-  else
-    sha256 "8c277d86eca3aca839da1183d6238f77fc3aa9f371c575f3d03db5a5ca38308b"
-
-    url "https://downloads.sourceforge.net/freeplane/Freeplane-#{version}-apple.dmg",
-        verified: "downloads.sourceforge.net/freeplane/"
-  end
-
+  url "https://downloads.sourceforge.net/freeplane/Freeplane-#{version}-verified-#{arch}.dmg",
+      verified: "downloads.sourceforge.net/freeplane/"
   name "Freeplane"
   desc "Mind mapping and knowledge management software"
-  homepage "https://freeplane.sourceforge.io/"
+  homepage "https://www.freeplane.org/wiki/index.php/Home"
 
   livecheck do
     url "https://sourceforge.net/projects/freeplane/rss?path=/freeplane%20stable"
     strategy :page_match
-    regex(%r{stable/Freeplane[._-]v?(\d+(?:\.\d+)+)(?:[._-]apple)?\.dmg}i)
+    regex(%r{/freeplane%20stable/Freeplane[._-]v?(\d+(?:\.\d+)+)[._-]verified(?:[._-]#{arch})?\.dmg}i)
   end
 
   app "Freeplane.app"

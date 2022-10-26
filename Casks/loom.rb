@@ -1,8 +1,11 @@
 cask "loom" do
-  version "0.98.0"
-  sha256 "e6ba7eefb59b8a595c26bf30a4bb3ca204970e95c2cfc3d8703edf8c4297fae6"
+  arch arm: "-arm64"
 
-  url "https://cdn.loom.com/desktop-packages/Loom-#{version}.dmg"
+  version "0.142.0"
+  sha256 arm:   "ce7e95c01168bbeacc92be1da7a749851aa5d4c5d716db300bc912055a8566d8",
+         intel: "780ce8afd48f3dd47fd8b75c68823048dfde25e559db140ab4e437b1f6141fb4"
+
+  url "https://cdn.loom.com/desktop-packages/Loom-#{version}#{arch}.dmg"
   name "Loom"
   desc "Screen and video recording software"
   homepage "https://www.loom.com/"
@@ -15,4 +18,13 @@ cask "loom" do
   auto_updates true
 
   app "Loom.app"
+
+  uninstall login_item: "Loom"
+
+  zap trash: [
+    "~/Library/Application Support/Loom",
+    "~/Library/Logs/Loom",
+    "~/Library/Preferences/com.loom.desktop.plist",
+    "~/Library/Saved Application State/com.loom.desktop.savedState",
+  ]
 end

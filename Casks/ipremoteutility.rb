@@ -1,18 +1,18 @@
 cask "ipremoteutility" do
-  version "1.8.7"
-  sha256 "bbcfb710919bdb17bd7416663b0c5965251b45d4267c46fe299566da6bf54435"
+  version "1.9.1"
+  sha256 "6f2254fb3dfa7bfc2a855b9ada906648f6ed01c9ac4c72a7743656e8e4a53f4b"
 
   url "https://www.flandersscientific.com/ip-remote/release/IPRemoteUtility-#{version}-macOSX.zip"
   name "Flanders IP Remote Utility"
+  desc "Management of Flanders Scientific hardware"
   homepage "https://www.flandersscientific.com/ip-remote/"
 
   livecheck do
     url :homepage
-    strategy :page_match
-    regex(%r{href=.*?/IPRemoteUtility-(\d+(?:\.\d+)*)-macOSX\.zip}i)
+    regex(/href=.*?IPRemoteUtility[._-]v?(\d+(?:\.\d+)+)-macOSX\.zip/i)
   end
 
-  container nested: "IPRemoteUtility-#{version}-macOSX/IPRemoteUtility-#{version}.dmg"
+  container nested: "IPRemoteUtility-#{version}-Rotary-macOSX/IPRemoteUtility-#{version}-Rotary.dmg"
 
   app "IPRemoteUtility.app"
 end

@@ -9,9 +9,13 @@ cask "mp4tools" do
 
   livecheck do
     url "https://www.emmgunn.com/mp4tools-home/mp4tools-downloads/"
-    strategy :page_match
     regex(%r{href=.*?/mp4tools(\d+(?:\.\d+)*)\.zip}i)
   end
 
   app "mp4tools#{version}/MP4Tools.app"
+
+  zap trash: [
+    "~/Library/Application Support/EmmGunn",
+    "~/Library/Preferences/com.emmgunn.MP4tools#{version.major}.plist",
+  ]
 end

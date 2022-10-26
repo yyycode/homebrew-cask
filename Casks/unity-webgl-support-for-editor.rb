@@ -1,8 +1,8 @@
 cask "unity-webgl-support-for-editor" do
-  version "2021.1.19f1,5f5eb8bbdc25"
-  sha256 "cd3e9a1d32c98d383dffe01eba240fa84484c0c01ea0b77f4dc2fbde18bea13f"
+  version "2022.1.20f1,01d83b40d570"
+  sha256 "9ced55c12b369f19d135988f8abc7857d2b093d45c8cd35ad778068934cafcdd"
 
-  url "https://download.unity3d.com/download_unity/#{version.after_comma}/MacEditorTargetInstaller/UnitySetup-WebGL-Support-for-Editor-#{version.before_comma}.pkg",
+  url "https://download.unity3d.com/download_unity/#{version.csv.second}/MacEditorTargetInstaller/UnitySetup-WebGL-Support-for-Editor-#{version.csv.first}.pkg",
       verified: "download.unity3d.com/download_unity/"
   name "Unity WebGL Build Support"
   desc "WebGL target support for Unity"
@@ -13,7 +13,7 @@ cask "unity-webgl-support-for-editor" do
     strategy :page_match do |page|
       page.scan(%r{
         /download_unity/(\h+)/MacEditorTargetInstaller
-        /UnitySetup-WebGL-Support-for-Editor-(\d+(?:\.\d+)*[a-z]*\d*)\.pkg
+        /UnitySetup-WebGL-Support-for-Editor-(\d+(?:\.\d+)+[a-z]*\d*)\.pkg
       }ix).map do |match|
         "#{match[1]},#{match[0]}"
       end
@@ -22,7 +22,7 @@ cask "unity-webgl-support-for-editor" do
 
   depends_on cask: "unity"
 
-  pkg "UnitySetup-WebGL-Support-for-Editor-#{version.before_comma}.pkg"
+  pkg "UnitySetup-WebGL-Support-for-Editor-#{version.csv.first}.pkg"
 
   uninstall pkgutil: "com.unity3d.WebGLSupport"
 end

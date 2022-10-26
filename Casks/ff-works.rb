@@ -1,8 +1,8 @@
 cask "ff-works" do
-  version "2.4.4"
+  version "3.2.5"
   sha256 :no_check
 
-  url "https://www.ffworks.net/ffWorks.dmg"
+  url "https://www.ffworks.net/Downloads/ffWorks.dmg"
   name "ff·Works"
   desc "Video-encoding and transcoding app"
   homepage "https://www.ffworks.net/"
@@ -12,7 +12,12 @@ cask "ff-works" do
     regex(/version\s*(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :el_capitan"
 
   app "ff·Works.app"
+
+  zap trash: [
+    "~/Library/Application Support/ffWorks",
+    "~/Library/WebKit/com.osbytes.ffworks#{version.major}",
+  ]
 end

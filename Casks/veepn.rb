@@ -1,8 +1,8 @@
 cask "veepn" do
-  version "2.0.1,66431"
-  sha256 "6aa503a97f9520d6047159299cf4d97e56fcce68ca85deaf1ad9e14c48869a7c"
+  version "2.2.0,918493"
+  sha256 "6d55af3b8150821cd7de5f62a3d986e0dcc29e1415d2d4a947f6c40748ac63b0"
 
-  url "https://download.veepn.com/mac/VeePN_v#{version.before_comma}.dmg"
+  url "https://download.veepn.com/mac/VeePN_v#{version.csv.first}.dmg"
   name "VeePN"
   desc "VPN client"
   homepage "https://veepn.com/vpn-apps/vpn-for-mac/"
@@ -14,11 +14,11 @@ cask "veepn" do
 
   app "VeePN.app"
 
-  uninstall launchctl: "com.veepn.macos.helper"
+  uninstall launchctl: "com.veepn.macos.helper",
+            delete:    "/Library/PrivilegedHelperTools/com.veepn.macos.helper"
 
   zap trash: [
     "~/Library/Application Support/com.veepn.macos.direct",
     "~/Library/Preferences/com.veepn.macos.direct.plist",
-    "/Library/PrivilegedHelperTools/com.veepn.macos.helper",
   ]
 end

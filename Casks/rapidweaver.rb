@@ -1,23 +1,19 @@
 cask "rapidweaver" do
-  version "8.9.1,20881"
-  sha256 "ce008399326ea95dc383f8871efeaef937e124f208789acb52d2cd7e24c141ff"
+  version "8.10.4,21019"
+  sha256 "18882d05e730ecbfe81bd439bfdf6599fb2ef4fac185e0b5d764326eefdd4077"
 
-  url "https://github.com/realmacsoftware/RapidWeaver#{version.major}-releases/releases/download/#{version.before_comma}-%28#{version.after_comma}%29/RapidWeaver#{version.major}.zip",
-      verified: "github.com/realmacsoftware/"
+  url "https://dl.devant.io/v1/3c53887f-427a-4af7-9144-ee16178c62f4/#{version.csv.second}/RapidWeaver.zip",
+      verified: "dl.devant.io/v1/3c53887f-427a-4af7-9144-ee16178c62f4/"
   name "RapidWeaver"
   desc "Web design software"
   homepage "https://www.realmacsoftware.com/rapidweaver/"
 
   livecheck do
-    url "https://www.realmacsoftware.com/rapidweaver/releasenotes/"
-    strategy :page_match do |page|
-      page.scan(%r{href=.*?/(\d+(?:\.\d+)+)-\((\d+)\)/RapidWeaver\d*\.zip}i).map do |match|
-        "#{match[0]},#{match[1]}"
-      end
-    end
+    url "https://update.devant.io/v1/feed/3c53887f-427a-4af7-9144-ee16178c62f4"
+    strategy :sparkle
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :mojave"
 
-  app "RapidWeaver #{version.major}.app"
+  app "RapidWeaver.app"
 end

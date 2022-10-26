@@ -1,6 +1,6 @@
 cask "vnc-viewer" do
-  version "6.21.406"
-  sha256 "613e67e87632ae1fa266e72d051fdbf77a32fe2e3d29e372bbf00c6159a35dd2"
+  version "6.22.826"
+  sha256 "8ea572ad6d111da916b743aab6c3ab94837280f3fcffaf7fee60892a8c2ae36c"
 
   url "https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-#{version}-MacOSX-x86_64.dmg"
   name "Real VNC Viewer"
@@ -9,8 +9,7 @@ cask "vnc-viewer" do
 
   livecheck do
     url "https://www.realvnc.com/en/connect/download/viewer/macos/"
-    strategy :page_match
-    regex(%r{href=.*?/VNC-Viewer-(\d+(?:\.\d+)*)-MacOSX-x86_64\.dmg}i)
+    regex(%r{href=.*?/VNC-Viewer-(\d+(?:\.\d+)+)-MacOSX-x86_64\.dmg}i)
   end
 
   app "VNC Viewer.app"

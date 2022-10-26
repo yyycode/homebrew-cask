@@ -1,6 +1,6 @@
 cask "ibm-cloud-cli" do
-  version "2.0.2"
-  sha256 "d0449e3e6a71e903dda57036c3e3c8b4edea9a18af0d04decfa23fcf4cb9b79e"
+  version "2.11.1"
+  sha256 "b55c841db84d96a31c05c9906b81809238b2ad55743f21786b655af0a4cd9bed"
 
   url "https://download.clis.cloud.ibm.com/ibm-cloud-cli/#{version}/IBM_Cloud_CLI_#{version}.pkg"
   name "IBM Cloud CLI"
@@ -12,8 +12,8 @@ cask "ibm-cloud-cli" do
   end
 
   depends_on cask: "docker"
-  depends_on formula: "kubectl"
-  depends_on formula: "kubernetes-helm"
+  depends_on formula: "helm"
+  depends_on formula: "kubernetes-cli"
 
   pkg "IBM_Cloud_CLI_#{version}.pkg"
 

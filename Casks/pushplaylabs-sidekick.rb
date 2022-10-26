@@ -1,35 +1,30 @@
 cask "pushplaylabs-sidekick" do
-  if Hardware::CPU.intel?
-    version "90.10.12.11943,77fb778"
-    sha256 "afd10ce1c86bca1953750c3c4fad5a0e05a2104a0a678f0aba5ce5edf25463a8"
+  arch arm: "arm64", intel: "x64"
+  livecheck_folder = on_arch_conditional arm: "macm1", intel: "mac"
 
-    url "https://sidekick-cdn-production.meetsidekick.com/builds/sidekick-mac-release-x64-#{version.before_comma}-#{version.after_comma}-df.dmg"
-
-    livecheck do
-      url "https://api.meetsidekick.com/downloads/df/mac"
-      strategy :header_match do |headers|
-        match = headers["location"].match(/[_-](\d+(?:\.\d+)+)[_-](\h+)[._-]df\.dmg/i)
-        "#{match[1]},#{match[2]}"
-      end
-    end
-  else
-    version "90.9.1.10107,be53cbe"
-    sha256 "911891036bcd90371b452e45edd6316d400e7901df41a14571b478e9eea9b8b6"
-
-    url "https://sidekick-cdn-production.meetsidekick.com/builds/sidekick-mac-release-universal-#{version.before_comma}-#{version.after_comma}-df.dmg"
-
-    livecheck do
-      url "https://api.meetsidekick.com/downloads/macm1"
-      strategy :header_match do |headers|
-        match = headers["location"].match(/[_-](\d+(?:\.\d+)+)[_-](\h+)[._-]df\.dmg/i)
-        "#{match[1]},#{match[2]}"
-      end
-    end
+  on_intel do
+    version "104.29.3.25042,42c9702"
+    sha256 "f4ac4fcac47f244f0832fd72a35b278106c210b08554023e0889eba33fc3e9c1"
+  end
+  on_arm do
+    version "104.29.3.25041,4aee336"
+    sha256 "7eee362d5b62ecd00a3f1189bae2817aac19c594eb948c6a60232da4111527c4"
   end
 
+  url "https://fast-cdn.meetsidekick.com/builds/sidekick-mac-release-#{arch}-#{version.csv.first}-#{version.csv.second}-df.dmg"
   name "Sidekick"
   desc "Browser designed for modern work"
   homepage "https://www.meetsidekick.com/"
+
+  livecheck do
+    url "https://api.meetsidekick.com/downloads/df/#{livecheck_folder}"
+    strategy :header_match do |headers|
+      match = headers["location"].match(/[_-](\d+(?:\.\d+)+)[_-](.+)[._-](?:default|df)\.dmg/i)
+      next if match.blank?
+
+      "#{match[1]},#{match[2]}"
+    end
+  end
 
   app "Sidekick.app"
 

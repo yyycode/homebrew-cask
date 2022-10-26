@@ -1,22 +1,24 @@
 cask "mamp" do
-  version "6.4"
-  sha256 "619354e7ca14500352245524de93c41b8ec3ab2d55ad85f62049f0e442f5acc7"
+  arch arm: "M1-arm", intel: "Intel-x86"
 
-  url "https://downloads.mamp.info/MAMP-PRO/releases/#{version}/MAMP_MAMP_PRO_#{version}.pkg"
+  version "6.6"
+  sha256 arm:   "4eb2a5146c0f0ccacfdaf4ea31e5735317a9e2aab18c0b9b591ab96c17808f1d",
+         intel: "306b101a84251655b8e1d50ef1c4d59901d300f85d0e03910701d8d418d4a4d4"
+
+  url "https://downloads.mamp.info/MAMP-PRO/releases/#{version}/MAMP_MAMP_PRO_#{version}-#{arch}.pkg"
   name "MAMP"
   desc "Web development solution with Apache, Nginx, PHP & MySQL"
   homepage "https://www.mamp.info/"
 
   livecheck do
     url "https://www.mamp.info/en/downloads/"
-    strategy :page_match
-    regex(%r{href=.*?/MAMP_MAMP_PRO_(\d+(?:\.\d+)*)\.pkg}i)
+    regex(%r{href=.*?/MAMP[._-]MAMP[._-]PRO[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.pkg}i)
   end
 
   auto_updates true
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :sierra"
 
-  pkg "MAMP_MAMP_PRO_#{version}.pkg"
+  pkg "MAMP_MAMP_PRO_#{version}-#{arch}.pkg"
 
   postflight do
     set_ownership ["/Applications/MAMP", "/Applications/MAMP PRO"]

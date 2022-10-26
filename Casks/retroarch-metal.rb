@@ -1,6 +1,6 @@
 cask "retroarch-metal" do
-  version "1.9.9"
-  sha256 "ae70cecb32c4bc76a98655684d6cf2c7e47c3d8ee5dcd5de8d068868ecef9b9d"
+  version "1.12.0"
+  sha256 "f96354831c44cb60e73fb21eb30375ca376abfbeb2b3299f6594d102ed4776c4"
 
   url "https://buildbot.libretro.com/stable/#{version}/apple/osx/universal/RetroArch_Metal.dmg"
   name "RetroArch"
@@ -8,8 +8,7 @@ cask "retroarch-metal" do
   homepage "https://www.libretro.com/"
 
   livecheck do
-    url "https://buildbot.libretro.com/stable/"
-    regex(%r{href=["']?/stable/v?(\d+(?:\.\d+)+)/?["' >]}i)
+    cask "retroarch"
   end
 
   conflicts_with cask: "retroarch"

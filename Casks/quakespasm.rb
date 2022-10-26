@@ -1,8 +1,8 @@
 cask "quakespasm" do
-  version "0.93.2"
-  sha256 "e7d0d2d970a899ad3f54943f1d16e2cc210f29347c5d669dbd8988ea4531f797"
+  version "0.95.0"
+  sha256 "a5ef593dfe63812d46f346b8f5bba0744694a16eb543ff71b96ce9955b0636a1"
 
-  url "https://downloads.sourceforge.net/quakespasm/Mac/QuakeSpasm-#{version}-osx.zip",
+  url "https://downloads.sourceforge.net/quakespasm/Mac/QuakeSpasm-#{version}-osx-SDL2.zip",
       verified: "downloads.sourceforge.net/quakespasm/"
   name "QuakeSpasm"
   desc "Engine for iD software's Quake"
@@ -16,7 +16,7 @@ cask "quakespasm" do
   end
 
   caveats <<~EOS
-    To complete the installation of #{token}, you will have to copy the file 'pak0.pak' and 'pak1.pak'
-    from your Quake 1 installation support directory into #{appdir}/QuakeSpasm/id1/
+    To complete the installation of #{token}, you will have to copy the file 'pak0.pak' and
+    'pak1.pak' from your Quake 1 installation support directory into #{appdir}/QuakeSpasm/id1/
   EOS
 end

@@ -1,16 +1,15 @@
 cask "assinador-serpro" do
-  version "2.7.1"
-  sha256 "11dc80202d25008d83e82a76e1cc34e6fa1678af9ff530c61819e7c2a7b526b5"
+  version "3.0.2"
+  sha256 "c043ef01b9bbbad0ac31b74f54ca29ff659e4340faaa0b996bb895bfcc4f0f88"
 
   url "https://www.serpro.gov.br/links-fixos-superiores/assinador-digital/assinador-serpro/arquivos/assinador-serpro-#{version.dots_to_hyphens}-instalador.dmg"
-  name "assinador-serpro"
+  name "Assinador Serpro"
   desc "Validate and sign documents using digital certificates"
   homepage "https://www.serpro.gov.br/links-fixos-superiores/assinador-digital/assinador-serpro"
 
   livecheck do
     url :homepage
-    strategy :page_match
-    regex(/Assinador\sSerpro\s(\d+(?:\.\d+)*)/i)
+    regex(/Assinador\sSerpro\s(\d+(?:\.\d+)+)/i)
   end
 
   depends_on macos: ">= :sierra"

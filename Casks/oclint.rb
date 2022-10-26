@@ -1,17 +1,17 @@
 cask "oclint" do
-  version "21.05"
-  sha256 "b8279289756b425b0ac8b2a7bfa63b069ad4593fd647f0722e3a861bbf39cf12"
+  version "22.02"
+  sha256 "6f102a568af3a4344f9658b5f4bdf3d599a851456287bf7a1fae447891f7368c"
 
-  url "https://github.com/oclint/oclint/releases/download/v#{version}/oclint-#{version}-llvm-12.0.0-x86_64-darwin-macos-big-sur-11.4-xcode-12.5.tar.gz",
+  url "https://github.com/oclint/oclint/releases/download/v#{version}/oclint-#{version}-llvm-13.0.1-x86_64-darwin-macos-12.2-xcode-13.2.tar.gz",
       verified: "github.com/oclint/oclint/"
   name "OCLint"
   desc "Static source code analysis tool"
   homepage "https://oclint.org/"
 
-  binary "oclint-#{version.before_comma}/bin/oclint"
-  binary "oclint-#{version.before_comma}/bin/oclint-json-compilation-database"
-  binary "oclint-#{version.before_comma}/bin/oclint-xcodebuild"
-  binary "oclint-#{version.before_comma}/lib/oclint", target: "#{HOMEBREW_PREFIX}/lib/oclint"
-  binary "oclint-#{version.before_comma}/lib/clang", target: "#{HOMEBREW_PREFIX}/lib/clang"
-  binary "oclint-#{version.before_comma}/include/c++/v1", target: "#{HOMEBREW_PREFIX}/include/c++/v1"
+  binary "oclint-#{version}/bin/oclint-json-compilation-database"
+  binary "oclint-#{version}/bin/oclint-xcodebuild"
+  binary "oclint-#{version}/bin/oclint"
+  binary "oclint-#{version}/include/c++/v1", target: "#{HOMEBREW_PREFIX}/include/c++/v1"
+  binary "oclint-#{version}/lib/clang", target: "#{HOMEBREW_PREFIX}/lib/clang"
+  binary "oclint-#{version}/lib/oclint", target: "#{HOMEBREW_PREFIX}/lib/oclint"
 end

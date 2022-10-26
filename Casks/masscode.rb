@@ -1,12 +1,20 @@
 cask "masscode" do
-  version "1.3.0"
-  sha256 "64fb6b176b5fad02e2b6fcec3abb1d350fa2831b2ba1dd214db5a874dfe9f23e"
+  arch arm: "-arm64"
 
-  url "https://github.com/antonreshetov/massCode/releases/download/v#{version}/massCode-#{version}.dmg",
-      verified: "github.com/antonreshetov/massCode/"
+  version "3.4.1"
+  sha256 arm:   "b9508b32b6b8606bd0bbcab482b9a75ef87186db181b48f1242c8ef83b6ee288",
+         intel: "622ed42307902b194bf223f6b33a6c2c0cef11d23480986dfa30cd1be128edd9"
+
+  url "https://github.com/massCodeIO/massCode/releases/download/v#{version}/massCode-#{version}#{arch}.dmg",
+      verified: "https://github.com/massCodeIO/massCode/"
   name "massCode"
   desc "Open-source code snippets manager for developers"
   homepage "https://masscode.io/"
+
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
 
   app "massCode.app"
 end

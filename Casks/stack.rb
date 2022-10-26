@@ -1,6 +1,6 @@
 cask "stack" do
-  version "2.8.2-20210809"
-  sha256 "2c684b4acf039556ab1103834a806b066fbc93fe5fc74a4b7a6286f665aed6a2"
+  version "2.10.1-20220504"
+  sha256 "da2c1db8f6f73b7635f78df26d5f4d150a710d18ad803ed1644f563c944009f4"
 
   url "https://mirror.transip.net/stack/software/osx/stack-#{version}.dmg",
       verified: "transip.net/stack/"

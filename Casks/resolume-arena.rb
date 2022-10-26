@@ -1,8 +1,9 @@
 cask "resolume-arena" do
-  version "7.5.0,77960"
-  sha256 "c7af2ad884f03d3c620b6810bada484b75a86244056d6d92c07a3b4640610221"
+  version "7.13.2,17774"
+  sha256 "3b4dfd12ef9c72d60afcc26d370c62f9ad1cef1a4b402e90c9b3afc0fddbe5ff"
 
-  url "https://resolume.com/download/Resolume_Arena_#{version.major_minor_patch.dots_to_underscores}_rev_#{version.after_comma}_Installer.dmg"
+  url "https://dd5sgwxv3xok.cloudfront.net/Resolume_Arena_#{version.major_minor_patch.dots_to_underscores}_rev_#{version.csv.second}_Installer.dmg",
+      verified: "dd5sgwxv3xok.cloudfront.net/"
   name "Resolume Arena"
   desc "Video mapping software"
   homepage "https://resolume.com/"
@@ -18,14 +19,14 @@ cask "resolume-arena" do
   pkg "Resolume Arena Installer.pkg"
 
   uninstall pkgutil:   [
-    "com.resolume.pkg.ResolumeArena.*",
-    "com.resolume.pkg.ResolumeDXV",
-    "com.resolume.pkg.ResolumeQuickLook",
-    "com.resolume.pkg.ResolumeAlley",
-    "com.resolume.pkg.ResolumeWireNodes",
-    "com.resolume.pkg.ResolumeCommon",
-    "com.resolume.pkg.ResolumeWire",
-  ],
+              "com.resolume.pkg.ResolumeArena.*",
+              "com.resolume.pkg.ResolumeDXV",
+              "com.resolume.pkg.ResolumeQuickLook",
+              "com.resolume.pkg.ResolumeAlley",
+              "com.resolume.pkg.ResolumeWireNodes",
+              "com.resolume.pkg.ResolumeCommon",
+              "com.resolume.pkg.ResolumeWire",
+            ],
             delete:    "/Applications/Resolume Arena #{version.major}",
             signal:    ["TERM", "com.resolume.arena"],
             launchctl: "com.resolume.arena"

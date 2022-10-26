@@ -1,15 +1,15 @@
 cask "sauce-connect" do
-  version "4.6.5"
-  sha256 "adc9f16c619fe106579e3c38db8446920fb566dec1ebc6491c8fc431cb8e2de8"
+  version "4.8.1"
+  sha256 "d0cc8ab185c2b930a2ae412410ff7457420ca68d6f79ab1c25cbefedf9e9031a"
 
   url "https://saucelabs.com/downloads/sc-#{version}-osx.zip"
   name "Sauce Connect"
-  homepage "https://wiki.saucelabs.com/display/DOCS/Sauce+Connect+Proxy"
+  desc "Proxy server to securely connect to the Sauce Labs automated testing platform"
+  homepage "https://docs.saucelabs.com/secure-connections/sauce-connect/"
 
   livecheck do
-    url :homepage
-    strategy :page_match
-    regex(%r{href=.*?/sc-(\d+(?:\.\d+)*)-osx\.zip}i)
+    url "https://docs.saucelabs.com/secure-connections/sauce-connect/installation/index.html"
+    regex(/href=.*?sc[._-]v?(\d+(?:\.\d+)+)[._-]osx\.zip/i)
   end
 
   binary "sc-#{version}-osx/bin/sc"

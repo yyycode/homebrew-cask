@@ -11,6 +11,9 @@ concurrency:
   group: "${{ github.ref }}"
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+permissions:
+  contents: read
+
 jobs:
   generate-matrix:
     outputs:
@@ -24,7 +27,7 @@ jobs:
           test-bot: false
 
       - name: Check out Pull Request
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -50,7 +53,7 @@ jobs:
           test-bot: false
 
       - name: Check out Pull Request
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -61,6 +64,10 @@ jobs:
             if ! rm -r '/Applications/Visual Studio.app'; then
               echo '::warning::Removing Visual Studio is no longer necessary.'
             fi
+          fi
+          
+          if ! brew uninstall --cask julia && ! rm -r /Applications/Julia-*.app; then
+            echo '::warning::Removing Julia is no longer necessary.'
           fi
 
           if ! rm /usr/local/share/man/man1/al.1 || \
@@ -93,7 +100,7 @@ jobs:
           mkdir "${GITHUB_WORKSPACE}"
 
       - name: Cache Homebrew Gems
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v3
         with:
           path: ${{ steps.set-up-homebrew.outputs.gems-path }}
           key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
@@ -110,16 +117,21 @@ jobs:
         id: gems
         run: brew install-bundler-gems
 
+      - name: Run brew readall ${{ matrix.tap }}
+        id: readall
+        run: brew readall '${{ matrix.tap }}'
+        if: always() && steps.gems.outcome == 'success'
+
       - name: Run brew style ${{ matrix.tap }}
         run: brew style '${{ matrix.tap }}'
-        if: always() && steps.gems.outcome == 'success' && !matrix.cask
+        if: always() && steps.readall.outcome == 'success' && !matrix.cask
 
       - name: Run brew fetch --cask ${{ matrix.cask.token }}
         id: fetch
         run: |
           brew fetch --cask --retry --force '${{ matrix.cask.path }}'
         timeout-minutes: 30
-        if: always() && steps.gems.outcome == 'success' && matrix.cask
+        if: always() && steps.readall.outcome == 'success' && matrix.cask
 
       - name: Run brew audit --cask${{ (matrix.cask && ' ') || ' --tap ' }}${{ matrix.cask.token || matrix.tap }}
         id: audit
@@ -127,7 +139,7 @@ jobs:
           brew audit --cask ${{ join(matrix.audit_args, ' ') }}${{ (matrix.cask && ' ') || ' --tap ' }}'${{ matrix.cask.path || matrix.tap }}'
         timeout-minutes: 30
         if: >
-          always() && steps.gems.outcome == 'success' &&
+          always() && steps.readall.outcome == 'success' &&
           (!matrix.cask || steps.fetch.outcome == 'success') &&
           !matrix.skip_audit
 

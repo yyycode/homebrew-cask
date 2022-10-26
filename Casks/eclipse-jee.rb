@@ -1,21 +1,17 @@
 cask "eclipse-jee" do
-  version "4.20.0,2021-06:R"
-  sha256 "befc851d3a9b209df847c2bdeef698e511212ce13acd237389729e56b1ad8c92"
+  arch arm: "aarch64", intel: "x86_64"
 
-  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-jee-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
+  version "4.25.0,2022-09"
+  sha256 arm:   "a624e02a37b49081116406b240aed647bd3ccea0bdfbd4289fb82e7877e1b995",
+         intel: "61256e5e7399f1ea64a0af4d5aa10842d4d6b06d4bbcc1054c6eea11e6d427c4"
+
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.csv.second}/R/eclipse-jee-#{version.csv.second}-R-macosx-cocoa-#{arch}.dmg&r=1"
   name "Eclipse IDE for Java EE Developers"
   desc "Eclipse IDE for Java EE developers"
   homepage "https://eclipse.org/"
 
   livecheck do
-    url "https://www.eclipse.org/downloads/packages/"
-    strategy :page_match do |page|
-      page.scan(/Eclipse IDE (\d+-\d+) R Packages/i).map do |release|
-        version_page = Homebrew::Livecheck::Strategy.page_content("https://projects.eclipse.org/releases/#{release[0]}")[:content]
-        version = version_page.scan(%r{href="/projects/eclipse/releases/(\d+(?:\.\d+)*)"}i)
-        "#{version[0][0]},#{release[0]}:R"
-      end
-    end
+    cask "eclipse-ide"
   end
 
   # Renamed to avoid conflict with other Eclipse.

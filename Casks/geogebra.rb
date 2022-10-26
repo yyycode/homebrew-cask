@@ -1,6 +1,6 @@
 cask "geogebra" do
-  version "6.0.662.0"
-  sha256 "18babe115f7d644e95dbfc76e5f89cbea2e18115ae0b19ff9b0a1b4368dbbffc"
+  version "6.0.739.0"
+  sha256 "13db2910c1ae1dad3ae26589f242e9833e10fa7de6c8aa67daf9d248d499f47e"
 
   url "https://download.geogebra.org/installers/#{version.major_minor}/GeoGebra-Classic-#{version.major}-MacOS-Portable-#{version.dots_to_hyphens}.zip"
   name "GeoGebra"
@@ -10,7 +10,9 @@ cask "geogebra" do
   livecheck do
     url "https://download.geogebra.org/package/mac-port"
     strategy :header_match do |headers|
-      v = headers["location"][%r{/GeoGebra-Classic-\d+-MacOS-Portable-(\d+(?:-\d+)*)\.zip}i, 1]
+      v = headers["location"][%r{/GeoGebra-Classic-\d+-MacOS-Portable-(\d+(?:-\d+)+)\.zip}i, 1]
+      next if v.blank?
+
       v.tr("-", ".")
     end
   end

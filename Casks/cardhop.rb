@@ -1,8 +1,8 @@
 cask "cardhop" do
-  version "2.0.5,1050"
-  sha256 "ef90f03032c7e0fdb8afd6172ba33caa7e28849d23d60fc740eb154af1f0d8ba"
+  version "2.2.2,1112"
+  sha256 "ba1156914f990a9bb05beefce212836e688c546cdbd97d5947c109a5537e9e24"
 
-  url "https://cdn.flexibits.com/Cardhop_#{version.before_comma}.zip"
+  url "https://cdn.flexibits.com/Cardhop_#{version.csv.first}.zip"
   name "Cardhop"
   desc "Contacts manager"
   homepage "https://flexibits.com/cardhop"

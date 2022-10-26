@@ -6,6 +6,9 @@ concurrency:
   group: "triage-${{ github.event.number }}"
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   triage:
     runs-on: ubuntu-latest
@@ -20,20 +23,24 @@ jobs:
         with:
           token: ${{secrets.HOMEBREW_GITHUB_PUBLIC_REPO_TOKEN}}
           def: |
-            [
-              {
-                "label": "new cask",
-                "status": "added",
-                "path": "Casks/.+"
-              }, {
-                "label": "marked for removal/rejection",
-                "status": "removed",
-                "path": "Casks/.+"
-              }, {
-                "label": "documentation",
-                "path": "(.*\\.md|\\.github/ISSUE_TEMPLATE/.*\\.yml)"
-              }, {
-                "label": "bump-cask-pr",
-                "pr_body_content": "Created with `brew bump-cask-pr`"
-              }
-            ]
+            - label: new cask
+              status: added
+              path: Casks/.+
+
+            - label: marked for removal/rejection
+              status: removed
+              path: Casks/.+
+
+            - label: documentation
+              path: (.*\.md|\.github/ISSUE_TEMPLATE/.*\.yml)
+
+            - label: bump-cask-pr
+              pr_body_content: Created with `brew bump-cask-pr`
+
+            - label: missing description
+              path: Casks/.+
+              missing_content: \n  desc .+\n
+
+            - label: appcast migration needed
+              path: Casks/.+
+              content: \n  appcast .+\n

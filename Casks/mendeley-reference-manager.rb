@@ -1,6 +1,6 @@
 cask "mendeley-reference-manager" do
-  version "2.55.0"
-  sha256 "21fb79844e35a147b5b1bf1771a42a6fdb3e1daf9e8378b8882d4e8e0b6821a7"
+  version "2.79.0"
+  sha256 "c8100b1b79f8211f9dd5cbaa718e9b7cbe557cec40841ba20cd6a1cffd7d5161"
 
   url "https://static.mendeley.com/bin/desktop/mendeley-reference-manager-#{version}.dmg"
   name "Mendeley Reference Manager"
@@ -11,8 +11,6 @@ cask "mendeley-reference-manager" do
     url "https://static.mendeley.com/bin/desktop/latest-mac.yml"
     strategy :electron_builder
   end
-
-  depends_on macos: ">= :yosemite"
 
   app "Mendeley Reference Manager.app"
 

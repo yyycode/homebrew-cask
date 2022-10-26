@@ -10,6 +10,9 @@ concurrency:
   group: sync-templates-and-ci-config
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   sync-templates-and-ci-config:
     if: github.repository == 'Homebrew/homebrew-cask'
@@ -22,12 +25,12 @@ jobs:
           - Homebrew/homebrew-cask-versions
     steps:
       - name: Clone main repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
 
       - name: Clone secondary repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{ matrix.repo }}
           path: vendor/${{ matrix.repo }}
@@ -51,7 +54,7 @@ jobs:
           HOMEBREW_GPG_PASSPHRASE: ${{ secrets.BREWTESTBOT_GPG_SIGNING_SUBKEY_PASSPHRASE }}
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@7380612b49221684fefa025244f2ef4008ae50ad
+        uses: peter-evans/create-pull-request@b4d51739f96fca8047ad065eccef63442d8e99f7
         with:
           path: vendor/${{ matrix.repo }}
           token: ${{ secrets.HOMEBREW_CASK_SYNC_TOKEN }}

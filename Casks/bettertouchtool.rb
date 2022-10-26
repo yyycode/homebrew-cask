@@ -1,18 +1,17 @@
 cask "bettertouchtool" do
-  version "3.581-1724"
-  sha256 "c7321be14b3baec8d4893b52903460e94ddaf52a62c8381f4d78637b63b0af18"
+  version "3.924,2087"
+  sha256 "06c7e16599a70f9f5ef644831c304684c14972b0709b4787892c5e9a6bc0268d"
 
-  url "https://folivora.ai/releases/btt#{version}.zip"
+  url "https://folivora.ai/releases/btt#{version.csv.first}-#{version.csv.second}.zip"
   name "BetterTouchTool"
   desc "Tool to customize input devices and automate computer systems"
   homepage "https://folivora.ai/"
 
   livecheck do
     url "https://folivora.ai/releases/"
-    strategy :page_match do |page|
-      page.scan(/btt(\d+(?:.\d+)*)\.zip.*?(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2})/i)
-          .max_by { |(_, time)| Time.parse(time) }
-          .first
+    regex(/btt(\d+(?:[._-]\d+)*)\.zip.*?(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2})/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).max_by { |match| Time.parse(match[1]) }&.first&.tr("-", ",")
     end
   end
 
@@ -20,8 +19,10 @@ cask "bettertouchtool" do
 
   app "BetterTouchTool.app"
 
+  uninstall quit: "com.hegenberg.BetterTouchTool"
+
   zap trash: [
-    "~/Library/Preferences/com.hegenberg.BetterTouchTool.plist",
     "~/Library/Application Support/BetterTouchTool",
+    "~/Library/Preferences/com.hegenberg.BetterTouchTool.plist",
   ]
 end

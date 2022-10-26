@@ -1,10 +1,11 @@
 cask "pyzo" do
-  version "4.11.2"
-  sha256 "3a0d2b25988bd27e13857265926ff28851240c17d5d07063b5e23b389cfa1a14"
+  version "4.12.3"
+  sha256 "5a6a92cbf86e9c3ad7976147ee2bd7b14bbb68ff79038cdc6f9c08f13b58cc47"
 
-  url "https://github.com/pyzo/pyzo/releases/download/v#{version}/pyzo-#{version}-macos.dmg",
+  url "https://github.com/pyzo/pyzo/releases/download/v#{version}/pyzo-#{version}-macos_x86_64.dmg",
       verified: "github.com/pyzo/pyzo/"
   name "Pyzo"
+  desc "Python IDE focused on interactivity and introspection"
   homepage "https://pyzo.org/"
 
   app "pyzo.app"

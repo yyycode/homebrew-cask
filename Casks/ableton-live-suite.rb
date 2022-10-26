@@ -1,16 +1,21 @@
 cask "ableton-live-suite" do
-  version "11.0.6"
-  sha256 "af1b804c258c1db76614ba39b9ee13190ec3957cfa77a1c6afea1c10ef3fcd60"
+  arch = "intel"
+  version "11.2.5"
+  sha256 "ae6f2c978009d7baa86b53d41be8a5eafda27bcb3a0bf102ebff629b4ebe091f"
 
-  url "https://cdn-downloads.ableton.com/channels/#{version}/ableton_live_suite_#{version}_64.dmg"
+  on_mojave :or_newer do
+    arch = "universal"
+    sha256 "8b921b481d4466ddb467fce18ecb06b783693616fd0aae26cd6aee5f98fc59ee"
+  end
+
+  url "https://cdn-downloads.ableton.com/channels/#{version}/ableton_live_suite_#{version}_#{arch}.dmg"
   name "Ableton Live Suite"
   desc "Sound and music editor"
   homepage "https://www.ableton.com/en/live/"
 
   livecheck do
     url "https://www.ableton.com/en/release-notes/live-#{version.major}/"
-    strategy :page_match
-    regex(/(\d+(?:\.\d+)*)\s*Release\s*Notes/i)
+    regex(/(\d+(?:\.\d+)+)\s*Release\s*Notes/i)
   end
 
   auto_updates true

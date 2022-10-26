@@ -1,8 +1,8 @@
 cask "focusatwill" do
-  version "2.0.0"
-  sha256 "c57df34add6bcefbc86f4180c71ca334b4ca7c58114a631c5bcf66f27b0dbe6e"
+  version "3.4.0"
+  sha256 "b5e2cfdd30e1f4ba69f41c06cc5c2e7c803b28541d24954d454b91e7af892524"
 
-  url "https://faw-desktop.s3.amazonaws.com/focusatwill-#{version}.dmg",
+  url "https://faw-desktop.s3.amazonaws.com/focusatwill-#{version}-universal.dmg",
       verified: "faw-desktop.s3.amazonaws.com/"
   name "Focus@Will"
   desc "Personalized focus music"
@@ -14,4 +14,11 @@ cask "focusatwill" do
   end
 
   app "focusatwill.app"
+
+  zap trash: [
+    "~/Library/Application Support/focusatwill",
+    "~/Library/Logs/focusatwill",
+    "~/Library/Preferences/com.focusatwill.desktop.plist",
+    "~/Library/Saved Application State/com.focusatwill.desktop.savedState",
+  ]
 end

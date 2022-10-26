@@ -1,8 +1,8 @@
 cask "alfred" do
-  version "4.5.1,1256"
-  sha256 "cc2066d1c6d057e3ecb12485763bef2d076ad21de8fd27ebbd6452dbaf3a1344"
+  version "5.0.3,2087"
+  sha256 "0aca716811997d35f3b6a69c3cbd70d4c0a2b0d10022381f9cd558f4a402f298"
 
-  url "https://cachefly.alfredapp.com/Alfred_#{version.before_comma}_#{version.after_comma}.dmg"
+  url "https://cachefly.alfredapp.com/Alfred_#{version.csv.first}_#{version.csv.second}.dmg"
   name "Alfred"
   desc "Application launcher and productivity software"
   homepage "https://www.alfredapp.com/"
@@ -10,16 +10,20 @@ cask "alfred" do
   livecheck do
     url "https://www.alfredapp.com/app/update#{version.major}/general.xml"
     strategy :page_match do |page|
-      match = page.match(/Alfred_(\d(?:\.\d+)*)_(\d+)\.tar\.gz/i)
+      match = page.match(/Alfred[._-]v?(\d(?:\.\d+)+)[._-](\d+)\.tar\.gz/i)
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end
 
   auto_updates true
+  depends_on macos: ">= :mojave"
 
   app "Alfred #{version.major}.app"
 
-  uninstall quit: "com.runningwithcrayons.Alfred"
+  uninstall login_item: "Alfred#{version.major}",
+            quit:       "com.runningwithcrayons.Alfred"
 
   zap trash: [
     "~/Library/Application Support/Alfred",

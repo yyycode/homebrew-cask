@@ -1,23 +1,24 @@
 cask "eclipse-php" do
-  version "4.20.0,2021-06:R"
-  sha256 "5e08bde887368f74f2e129965d2cd0b8833fb6a1f65c7e7f45563ef64f74721b"
+  arch arm: "aarch64", intel: "x86_64"
 
-  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-php-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
+  version "4.25.0,2022-09"
+  sha256 arm:   "37adbd51960bf43382b3aaf4dcadabab0c59bcb6c7a30d2aacf8249cd416db38",
+         intel: "79f668219fa56849f6b9a1dc883929a07d7ed858802f131004c8834466b8cb3c"
+
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.csv.second}/R/eclipse-php-#{version.csv.second}-R-macosx-cocoa-#{arch}.dmg&r=1"
   name "Eclipse IDE for PHP Developers"
   desc "Eclipse IDE for PHP developers"
   homepage "https://eclipse.org/"
 
   livecheck do
-    url "https://www.eclipse.org/downloads/packages/"
-    strategy :page_match do |page|
-      page.scan(/Eclipse IDE (\d+-\d+) R Packages/i).map do |release|
-        version_page = Homebrew::Livecheck::Strategy.page_content("https://projects.eclipse.org/releases/#{release[0]}")[:content]
-        version = version_page.scan(%r{href="/projects/eclipse/releases/(\d+(?:\.\d+)*)"}i)
-        "#{version[0][0]},#{release[0]}:R"
-      end
-    end
+    cask "eclipse-ide"
   end
 
   # Renamed to avoid conflict with other Eclipse.
   app "Eclipse.app", target: "Eclipse PHP.app"
+
+  zap trash: [
+    "~/Library/Preferences/org.eclipse.platform.ide.plist",
+    "~/Library/Saved Application State/org.eclipse.platform.ide.savedState",
+  ]
 end

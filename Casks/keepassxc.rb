@@ -1,16 +1,12 @@
 cask "keepassxc" do
-  version "2.6.6"
+  arch arm: "arm64", intel: "x86_64"
 
-  if Hardware::CPU.intel?
-    url "https://github.com/keepassxreboot/keepassxc/releases/download/#{version}/KeePassXC-#{version}-x86_64.dmg",
-        verified: "github.com/keepassxreboot/keepassxc/"
-    sha256 "ab96033c16459de5a95e1f9e5864a5bd8cc47b4f3dee2c68ede6199dd44286ec"
-  else
-    url "https://github.com/keepassxreboot/keepassxc/releases/download/#{version}/KeePassXC-#{version}-arm64.dmg",
-        verified: "github.com/keepassxreboot/keepassxc/"
-    sha256 "9dc121bb08f5b46186930ac9ba189553cec2c2ce9688df466e9ce1d9d75fe8c5"
-  end
+  version "2.7.3"
+  sha256 arm:   "0aebea97a44e273b8c8728ecd078f3cf3bbd4505de1b8e08e027ea9a7f95b530",
+         intel: "5a2dcc5c8e98e60634faa5f98592b6d34beac1ffce1f023ad8beaa83552ecb6b"
 
+  url "https://github.com/keepassxreboot/keepassxc/releases/download/#{version}/KeePassXC-#{version}-#{arch}.dmg",
+      verified: "github.com/keepassxreboot/keepassxc/"
   name "KeePassXC"
   desc "Password manager app"
   homepage "https://keepassxc.org/"
@@ -26,13 +22,15 @@ cask "keepassxc" do
   app "KeePassXC.app"
   binary "#{appdir}/KeePassXC.app/Contents/MacOS/keepassxc-cli"
 
+  uninstall quit: "org.keepassxc.keepassxc"
+
   zap trash: [
     "~/.keepassxc",
+    "~/Library/Application Support/CrashReporter/KeePassXC_*.plist",
     "~/Library/Application Support/keepassxc",
     "~/Library/Caches/org.keepassx.keepassxc",
+    "~/Library/Logs/DiagnosticReports/KeePassXC_*.crash",
     "~/Library/Preferences/org.keepassx.keepassxc.plist",
     "~/Library/Saved Application State/org.keepassx.keepassxc.savedState",
-    "~/Library/Logs/DiagnosticReports/KeePassXC_*.crash",
-    "~/Library/Application Support/CrashReporter/KeePassXC_*.plist",
   ]
 end

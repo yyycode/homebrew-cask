@@ -1,14 +1,14 @@
 cask "multitouch" do
-  version "1.24.13,140"
-  sha256 "bddf63d7a2b6867cfe7bbe168d6748edcb45ac6e2c706b5994e8d46f3c5aae60"
+  version "1.27.7,162"
+  sha256 "25092f69c9e41970c42c14724f4abd781a6a3a68185dfef21a808c5ca685f91a"
 
-  url "https://multitouch.app/downloads/multitouch#{version.before_comma}.dmg"
+  url "https://multitouch.app/downloads/multitouch#{version.csv.first}.dmg"
   name "Multitouch"
   desc "Add more gestures for Trackpad and Magic Mouse"
   homepage "https://multitouch.app/"
 
   livecheck do
-    url "https://www.multitouch.app/downloads/updates.xml"
+    url "https://multitouch.app/downloads/updates.xml"
     strategy :sparkle
   end
 
@@ -17,9 +17,14 @@ cask "multitouch" do
 
   app "Multitouch.app"
 
+  uninstall quit: "com.brassmonkery.Multitouch"
+
   zap trash: [
-    "~/Library/Preferences/com.brassmonkery.Multitouch",
     "~/Library/Application Support/Multitouch",
     "~/Library/Caches/com.brassmonkery.Multitouch",
+    "~/Library/Cookies/com.brassmonkery.Multitouch.binarycookies",
+    "~/Library/HTTPStorages/com.brassmonkery.Multitouch",
+    "~/Library/HTTPStorages/com.brassmonkery.Multitouch.binarycookies",
+    "~/Library/Preferences/com.brassmonkery.Multitouch.plist",
   ]
 end

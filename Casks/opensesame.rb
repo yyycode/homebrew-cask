@@ -1,9 +1,9 @@
 cask "opensesame" do
-  version "3.3.9"
-  sha256 "6891a59b25f7ae340bdba53e55faec71e00cf8a67897b496a271ac3a3134ae06"
+  version "3.3.12"
+  sha256 "ccf7635b9c7c4ff5fad437195189ae16559173b1030a015b7d9602ce949b56d4"
 
-  url "https://github.com/smathot/OpenSesame/releases/download/release%2F#{version}/opensesame_#{version}-py37-macos-1.dmg",
-      verified: "github.com/smathot/OpenSesame/"
+  url "https://github.com/open-cogsci/OpenSesame/releases/download/release%2F#{version}/opensesame_#{version}-py37-macos-x64-1.dmg",
+      verified: "github.com/open-cogsci/OpenSesame/"
   name "OpenSesame"
   desc "Graphical experiment builder for the social sciences"
   homepage "https://osdoc.cogsci.nl/"
@@ -13,5 +13,5 @@ cask "opensesame" do
     regex(%r{^release[/._-]v?(\d+(?:\.\d+)+)$}i)
   end
 
-  app "opensesame.app"
+  app "OpenSesame.app"
 end

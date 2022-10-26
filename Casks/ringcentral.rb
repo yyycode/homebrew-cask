@@ -1,18 +1,20 @@
 cask "ringcentral" do
-  version "21.3.20"
+  arch arm: "-arm"
+
+  version "22.3.30"
   sha256 :no_check
 
-  url "https://app.ringcentral.com/downloads/RingCentral.pkg"
+  url "https://app.ringcentral.com/download/RingCentral#{arch}.pkg"
   name "RingCentral"
-  desc "Team messaging, video meetings, and a business phone"
-  homepage "https://www.ringcentral.com/rcapp.html"
+  desc "Team messaging, video meetings, and business phone"
+  homepage "https://www.ringcentral.com/download.html"
 
   livecheck do
     url "https://app.ringcentral.com/download/latest-mac.yml"
     strategy :electron_builder
   end
 
-  pkg "RingCentral.pkg"
+  pkg "RingCentral#{arch}.pkg"
 
   uninstall delete:  "/Applications/RingCentral.app",
             quit:    "RingCentral",

@@ -1,6 +1,6 @@
 cask "spamsieve" do
-  version "2.9.44"
-  sha256 "ee7e5fff0c7d7e11e9b00863c6d8ff2062d20a0c78844c2f687628f18b31fa83"
+  version "2.9.50"
+  sha256 "d9ee2504859f86287c3adfb45318c1868f1ec9d9fecff8a43db245541aef08b5"
 
   url "https://c-command.com/downloads/SpamSieve-#{version}.dmg"
   name "SpamSieve"
@@ -9,8 +9,7 @@ cask "spamsieve" do
 
   livecheck do
     url :homepage
-    strategy :page_match
-    regex(%r{href=.*?/SpamSieve-(\d+(?:\.\d+)*)\.dmg}i)
+    regex(%r{href=.*?/SpamSieve[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
   app "SpamSieve.app"

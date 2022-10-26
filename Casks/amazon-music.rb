@@ -1,14 +1,18 @@
 cask "amazon-music" do
-  version "8.6.0.2271,22710610_e91247c784977e6c258edc2ea5d1a151"
-  sha256 "85d69d9a46296c43936344c1dccb009cbba90ca85c3d7b60620540aff3155ef8"
+  version "9.1.0,23390607_40b7c3a95de4052b82878a666e5c8cac"
+  sha256 "9ba34c58cd726fa8230169b322648bbd07c9a562f8112d5e9fa87632c6d9ade1"
 
-  url "https://morpho-releases.s3-us-west-2.amazonaws.com/mac/#{version.after_comma}/Amazon+Music+Installer.dmg",
-      verified: "morpho-releases.s3-us-west-2.amazonaws.com/mac/"
-  appcast "https://www.amazon.com/gp/dmusic/desktop/downloadPlayer",
-          must_contain: version.after_comma
+  url "https://d2j9xt6n9dg5d3.cloudfront.net/mac/#{version.csv.second}/Amazon+Music+Installer.dmg",
+      verified: "d2j9xt6n9dg5d3.cloudfront.net/mac/"
   name "Amazon Music"
   desc "Desktop client for Amazon Music"
   homepage "https://www.amazon.com/musicapps"
+
+  livecheck do
+    # The download page does not provide a version number
+    # The version number of the artifact corresponds with the installer, not the application
+    skip "No version information available"
+  end
 
   auto_updates true
 
@@ -17,9 +21,9 @@ cask "amazon-music" do
   }
 
   uninstall quit:      [
-    "com.amazon.music",
-    "com.amazon.music-renderer",
-  ],
+              "com.amazon.music",
+              "com.amazon.music-renderer",
+            ],
             delete:    "/Applications/Amazon Music.app",
             launchctl: [
               "com.amazon.music",

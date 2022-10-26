@@ -1,6 +1,6 @@
 cask "qutebrowser" do
-  version "2.3.1"
-  sha256 "1b8d534a6afee99b9c0db99b371384b768b4ffa5f3a793290d5eede498607789"
+  version "2.5.2"
+  sha256 "9c52c7ade3485103686b31e49d2576da3f57f43bba2b062528988a5ee606bb39"
 
   url "https://github.com/qutebrowser/qutebrowser/releases/download/v#{version}/qutebrowser-#{version}.dmg",
       verified: "github.com/qutebrowser/qutebrowser/"
@@ -9,10 +9,21 @@ cask "qutebrowser" do
   homepage "https://www.qutebrowser.org/"
 
   app "qutebrowser.app"
+  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
+  shimscript = "#{staged_path}/qutebrowser.wrapper.sh"
+  binary shimscript, target: "qutebrowser"
 
-  zap trash: [
-    "~/Library/Application Support/qutebrowser",
-    "~/Library/Caches/qutebrowser",
-    "~/Library/Preferences/qutebrowser",
-  ]
+  preflight do
+    File.write shimscript, <<~EOS
+      #!/bin/sh
+      '#{appdir}/qutebrowser.app/Contents/MacOS/qutebrowser' "$@"
+    EOS
+  end
+
+  zap rmdir: "~/.qutebrowser",
+      trash: [
+        "~/Library/Application Support/qutebrowser",
+        "~/Library/Caches/qutebrowser",
+        "~/Library/Preferences/qutebrowser",
+      ]
 end

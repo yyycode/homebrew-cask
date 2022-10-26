@@ -1,15 +1,5 @@
 cask "cocktail" do
-  if MacOS.version <= :yosemite
-    version "8.9.2"
-    sha256 "acc7d191313fa0eb4109ae56f62f73e7ed6685f7d7d438d5138b85d68e40edd8"
-
-    url "https://www.maintain.se/downloads/sparkle/yosemite/Cocktail_#{version}.zip"
-
-    livecheck do
-      url "https://www.maintain.se/downloads/sparkle/yosemite/yosemite.xml"
-      strategy :sparkle
-    end
-  elsif MacOS.version <= :el_capitan
+  if MacOS.version <= :el_capitan
     version "9.7"
     sha256 "ca6b4a264ca60a08ff45761f82b0b6161cbe3412bd6cbeedd5dbecebc8d26712"
 
@@ -59,16 +49,35 @@ cask "cocktail" do
       url "https://www.maintain.se/downloads/sparkle/catalina/catalina.xml"
       strategy :sparkle
     end
-  else
-    version "14.3.1"
-    sha256 "60d48d44b28474237b99c7fe5fa4794ed6d420adff6047c00cbf1a0d933feea5"
+  elsif MacOS.version <= :big_sur
+    version "14.5"
+    sha256 "13833eefd4913eccbc319e57d7bac93c50f5a0a667d6dde877f5aa8a047be068"
 
     url "https://www.maintain.se/downloads/Cocktail#{version.major}BSE.dmg"
 
     livecheck do
       url :homepage
-      strategy :page_match
-      regex(/macOS\s*11(?:\.\d+)*.*?(\d+(?:\.\d+)*)/i)
+      regex(/macOS\s*11(?:\.\d+)*.*?(\d+(?:\.\d+)+)/i)
+    end
+  elsif MacOS.version <= :monterey
+    version "15.3.8"
+    sha256 "99c401b7c5714c3bcd37c47ce039659e40059af32e8e2c134af23f093685c71b"
+
+    url "https://www.maintain.se/downloads/Cocktail#{version.major}ME.dmg"
+
+    livecheck do
+      url :homepage
+      regex(/macOS\s*12(?:\.\d+)*.*?(\d+(?:\.\d+)+)/i)
+    end
+  else
+    version "16.0"
+    sha256 "b20d9b7e93c36fb6290d663e9020cc8775665808b6758ecd4162b2016138af18"
+
+    url "https://www.maintain.se/downloads/Cocktail#{version.major}VE.dmg"
+
+    livecheck do
+      url :homepage
+      regex(/macOS\s*13(?:\.\d+)*.*?(\d+(?:\.\d+)+)/i)
     end
   end
 

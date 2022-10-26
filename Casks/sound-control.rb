@@ -1,8 +1,8 @@
 cask "sound-control" do
-  version "2.6.4,5156"
-  sha256 "d9e57ac2118040107554d950e3d5f4bb4c6400ca67b551a5f4ce751f41c5fd46"
+  version "2.7.1,5156"
+  sha256 "af7d59f4c6e33a15d852ddd74d4de7ed535bbe2896aee0f993818acddaf9d21d"
 
-  url "https://staticz.com/download/#{version.after_comma}/"
+  url "https://staticz.com/download/#{version.csv.second}/"
   name "Sound Control"
   desc "Per-app audio controls"
   homepage "https://staticz.com/soundcontrol/"
@@ -20,9 +20,24 @@ cask "sound-control" do
   app "Sound Control.app"
 
   uninstall launchctl: [
-    "com.staticz.soundsiphon.bridgedaemon",
-    "com.staticz.audio.soundsiphon.playeragent",
-    "com.static.soundsiphon.inputagent",
-  ],
+              "com.staticz.soundsiphon.bridgedaemon",
+              "com.staticz.audio.soundsiphon.playeragent",
+              "com.static.soundsiphon.inputagent",
+            ],
             quit:      "com.staticz.SoundControl"
+
+  zap trash: [
+    "/Library/Audio/Plug-Ins/HAL/_SoundSiphon.driver",
+    "/Library/LaunchAgents/com.staticz.soundsiphon.inputagent.plist",
+    "/Library/LaunchAgents/com.staticz.soundsiphon.playeragent.plist",
+    "/Library/LaunchDaemons/com.staticz.soundsiphon.bridgedaemon.plist",
+    "/Library/Preferences/Audio/Data/_SoundSiphon.driver",
+    "~/Library/Application Support/com.staticz.SoundControl",
+    "~/Library/Caches/com.staticz.SoundControl",
+    "~/Library/Cookies/com.staticz.SoundControl.binarycookies",
+    "~/Library/Cookies/com.staticz.SoundControl.binarycookies*",
+    "~/Library/HTTPStorages/com.staticz.SoundControl.binarycookies",
+    "~/Library/Preferences/com.staticz.SoundControl.plist",
+    "~/Library/Preferences/com.staticz.soundsiphon.playeragent.plist",
+  ]
 end

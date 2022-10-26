@@ -1,16 +1,11 @@
 cask "intellij-idea-ce" do
-  version "2021.2.1,212.5080.55"
+  arch arm: "-aarch64"
 
-  if Hardware::CPU.intel?
-    sha256 "7c87c71bdebe29a50aa1efd0f4930b4ce844d21cda0ea8d437d59ef8294f0c13"
+  version "2022.2.3,222.4345.14"
+  sha256 arm:   "333c70caf452034ae332cdded4d24a71592049b4045725eb57826a0b997d1c7a",
+         intel: "6ec3721d9961918a14630eaf068765eeba97e71baecd95ec67510dc25c8bd1b1"
 
-    url "https://download.jetbrains.com/idea/ideaIC-#{version.before_comma}.dmg"
-  else
-    sha256 "3354875b1358d05482d4ea90d7eaf7d84a562cc4bf65d4b576aa1cd49b5347ae"
-
-    url "https://download.jetbrains.com/idea/ideaIC-#{version.before_comma}-aarch64.dmg"
-  end
-
+  url "https://download.jetbrains.com/idea/ideaIC-#{version.csv.first}#{arch}.dmg"
   name "IntelliJ IDEA Community Edition"
   name "IntelliJ IDEA CE"
   desc "IDE for Java development - community edition"
@@ -33,7 +28,7 @@ cask "intellij-idea-ce" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "idea") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end

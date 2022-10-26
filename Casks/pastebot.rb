@@ -1,12 +1,17 @@
 cask "pastebot" do
-  version "2.4"
-  sha256 "da7b93ca13110fcc4f2adc267c287a62692d25c7a4b09f14e849c5283bb898af"
+  version "2.4.2"
+  sha256 "a2e11e6b4766275fb35ca9985a00a98bf096da3ebe1b0d05ba1455964e0609be"
 
   url "https://tapbots.net/pastebot#{version.major}/Pastebot.dmg",
       verified: "tapbots.net/"
   name "Pastebot"
   desc "Workflow application to improve productivity"
   homepage "https://tapbots.com/pastebot/"
+
+  livecheck do
+    url "https://tapbots.net/pastebot#{version.major}/update.plist"
+    regex(%r{<key>shortVersion</key>.*\n.*<string>(\d+(?:\.\d+)+)</string>}i)
+  end
 
   depends_on macos: ">= :mojave"
 

@@ -1,18 +1,12 @@
 cask "ferdi" do
-  version "5.6.0"
+  arch arm: "-arm64"
 
-  if Hardware::CPU.intel?
-    sha256 "ea211cd14be8e98b81eeadac75920d85a54f89631512bcd06f80a7c04d777137"
+  version "5.8.1"
+  sha256 arm:   "ec7ccceba08f1c581290d6ce4f5fa5478bed2c713c592d0298856f7b2719f35d",
+         intel: "fa802e2627dc2c9c5ccface1f9c830c5a2e0e9ae7a7339716651010e39928a50"
 
-    url "https://github.com/getferdi/ferdi/releases/download/v#{version}/Ferdi-#{version}.dmg",
-        verified: "github.com/getferdi/ferdi/"
-  else
-    sha256 "44dd529ece76c51d5748e6c7e06026f36eda73d2915fafe5b91282b913902f70"
-
-    url "https://github.com/getferdi/ferdi/releases/download/v#{version}/Ferdi-#{version}-arm64.dmg",
-        verified: "github.com/getferdi/ferdi/"
-  end
-
+  url "https://github.com/getferdi/ferdi/releases/download/v#{version}/Ferdi-#{version}#{arch}.dmg",
+      verified: "github.com/getferdi/ferdi/"
   name "Ferdi"
   desc "Messaging browser which combines several services"
   homepage "https://getferdi.com/"
@@ -23,6 +17,7 @@ cask "ferdi" do
   end
 
   auto_updates true
+  conflicts_with cask: "homebrew/cask-versions/ferdi-beta"
 
   app "Ferdi.app"
 

@@ -1,16 +1,11 @@
 cask "zoom" do
-  version "5.7.6.1320"
+  arch arm: "arm64/"
 
-  if Hardware::CPU.intel?
-    sha256 "14aca0f9273f0e7d5d8bd7931a74bd14772dd2eb3be3b6d966d6be060ac54242"
+  version "5.12.3.11845"
+  sha256 arm:   "7ab449a48d26959a6ee9ffba1fc829d13d584760dd76e87b8f46038bbb93d28d",
+         intel: "af54aca28d07ce3dd9383f66fc638f5ebfe633c854db050b3e3a94a769f41070"
 
-    url "https://cdn.zoom.us/prod/#{version}/Zoom.pkg"
-  else
-    sha256 "48994fb9c8435f51fa70c503c44283cc944e16ecb1b773c42d09fb0d82ef686f"
-
-    url "https://cdn.zoom.us/prod/#{version}/arm64/Zoom.pkg"
-  end
-
+  url "https://cdn.zoom.us/prod/#{version}/#{arch}Zoom.pkg"
   name "Zoom.us"
   desc "Video communication and virtual meeting platform"
   homepage "https://www.zoom.us/"
@@ -20,9 +15,7 @@ cask "zoom" do
     strategy :header_match
   end
 
-  # Do not add `auto_updates`. While supporting an auto-update mechanism, this software is more inconvenient than most
-  # See https://github.com/Homebrew/homebrew-cask/pull/93083
-
+  auto_updates true
   conflicts_with cask: "zoom-for-it-admins"
 
   pkg "Zoom.pkg"
@@ -42,38 +35,44 @@ cask "zoom" do
       opoo "Unable to forcibly close zoom.us.app"
   end
 
-  uninstall signal:  ["KILL", "us.zoom.xos"],
-            pkgutil: "us.zoom.pkg.videomeeting",
-            delete:  [
+  uninstall signal:    ["KILL", "us.zoom.xos"],
+            pkgutil:   "us.zoom.pkg.videomeeting",
+            launchctl: "us.zoom.ZoomDaemon",
+            delete:    [
               "/Applications/zoom.us.app",
               "/Library/Internet Plug-Ins/ZoomUsPlugIn.plugin",
               "/Library/Logs/DiagnosticReports/zoom.us*",
+              "/Library/PrivilegedHelperTools/us.zoom.ZoomDaemon",
             ]
 
   zap trash: [
     "~/.zoomus",
     "~/Desktop/Zoom",
     "~/Documents/Zoom",
-    "~/Library/Application Support/CloudDocs/session/containers/iCloud.us.zoom.videomeetings",
+    "~/Library/Application Scripts/*.ZoomClient3rd",
     "~/Library/Application Support/CloudDocs/session/containers/iCloud.us.zoom.videomeetings.plist",
+    "~/Library/Application Support/CloudDocs/session/containers/iCloud.us.zoom.videomeetings",
     "~/Library/Application Support/CrashReporter/zoom.us*",
     "~/Library/Application Support/zoom.us",
     "~/Library/Caches/us.zoom.xos",
     "~/Library/Cookies/us.zoom.xos.binarycookies",
+    "~/Library/Group Containers/*.ZoomClient3rd",
+    "~/Library/HTTPStorages/us.zoom.xos",
+    "~/Library/HTTPStorages/us.zoom.xos.binarycookies",
     "~/Library/Internet Plug-Ins/ZoomUsPlugIn.plugin",
     "~/Library/Logs/zoom.us",
     "~/Library/Logs/zoominstall.log",
     "~/Library/Logs/ZoomPhone",
-    "~/Library/Group Containers/BJ4HAAB9B3.ZoomClient3rd",
-    "~/Library/Mobile Documents/iCloud~us~zoom~videomeetings",
-    "~/Library/Preferences/ZoomChat.plist",
     "~/Library/Preferences/us.zoom.airhost.plist",
     "~/Library/Preferences/us.zoom.caphost.plist",
     "~/Library/Preferences/us.zoom.Transcode.plist",
     "~/Library/Preferences/us.zoom.xos.Hotkey.plist",
     "~/Library/Preferences/us.zoom.xos.plist",
+    "~/Library/Preferences/us.zoom.ZoomAutoUpdater.plist",
+    "~/Library/Preferences/ZoomChat.plist",
     "~/Library/Safari/PerSiteZoomPreferences.plist",
     "~/Library/SafariTechnologyPreview/PerSiteZoomPreferences.plist",
     "~/Library/Saved Application State/us.zoom.xos.savedState",
+    "~/Library/WebKit/us.zoom.xos",
   ]
 end

@@ -1,6 +1,6 @@
 cask "fabfilter-saturn" do
-  version "2.03"
-  sha256 "b4a86cc8e006adad410c9c7204b958b4cb1670c64a9eb5ab88f2fd788990541c"
+  version "2.06"
+  sha256 "11d3f9e92a88520e253b831be1c788894836d16c6b843fdc192d5bde082c4fcd"
 
   url "https://download.fabfilter.com/ffsaturn#{version.no_dots}.dmg"
   name "FabFilter Saturn"
@@ -10,16 +10,16 @@ cask "fabfilter-saturn" do
   livecheck do
     url "https://www.fabfilter.com/download"
     strategy :page_match do |page|
-      match = page.match(%r{href=".*?/ffsaturn(\d)(\d\d)\.dmg}i)
+      match = page.match(/ffsaturn(\d)(\d+)\.dmg/i)
+      next if match.blank?
+
       "#{match[1]}.#{match[2]}"
     end
   end
 
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :sierra"
 
   pkg "FabFilter Saturn #{version} Installer.pkg"
 
-  uninstall pkgutil: [
-    "com.fabfilter.Saturn.#{version.major}",
-  ]
+  uninstall pkgutil: "com.fabfilter.Saturn.#{version.major}"
 end

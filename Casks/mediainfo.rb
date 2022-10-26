@@ -1,9 +1,10 @@
 cask "mediainfo" do
-  version "21.03"
-  sha256 "568313eca4e016ae61102e0ab15ce3c1aa7b1decdd2d683effc794bb2f21ec77"
+  version "22.09"
+  sha256 "e588603d990cb9ec46594fd34286794d1f98cda09211862faf108d00014cedd9"
 
   url "https://mediaarea.net/download/binary/mediainfo-gui/#{version}/MediaInfo_GUI_#{version}_Mac.dmg"
   name "MediaInfo"
+  desc "Display technical and tag data for video and audio files"
   homepage "https://mediaarea.net/en/MediaInfo"
 
   livecheck do

@@ -1,6 +1,6 @@
 cask "fabfilter-twin" do
-  version "2.32"
-  sha256 "8e583c4fe0bd718f4b1265181129f8bda65f74ba48487b81fb7756e602142623"
+  version "2.34"
+  sha256 "5f30c1a6a3e16aed28b6783cabd987e6472def74a3c1ff5b52cd4d4fa61a40a2"
 
   url "https://download.fabfilter.com/fftwin#{version.no_dots}.dmg"
   name "FabFilter Twin"
@@ -10,16 +10,16 @@ cask "fabfilter-twin" do
   livecheck do
     url "https://www.fabfilter.com/download"
     strategy :page_match do |page|
-      match = page.match(%r{href=.*?/fftwin(\d)(\d\d)\.dmg}i)
+      match = page.match(/fftwin(\d)(\d+)\.dmg/i)
+      next if match.blank?
+
       "#{match[1]}.#{match[2]}"
     end
   end
 
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :sierra"
 
   pkg "FabFilter Twin #{version} Installer.pkg"
 
-  uninstall pkgutil: [
-    "com.fabfilter.Twin.#{version.major}",
-  ]
+  uninstall pkgutil: "com.fabfilter.Twin.#{version.major}"
 end

@@ -1,8 +1,8 @@
 cask "go-server" do
-  version "21.2.0-12498"
-  sha256 "8bbb12117a2c6ebede5d49e675cfb64fc637fefc64050f5971e6d0e84a418142"
+  version "22.2.0,14697"
+  sha256 "4c97110029480db39a9c4c96bed1a3a104ab49ef0e0ca0864da52fa43ed54ece"
 
-  url "https://download.gocd.io/binaries/#{version}/osx/go-server-#{version}-osx.zip",
+  url "https://download.gocd.io/binaries/#{version.csv.first}-#{version.csv.second}/osx/go-server-#{version.csv.first}-#{version.csv.second}-osx.zip",
       verified: "download.gocd.io/binaries/"
   name "Go Server"
   name "GoCD Server"
@@ -11,9 +11,11 @@ cask "go-server" do
 
   livecheck do
     url "https://download.gocd.org/releases.json"
-    strategy :page_match
-    regex(/go-server-(\d+(?:\.\d+)*-\d+)-osx\.zip/i)
+    regex(/go[._-]server[._-]v?(\d+(?:\.\d+)+)[._-](\d+)[._-]osx\.zip/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
+    end
   end
 
-  binary "go-server-#{version.split("-").first}/bin/go-server"
+  binary "go-server-#{version.csv.first}/bin/go-server"
 end

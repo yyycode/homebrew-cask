@@ -1,18 +1,18 @@
 cask "receipts" do
-  version "1.9.10-360"
-  sha256 "e1895c47301107edb505d458a2d8a07503757b374c687576c583744e85dc0ce4"
+  version "1.9.16-544"
+  sha256 "a67c66bcca520ef71a88e652bf3058c016b9741e5d8e844e575decd27e14ee5c"
 
   url "https://www.receipts-app.com/update/download/Receipts-#{version}.zip"
   name "Receipts"
+  desc "Document management"
   homepage "https://www.receipts-app.com/"
 
   livecheck do
     url "https://www.receipts-app.com/updater.php"
-    strategy :page_match
-    regex(%r{href=.*?/Receipts-(\d+(?:\.\d+)*-\d+)\.zip}i)
+    regex(/href=.*?Receipts[._-]v?(\d+(?:[.-]\d+)+)\.zip/i)
   end
 
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :el_capitan"
 
   app "Receipts.app"
 end

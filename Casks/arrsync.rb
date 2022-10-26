@@ -9,8 +9,7 @@ cask "arrsync" do
 
   livecheck do
     url :homepage
-    strategy :page_match
-    regex(/arrsync-(\d+(?:\.\d+)*)\.dmg/i)
+    regex(/arrsync-(\d+(?:\.\d+)+)\.dmg/i)
   end
 
   app "arRsync.app"

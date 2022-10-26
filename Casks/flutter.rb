@@ -1,9 +1,12 @@
 cask "flutter" do
-  version "2.2.3"
-  sha256 "9f9a56224282257fc79ae8979aedddf5400a95b7ad436bd09e0e7aac2a1905ca"
+  arch arm: "_arm64_", intel: "_"
 
-  url "https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_#{version}-stable.zip",
-      verified: "storage.googleapis.com/flutter_infra_release/"
+  version "3.3.5"
+  sha256 arm:   "55390466cd4d192620fff8558e6b757532c744c53724a2d533e033d94749c976",
+         intel: "4790eedc878f749a8babd0d1632e832a784f71824d41746e9d953adb2352d9c3"
+
+  url "https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos#{arch}#{version}-stable.zip",
+      verified: "storage.googleapis.com/flutter_infra_release/releases/stable/macos/"
   name "Flutter SDK"
   desc "UI toolkit for building applications for mobile, web and desktop"
   homepage "https://flutter.dev/"
@@ -17,4 +20,6 @@ cask "flutter" do
 
   binary "flutter/bin/dart"
   binary "flutter/bin/flutter"
+
+  zap trash: "~/.flutter"
 end

@@ -1,6 +1,6 @@
 cask "ksnip" do
-  version "1.9.0"
-  sha256 "e1afd29e4b1a7e51ab3b84eca386e27ccf4decaf269751d1031aab25e4d506eb"
+  version "1.10.0"
+  sha256 "50db49f03b3177053238fb553e632e66cc3edabae7c1d45a2124acbef5e7a81a"
 
   url "https://github.com/ksnip/ksnip/releases/download/v#{version}/ksnip-#{version}.dmg"
   name "ksnip"

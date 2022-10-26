@@ -1,6 +1,6 @@
 cask "jgrennison-openttd" do
-  version "0.42.3"
-  sha256 "d5a23ea4442a3c2be15b55a67442d4cf5baf0887a3c19bc079bcafa842e89cf2"
+  version "0.48.5"
+  sha256 "46bb0e42365bf1f4eba541be230734cc45105baa561261017bc6455e8a40280d"
 
   url "https://github.com/JGRennison/OpenTTD-patches/releases/download/jgrpp-#{version}/openttd-jgrpp-#{version}-macos-universal.dmg"
   name "JGR's OpenTTD Patchpack"
@@ -13,7 +13,7 @@ cask "jgrennison-openttd" do
     "~/Documents/OpenTTD",
     "~/Library/Application Support/CrashReporter/openttd_*.plist",
     "~/Library/Logs/DiagnosticReports/openttd_*.crash",
-    "~/Library/Saved Application State/org.openttd.openttd.savedState",
     "~/Library/Saved Application State/org.openttd.openttd.jgrpp.savedState",
+    "~/Library/Saved Application State/org.openttd.openttd.savedState",
   ]
 end

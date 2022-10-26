@@ -1,8 +1,8 @@
 cask "mmhmm" do
-  version "2.0.1,1626395000"
-  sha256 "d1f7183d8f8da3f7bf91a296a5076745b3a23625f33ad825c058383b3a65ce05"
+  version "2.3.3,1661402000"
+  sha256 "81b4cf7d1de85172ea0bfd9be41ed4990ca98c5de713c5e73b99bb4bd7fabf77"
 
-  url "https://updates.mmhmm.app/mac/production/mmhmm_#{version.before_comma}.zip"
+  url "https://updates.mmhmm.app/mac/production/mmhmm_#{version.csv.first}.zip"
   name "mmhmm"
   desc "Virtual video presentation software"
   homepage "https://www.mmhmm.app/"

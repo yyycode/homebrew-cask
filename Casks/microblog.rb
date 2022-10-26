@@ -1,12 +1,12 @@
 cask "microblog" do
-  version "2.1,90"
-  sha256 "955e48440e99d938da8178a1274248ae97c7831e28b387d11f01d7efaf49f2a9"
+  version "2.5.4,120"
+  sha256 "4eaf2eb371570afc962c0e9f4c7bbbe35cdf39e185b7ba58ee43b73c35af8cdd"
 
-  url "https://s3.amazonaws.com/micro.blog/mac/Micro.blog_#{version.before_comma}.zip",
+  url "https://s3.amazonaws.com/micro.blog/mac/Micro.blog_#{version.csv.first}.zip",
       verified: "s3.amazonaws.com/micro.blog/"
   name "Micro.blog"
   desc "Microblogging and social networking service"
-  homepage "https://help.micro.blog/2017/mac-version/"
+  homepage "https://help.micro.blog/t/micro-blog-for-mac/45"
 
   livecheck do
     url "https://s3.amazonaws.com/micro.blog/mac/appcast.xml"

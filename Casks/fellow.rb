@@ -1,8 +1,8 @@
 cask "fellow" do
-  version "1.0.36"
-  sha256 "b70b7de3451908b180727a6a9a7bbce5d45d7b487ed1de92bf2ca5d6911923cb"
+  version "1.3.11"
+  sha256 "5331542ba36485a0d3a35eff574248671b654f3654a1e2712d1eb7732a1fb2f0"
 
-  url "https://cdn.fellow.app/desktop/#{version}/darwin/stable/Fellow.dmg"
+  url "https://cdn.fellow.app/desktop/#{version}/darwin/stable/universal/Fellow-#{version}-universal.dmg"
   name "Fellow"
   desc "Collaborative meeting agendas, notes, and action items"
   homepage "https://fellow.app/"
@@ -13,4 +13,9 @@ cask "fellow" do
   end
 
   app "Fellow.app"
+
+  zap trash: [
+    "~/Library/Application Support/Fellow",
+    "~/Library/Preferences/com.electron.fellow.plist",
+  ]
 end

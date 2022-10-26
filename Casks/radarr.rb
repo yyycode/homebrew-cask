@@ -1,8 +1,11 @@
 cask "radarr" do
-  version "3.2.2.5080"
-  sha256 "e71a778f9fd0d0a6768d4f01ec7dd1fbdd9b48f79b1c2343bfdc1aa14505a313"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://github.com/Radarr/Radarr/releases/download/v#{version}/Radarr.master.#{version}.osx-app-core-x64.zip",
+  version "4.2.4.6635"
+  sha256 arm:   "b8bbec0677c5e50a73d3a52b84f72d036d830bb5004659743f5327bf238b319f",
+         intel: "8b491adf6b72a20d20bf2a6e5e6b0e9f77f1ca236a4d5ccb9bb74d10a8e86319"
+
+  url "https://github.com/Radarr/Radarr/releases/download/v#{version}/Radarr.master.#{version}.osx-app-core-#{arch}.zip",
       verified: "github.com/Radarr/Radarr/"
   name "Radarr"
   desc "Fork of Sonarr to work with movies à la Couchpotato"
@@ -17,7 +20,7 @@ cask "radarr" do
 
   app "Radarr.app"
 
-  preflight do
-    set_permissions "#{staged_path}/Radarr.app", "0755"
-  end
+  zap trash: [
+    "~/.config/Radarr",
+  ]
 end

@@ -1,8 +1,8 @@
 cask "coderunner" do
-  version "4.0.3,61716"
-  sha256 "77e79c2094cc27ad564c00e0390596f5c2698f38b5ccd96de83168a9b73b267e"
+  version "4.1.1,63000"
+  sha256 "069dd43834d9236e984fed7d61886741642849f1e55b74b384a5baeedfdc0724"
 
-  url "https://coderunnerapp.com/download/update/CodeRunner-#{version.before_comma}.zip"
+  url "https://coderunnerapp.com/download/update/CodeRunner-#{version.csv.first}.zip"
   name "CodeRunner"
   desc "Multi-language programming editor"
   homepage "https://coderunnerapp.com/"
@@ -17,8 +17,13 @@ cask "coderunner" do
   app "CodeRunner.app"
 
   zap trash: [
+    "~/Library/Application Scripts/com.krill.CodeRunner.CodeRunnerThumbs/",
     "~/Library/Application Support/CodeRunner",
+    "~/Library/Autosave Information/com.krill.CodeRunner.plist",
     "~/Library/Caches/com.krill.CodeRunner",
+    "~/Library/Containers/com.krill.CodeRunner.CodeRunnerThumbs",
+    "~/Library/HTTPStorages/com.krill.CodeRunner",
+    "~/Library/Preferences/com.krill.CodeRunner.plist",
     "~/Library/Saved Application State/com.krill.CodeRunner.savedState",
   ]
 end

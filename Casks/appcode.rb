@@ -1,16 +1,11 @@
 cask "appcode" do
-  version "2021.2.1,212.5080.60"
+  arch arm: "-aarch64"
 
-  if Hardware::CPU.intel?
-    sha256 "965fad434fc691de85e26d0e61d34b337492ae6f931a6086f0c76cd3fe394468"
+  version "2022.2.3,222.4345.23"
+  sha256 arm:   "f8056baa3e7edb0013cffe10da256d639244d6c2e9220dbcb0cf74f06b9ff1cb",
+         intel: "65f901c7d370132e167ba26a3c3bc2afa777b0fa471e3e51ae45082f72d99e84"
 
-    url "https://download.jetbrains.com/objc/AppCode-#{version.before_comma}.dmg"
-  else
-    sha256 "4ebf59e6089256c43e0e6b2a2bcfe21d788dffeb563ee340050f7da73ac0dbeb"
-
-    url "https://download.jetbrains.com/objc/AppCode-#{version.before_comma}-aarch64.dmg"
-  end
-
+  url "https://download.jetbrains.com/objc/AppCode-#{version.csv.first}#{arch}.dmg"
   name "AppCode"
   desc "IDE for Swift, Objective-C, C, and C++ development"
   homepage "https://www.jetbrains.com/objc/"
@@ -31,7 +26,7 @@ cask "appcode" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "appcode") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end

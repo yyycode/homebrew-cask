@@ -1,18 +1,18 @@
 cask "waterfox" do
-  version "3.2.5"
-  sha256 "3baaedc5612b005e4d8c2e0c2763419caf36f6b1f582e1fff2099651767cb64e"
+  version "5.0.2"
+  sha256 "923f5adfd73b07cde3bcc0385481733018fa99f252f47ae43eed15864e62d9f1"
 
-  url "https://cdn.waterfox.net/releases/osx64/installer/Waterfox%20G#{version}%20Setup.dmg"
+  url "https://cdn1.waterfox.net/waterfox/releases/G#{version}/Darwin_x86_64-aarch64/Waterfox%20G#{version}.dmg"
   name "Waterfox"
   desc "Web browser"
   homepage "https://www.waterfox.net/"
 
   livecheck do
-    url "https://www.waterfox.net/download/"
-    regex(%r{href=.*?/Waterfox%20G(\d+(?:\.\d+)+)%20Setup\.dmg}i)
+    url "https://cdn1.waterfox.net/waterfox/releases/latest/macos"
+    strategy :header_match
   end
 
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :sierra"
 
   app "Waterfox.app"
 

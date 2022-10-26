@@ -1,6 +1,6 @@
 cask "musicbrainz-picard" do
-  version "2.6.3"
-  sha256 "6df5ae86e15cdda5acf3ea285010da7980f80275d8205ce211201eeca898268b"
+  version "2.8.3"
+  sha256 "58cfa02a096edf2f798700e122c54f281e218a26840e850b62f20485620dc5ef"
 
   url "https://musicbrainz.osuosl.org/pub/musicbrainz/picard/MusicBrainz-Picard-#{version}-macOS-10.14.dmg",
       verified: "musicbrainz.osuosl.org/pub/"
@@ -10,8 +10,7 @@ cask "musicbrainz-picard" do
 
   livecheck do
     url "https://picard.musicbrainz.org/downloads/"
-    strategy :page_match
-    regex(%r{href=.*?/MusicBrainz-Picard-(\d+(?:\.\d+)*)-macOS-(?:\d+(?:\.\d+)*)\.dmg}i)
+    regex(%r{href=.*?/MusicBrainz[._-]Picard[._-]v?(\d+(?:\.\d+)+)[._-]macOS}i)
   end
 
   depends_on macos: ">= :mojave"

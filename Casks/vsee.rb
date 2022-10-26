@@ -1,8 +1,8 @@
 cask "vsee" do
-  version "4.11.3,43458"
-  sha256 "f1c001959126c114b535e2e98d6f5e7f75cf328e2e2fa8cda1c4535a7f0e6030"
+  version "4.15.0,50141"
+  sha256 "6d9c8c92aaf17a79860371269f4156ba07f27ffc5e11fdb3825df58fc92e2c12"
 
-  url "https://d2q5hugz2rti4w.cloudfront.net/mac/#{version.after_comma}/vseemac.dmg",
+  url "https://d2q5hugz2rti4w.cloudfront.net/mac/#{version.csv.second}/vseemac.dmg",
       verified: "d2q5hugz2rti4w.cloudfront.net/"
   name "VSee"
   desc "Group video calls, screen sharing and instant messaging"

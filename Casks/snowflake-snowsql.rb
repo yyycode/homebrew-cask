@@ -1,6 +1,6 @@
 cask "snowflake-snowsql" do
-  version "1.2.17"
-  sha256 "bb7f9491b1bc2bac3a03d06b00a1ba7c3af2cf2f91d393551848f852926b4df7"
+  version "1.2.24"
+  sha256 "28bd238991e00bf476d3fdb28c1e7d97bd6f0e315fa4c1f9dc78fad4f0e3b89c"
 
   url "https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/#{version.major_minor}/darwin_x86_64/snowsql-#{version}-darwin_x86_64.pkg",
       verified: "sfc-repo.snowflakecomputing.com/"
@@ -9,8 +9,8 @@ cask "snowflake-snowsql" do
   homepage "https://snowflake.com/"
 
   livecheck do
-    url "https://docs.snowflake.com/en/release-notes/client-change-log-snowsql.html"
-    regex(/>\s*SnowSQL\s*v?(\d+(?:\.\d+)+)\s*</i)
+    url "https://sfc-repo.snowflakecomputing.com/snowsql/bootstrap/#{version.major_minor}/darwin_x86_64/index.html"
+    regex(%r{">snowsql-(\d+(?:\.\d+)+)-darwin_x86_64.pkg</a>})
   end
 
   pkg "snowsql-#{version}-darwin_x86_64.pkg"

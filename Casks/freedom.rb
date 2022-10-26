@@ -1,8 +1,8 @@
 cask "freedom" do
-  version "2.5.8,1915.1"
-  sha256 "b734bea4cb836556c532804c9a6db2ef80f51155a03d568cb209275b479003e5"
+  version "2.12.1,2055.1"
+  sha256 "0f502490c6f050bf9946f732dc3814fdb2a1bb818e65df82fbb62eb6c95c28f9"
 
-  url "https://cdn.freedom.to/installers/updates/mac/#{version.before_comma}/Freedom.zip"
+  url "https://cdn.freedom.to/installers/updates/mac/#{version.csv.first}/Freedom.zip"
   name "Freedom"
   desc "App and website blocker"
   homepage "https://freedom.to/"

@@ -1,15 +1,15 @@
 cask "cursorsense" do
-  version "2.2.3"
-  sha256 "1d6a541b8cd7527029dce16bd131fca528ad8225986822c7f28a54e6a227520a"
+  version "2.3.1"
+  sha256 "7031a141f3cbb07140e145640c37ce50960f87933d53adb10b67db44333a853e"
 
   url "https://plentycom.jp/ctrl/files_cs/CursorSense#{version}.dmg"
   name "CursorSense"
+  desc "Adjusts cursor acceleration and sensitivity"
   homepage "https://plentycom.jp/en/cursorsense/"
 
   livecheck do
     url "https://plentycom.jp/en/cursorsense/download.php"
-    strategy :page_match
-    regex(%r{href=.*?/CursorSense(\d+(?:\.\d+)*)\.dmg}i)
+    regex(%r{href=.*?/CursorSensev?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
   depends_on macos: ">= :sierra"

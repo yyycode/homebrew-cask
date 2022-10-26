@@ -1,6 +1,6 @@
 cask "odrive" do
-  version "7145"
-  sha256 "7f6ac1dd0e135a7d1531523a3b4363c4b4bee83c425477cc1dba3e49545103c2"
+  version "7324"
+  sha256 "3ae2bc75653c2329ff3b7b03ee2e8a9ef30e43c3325dba7df9612c41b0b64a24"
 
   url "https://d3huse1s6vwzq6.cloudfront.net/odrivesync.#{version}.pkg",
       verified: "d3huse1s6vwzq6.cloudfront.net/"
@@ -16,8 +16,6 @@ cask "odrive" do
 
   pkg "odrivesync.#{version}.pkg"
 
-  uninstall quit:    [
-    "com.oxygencloud.odrive",
-  ],
+  uninstall quit:    "com.oxygencloud.odrive",
             pkgutil: "com.oxygen.odrive.*"
 end

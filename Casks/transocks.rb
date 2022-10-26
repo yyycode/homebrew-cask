@@ -2,7 +2,7 @@ cask "transocks" do
   version "3.0.9,872"
   sha256 "cfdcdf99b84b659f08ca4debbaf0c3d31126201acc753ebd6461abfdbdd04fc1"
 
-  url "https://download.chuansuo.io/transocks/download/mac/#{version.before_comma}/Transocks_official_v#{version.before_comma}.dmg",
+  url "https://download.chuansuo.io/transocks/download/mac/#{version.csv.first}/Transocks_official_v#{version.csv.first}.dmg",
       verified: "download.chuansuo.io/"
   name "Transocks"
   desc "Tool to optimize access to various video music resources"
@@ -26,6 +26,7 @@ cask "transocks" do
     "~/Library/Application Support/CrashReporter/穿梭Transocks*",
     "/Library/Application Support/CrashReporter/穿梭Transocks*",
     "~/Library/Preferences/com.transocks.mac.signed.plist",
+    "~/Library/Preferences/group.com.transocks.mac.plist",
     "~/Library/Saved Application State/com.transocks.mac.signed.savedState",
   ]
 end

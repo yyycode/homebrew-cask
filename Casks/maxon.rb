@@ -1,14 +1,15 @@
 cask "maxon" do
-  version "1.0.0"
-  sha256 "d60f049892c1ad6f28feebde4319afd5e6948742b47fbab13f4138c942edf526"
+  version "3.1"
+  sha256 "7e7ba5ef683d84dac6645eea1fa32e7d737f1225865adaec27da11bf17cf96a2"
 
-  url "https://installer.maxon.net/installer/RG_installers/Maxon_App_#{version}_Mac.dmg"
+  url "https://mx-app-blob-prod.maxon.net/mx-package-production/installer/macos/maxon/maxonapp/releases/#{version}/Maxon_App_#{version}_Mac.zip"
   name "Maxon App"
   desc "Install, use, and try Maxon products"
   homepage "https://www.maxon.net/en/downloads/"
 
   livecheck do
-    skip "No version information available"
+    url "https://packages.maxon.net/manifests?platform=macos&org=maxon&type=products&family=fuse"
+    regex(/"filename".+"Maxon_App[._-]v?(\d+(?:\.\d+)+)_Mac\.zip"/i)
   end
 
   installer script: {
@@ -17,13 +18,14 @@ cask "maxon" do
   }
 
   uninstall delete:    [
-    "/Applications/Maxon.app",
-    "/Library/Application Support/Maxon",
-    "/Library/Application Support/Red Giant",
-    "/Library/Logs/Maxon",
-    "/Library/Logs/Red Giant",
-  ],
+              "/Applications/Maxon.app",
+              "/Library/Application Support/Maxon",
+              "/Library/Application Support/Red Giant",
+              "/Library/Logs/Maxon",
+              "/Library/Logs/Red Giant",
+            ],
             launchctl: [
+              "com.maxon.mxnotify.agent",
               "com.maxon.mxredirect.agent",
               "com.redgiant.service",
             ]
@@ -31,10 +33,10 @@ cask "maxon" do
   zap trash: [
     "~/Library/Application Support/Maxon",
     "~/Library/Application Support/Red Giant",
-    "~/Library/Saved Application State/net.maxon.app-manager.savedState",
+    "~/Library/Caches/net.maxon.app-manager",
     "~/Library/Preferences/Maxon",
     "~/Library/Preferences/net.maxon.app-manager.plist",
-    "~/Library/Caches/net.maxon.app-manager",
+    "~/Library/Saved Application State/net.maxon.app-manager.savedState",
     "/Users/Shared/Maxon",
     "/Users/Shared/Red Giant",
   ]

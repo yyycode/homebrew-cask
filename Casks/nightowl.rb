@@ -9,11 +9,15 @@ cask "nightowl" do
 
   livecheck do
     url "https://nightowl.kramser.xyz/api/public_update"
-    strategy :page_match
     regex(/"version":\s*"(\d+(?:\.\d+)*)/i)
   end
 
   depends_on macos: ">= :mojave"
 
   app "NightOwl.app"
+
+  zap trash: [
+    "~/Library/Caches/com.fuekiin.NightOwl",
+    "~/Library/Preferences/com.fuekiin.NightOwl.plist",
+  ]
 end

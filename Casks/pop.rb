@@ -1,6 +1,6 @@
 cask "pop" do
-  version "5.0.10"
-  sha256 "e94ddddb5839f349bee3757c2adccccc5f6bf2ba8da9f555b88d92bf40b2fec4"
+  version "8.0.13"
+  sha256 "fccba7b7d3edac936e386fbf109d2b80145aac4cdb3dc2d687871880df332d2e"
 
   url "https://download.pop.com/desktop-app/darwin/#{version}/Pop.dmg"
   name "Pop"

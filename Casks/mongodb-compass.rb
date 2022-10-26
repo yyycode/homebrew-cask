@@ -1,8 +1,11 @@
 cask "mongodb-compass" do
-  version "1.28.4"
-  sha256 "8a2034c956106225f406e969b78da5bc84e9a4be570a9133000619edcf4d4889"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://downloads.mongodb.com/compass/mongodb-compass-#{version}-darwin-x64.dmg"
+  version "1.33.1"
+  sha256 arm:   "25ac360419ea3e6457d8e7d23b0e09aff9cd028010708146df0efef8c146b1da",
+         intel: "1f7ccc940a4ba0449d3d4537a6949cc97fa1e99ebf2ed1462ce48346f4cd5c6a"
+
+  url "https://downloads.mongodb.com/compass/mongodb-compass-#{version}-darwin-#{arch}.dmg"
   name "MongoDB Compass"
   desc "Explore and manipulate your MongoDB data"
   homepage "https://www.mongodb.com/products/compass"
@@ -12,11 +15,13 @@ cask "mongodb-compass" do
     regex(/"version"\s*:\s*"(\d+(?:\.\d+)+)\s*\(Stable/i)
   end
 
+  auto_updates true
+
   app "MongoDB Compass.app"
 
   zap trash: [
-    "~/Library/Application Support/MongoDB Compass",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mongodb.compass.sfl*",
+    "~/Library/Application Support/MongoDB Compass",
     "~/Library/Caches/MongoDB Compass/",
     "~/Library/Preferences/com.mongodb.compass.plist",
     "~/Library/Saved Application State/com.mongodb.compass.savedState",

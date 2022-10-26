@@ -1,20 +1,26 @@
 cask "espresso" do
-  version "5.7.1"
-  sha256 "92214d8c3f1d9925719cb47d86c1404a345da7376096a88a42dc2ca7a4a4f204"
+  version "5.9.1"
+  sha256 "1bd6bc510ecb4aea724ced65716f7597c0fe2749ee1fd8f05fccad56336fa61e"
 
-  url "https://downloads.kangacode.com/Espresso/Espresso_#{version}.zip",
-      verified: "downloads.kangacode.com/"
+  url "https://downloads.espressoapps.au/Espresso/Espresso_#{version}.zip",
+      verified: "downloads.espressoapps.au/"
   name "Espresso"
   desc "Website editor focusing on flair and efficiency"
   homepage "https://espressoapp.com/"
 
   livecheck do
     url "https://espressoapp.com/updates/"
-    strategy :page_match
-    regex(/data-title="(\d+(?:\.\d+)*)"/i)
+    regex(/data-title="(\d+(?:\.\d+)+)"/i)
   end
 
   depends_on macos: ">= :high_sierra"
 
   app "Espresso.app"
+
+  zap trash: [
+    "~/Library/Application Support/Espresso",
+    "~/Library/Caches/com.kanagacode.espresso",
+    "~/Library/Preferences/com.kanagacode.espresso.plist",
+    "~/Library/WebKit/com.kanagacode.espresso",
+  ]
 end

@@ -1,6 +1,6 @@
 cask "p4" do
-  version "2021.1,2156517"
-  sha256 "6ce7ba5241a35979a439bf344b46d3f5d5b0ae8d0916c88a4fb4a092be0b4dcb"
+  version "2022.1,2344699"
+  sha256 "9598f7e41b2d9ebb3a9be03ad7d03d420ccdfa04e80b600f3bc2883ee14f9dbb"
 
   url "https://cdist2.perforce.com/perforce/r#{version.major[-2..]}.#{version.minor}/bin.macosx1015x86_64/p4"
   name "Perforce Helix Command-Line Client (P4)"
@@ -17,7 +17,7 @@ cask "p4" do
   end
 
   conflicts_with cask: "perforce"
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :high_sierra"
   container type: :naked
 
   binary "bin.macosx1015x86_64", target: "p4"

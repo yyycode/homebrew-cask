@@ -1,5 +1,5 @@
 cask "minitube" do
-  version "3.9,2021.0621.230951"
+  version "3.9.3,2022.0203.024456"
   sha256 :no_check
 
   url "https://flavio.tordini.org/files/minitube/minitube.dmg"
@@ -15,4 +15,10 @@ cask "minitube" do
   depends_on macos: ">= :sierra"
 
   app "Minitube.app"
+
+  zap trash: [
+    "~/Library/HTTPStorages/org.tordini.flavio.minitube",
+    "~/Library/Preferences/org.tordini.flavio.minitube.plist",
+    "~/Library/Saved Application State/org.tordini.flavio.minitube.savedState",
+  ]
 end

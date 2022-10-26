@@ -1,8 +1,8 @@
 cask "tenable-nessus-agent" do
-  version "8.3.0,13132"
-  sha256 "b175deefd5c60b52e6f9b4b2a2d320242e185279e25dc3a0482d356c789f391f"
+  version "10.2.0,17230"
+  sha256 "dee7a89cfa165673352717f12e864e93d0899ea67b8fcf017c35b1d45f7dd02d"
 
-  url "https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/#{version.after_comma}/download?i_agree_to_tenable_license_agreement=true"
+  url "https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/#{version.csv.second}/download?i_agree_to_tenable_license_agreement=true"
   name "Tenable Nessus Agent"
   desc "Agent for Nessus vulnerability scanner"
   homepage "https://www.tenable.com/"
@@ -10,7 +10,9 @@ cask "tenable-nessus-agent" do
   livecheck do
     url "https://www.tenable.com/downloads/nessus-agents?loginAttempted=true"
     strategy :page_match do |page|
-      match = page.match(/"id"\s*:\s*(\d+)\s*,\s*"file"\s*:\s*"NessusAgent-(\d+(?:\.\d+)*).dmg"/)
+      match = page.match(/"id"\s*:\s*(\d+)\s*,\s*"file"\s*:\s*"NessusAgent[._-]v?(\d+(?:\.\d+)+)\.dmg"/)
+      next if match.blank?
+
       "#{match[2]},#{match[1]}"
     end
   end

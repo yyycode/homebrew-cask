@@ -1,6 +1,6 @@
 cask "meteorologist" do
-  version "3.4.6"
-  sha256 "285344d068f1ffdd42eb5c8268ab29e7cf73e4b897d9a207ca3da991b65b88b5"
+  version "3.5.2"
+  sha256 "ecd2e76bbedafb29ccf40d00fefd86afd9266c78221d7a3686370369cdfd42ef"
 
   url "https://downloads.sourceforge.net/heat-meteo/Meteorologist-#{version}.dmg",
       verified: "downloads.sourceforge.net/heat-meteo/"
@@ -9,4 +9,10 @@ cask "meteorologist" do
   homepage "https://heat-meteo.sourceforge.io/"
 
   app "Meteorologist.app"
+
+  zap trash: [
+    "~/Library/Caches/com.heat.Meteorologist",
+    "~/Library/Logs/Meteorologist.log",
+    "~/Library/Preferences/com.heat.Meteorologist.plist",
+  ]
 end

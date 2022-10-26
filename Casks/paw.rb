@@ -1,8 +1,8 @@
 cask "paw" do
-  version "3.2.4,3002004002"
-  sha256 "61b3997ae8c5e5eff3b68a7223592f75dcb1fd1e8d8fb4f57bde785e5170c3ed"
+  version "3.4.0,3004000012"
+  sha256 "d393c6fb175d8e5f671361e1e2e4578fbab0eb6a03a2226507cad953a8a819da"
 
-  url "https://cdn-builds.paw.cloud/paw/Paw-#{version.before_comma}.zip"
+  url "https://cdn-builds.paw.cloud/paw/Paw-#{version.csv.first}.zip"
   name "Paw"
   desc "HTTP client that helps testing and describing APIs"
   homepage "https://paw.cloud/"

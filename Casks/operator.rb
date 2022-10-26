@@ -1,8 +1,8 @@
 cask "operator" do
-  version "1.1.0"
-  sha256 "63b545d90f4ff61a1b5d60accc5f0d7a0d9397e04bc87232240eba6d18d6fe32"
+  version "1.7.0"
+  sha256 "f6c30b4fa5cb371264e92be051798b4decdd1438873eb833faa8fe46ce0a4b4b"
 
-  url "https://s3.amazonaws.com/operator.versions/release-builds/#{version}/Operator-#{version}-mac.zip",
+  url "https://s3.amazonaws.com/operator.versions/release-builds/#{version}/prelude-operator-#{version}-x64.dmg",
       verified: "s3.amazonaws.com/operator.versions/"
   name "Operator"
   desc "Prelude Operator is a desktop adversary emulation platform"

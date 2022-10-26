@@ -1,6 +1,6 @@
 cask "rotki" do
-  version "1.20.1"
-  sha256 "d2ff80ac83a72886c70fa314dd7540c70fd053fc6148bf79f34286c2f8466b5e"
+  version "1.25.3"
+  sha256 "5c2474a953fae41b4bd383dcc5a039b1fb4c229aaeb24bbbebeaf9ffccbf26f0"
 
   url "https://github.com/rotki/rotki/releases/download/v#{version}/rotki-darwin_x64-v#{version}.dmg",
       verified: "github.com/rotki/rotki/"
@@ -9,4 +9,10 @@ cask "rotki" do
   homepage "https://rotki.com/"
 
   app "rotki.app"
+
+  zap trash: [
+    "~/Library/Application Support/rotki",
+    "~/Library/Preferences/com.rotki.app.plist",
+    "~/Library/Saved Application State/com.rotki.app.savedState",
+  ]
 end

@@ -1,6 +1,6 @@
 cask "splashtop-business" do
-  version "3.4.8.0"
-  sha256 "cc2117328cfe2e9fae978b778bc54d994842a3ccd0962991af255bb397f2bfd3"
+  version "3.5.2.2"
+  sha256 "3f2373756acf1773b8b8652b2c2f8601a928966556be0340bcc3b3f3b017a770"
 
   url "https://d17kmd0va0f0mp.cloudfront.net/macclient/STB/Splashtop_Business_Mac_INSTALLER_v#{version}.dmg",
       verified: "d17kmd0va0f0mp.cloudfront.net/macclient/STB/"
@@ -9,8 +9,8 @@ cask "splashtop-business" do
   homepage "https://www.splashtop.com/business"
 
   livecheck do
-    url "https://www.splashtop.com/wp-content/themes/responsive/downloadx.php?product=stb&platform=mac-client"
-    regex(/Splashtop_Business_Mac_INSTALLER[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+    url "https://redirect.splashtop.com/src/mac"
+    strategy :header_match
   end
 
   pkg "Splashtop Business.pkg"

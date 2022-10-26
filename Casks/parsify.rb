@@ -1,8 +1,11 @@
 cask "parsify" do
-  version "1.7.0"
-  sha256 "4d1abbeece2467767d57305896b9f6f2aabe766f846a124ace6a09f35ed62fcb"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://github.com/parsify-dev/desktop/releases/download/v#{version}/Parsify.Desktop-#{version}.dmg",
+  version "1.9.3"
+  sha256 arm:   "bf59ca43fd4f380aed968374b4cb7ddae675353306ee3e29a30a44e98fb5f25b",
+         intel: "1c42a8d7e96f08b54afe7fd279dfb44fd8b757c52be6ce9c7a03902371d2f6a6"
+
+  url "https://github.com/parsify-dev/desktop/releases/download/v#{version}/Parsify-Desktop-#{version}-mac-#{arch}.zip",
       verified: "github.com/parsify-dev/desktop/"
   name "Parsify"
   desc "Extensible calculator with unit and currency conversions"

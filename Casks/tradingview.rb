@@ -1,10 +1,10 @@
 cask "tradingview" do
-  version "1.0.0-beta.9"
-  sha256 "b1a1293795b74672f447184e20f0d42504a60304c78b05622d6486af7900ab28"
+  version "1.0.16"
+  sha256 "8a4a9f1bf8c4d7267b5e49f1bd38154cea203eb6adab61c16d5dbe0e54adb794"
 
   url "https://tvd-packages.tradingview.com/stable/#{version}/darwin/TradingView.dmg"
   name "TradingView Desktop"
-  desc "Experience with the power and flexibility of a desktop application"
+  desc "Charting and social-networking for investment traders"
   homepage "https://www.tradingview.com/desktop/"
 
   livecheck do

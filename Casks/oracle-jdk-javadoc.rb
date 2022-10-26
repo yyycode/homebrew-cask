@@ -1,28 +1,28 @@
 cask "oracle-jdk-javadoc" do
-  version "16.0.2,7:d4a915d82b4c4fbb9bde534da945d746"
-  sha256 "7cd96f9aa11d9e1a1adbee3e941a78e899bc9079370e4c12c106761d3df80f82"
+  version "19.0.1,10,afdd2e245b014143b62ccb916125e3ce"
+  sha256 "02ad1ad549a80703af321183b4607aaacf0c081049d1a8f808b401a844316bdc"
 
-  url "https://download.oracle.com/otn-pub/java/jdk/#{version.before_comma}+#{version.after_comma.before_colon}/#{version.after_colon}/jdk-#{version.before_comma}_doc-all.zip",
+  url "https://download.oracle.com/otn_software/java/jdk/#{version.csv.first}+#{version.csv.second}/#{version.csv.third}/jdk-#{version.csv.first}_doc-all.zip",
       cookies: {
         "oraclelicense" => "accept-securebackup-cookie",
       }
   name "Oracle Java Standard Edition Development Kit Documentation"
   desc "Documentation for the Oracle JDK"
-  homepage "https://www.oracle.com/technetwork/java/javase/documentation/index.html"
+  homepage "https://www.oracle.com/java/technologies/downloads/"
 
   livecheck do
-    url "https://www.oracle.com/java/technologies/javase-jdk16-doc-downloads.html"
-    strategy :page_match do |page|
-      match = page.match(%r{(\d+(?:\.\d+)*)%2B(\d+(?:\.\d+)*)/(.+)/jdk-(\d+(?:\.\d+)*)_doc-all\.zip}i)
-      "#{match[1]},#{match[2]}:#{match[3]}"
+    url "https://www.oracle.com/java/technologies/javase-jdk#{version.major}-doc-downloads.html"
+    regex(%r{/(\d+(?:\.\d+)*)(?:\+|%2B)(\d+(?:\.\d+)*)/(\h+)/jdk[._-]v?(\d+(?:\.\d+)*)_doc-all\.zip}i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[0]},#{match[1]},#{match[2]}" }
     end
   end
 
-  artifact "docs", target: "/Library/Java/JavaVirtualMachines/jdk-#{version.before_comma}.jdk/Contents/Home/docs"
+  artifact "docs", target: "/Library/Java/JavaVirtualMachines/jdk-#{version.csv.first}.jdk/Contents/Home/docs"
 
-  uninstall rmdir: "/Library/Java/JavaVirtualMachines/jdk-#{version.before_comma}.jdk"
+  uninstall rmdir: "/Library/Java/JavaVirtualMachines/jdk-#{version.csv.first}.jdk"
 
   caveats do
-    license "https://www.oracle.com/technetwork/java/javase/terms/license/index.html"
+    license "https://download.oracle.com/otndocs/jcp/java_se-#{version.major}-final-spec/license.html"
   end
 end

@@ -1,5 +1,5 @@
 cask "datagraph" do
-  version "4.7.1,58.1"
+  version "5.0,59"
   sha256 :no_check
 
   url "https://www.visualdatatools.com/DataGraph/DataGraph.dmg"
@@ -13,4 +13,11 @@ cask "datagraph" do
   end
 
   app "DataGraph.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.visualdatatools.datagraph",
+    "~/Library/Application Support/DataGraph",
+    "~/Library/Caches/com.visualdatatools.datagraph",
+    "~/Library/Preferences/com.visualdatatools.datagraph.plist",
+  ]
 end

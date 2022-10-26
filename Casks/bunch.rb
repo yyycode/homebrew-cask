@@ -1,8 +1,8 @@
 cask "bunch" do
-  version "1.4.4,118"
-  sha256 "1c9a1bd3c224e34235dc88c03ae57fd061b089cc67c7059b4358046e3dc862de"
+  version "1.4.11,166"
+  sha256 "240fe4dba00af30b7b875acfcf61130eddad92dd813f05c1766f95f8c2b5a22a"
 
-  url "https://brettterpstra.com/updates/bunch/Bunch#{version.before_comma}#{version.after_comma}.dmg",
+  url "https://brettterpstra.com/updates/bunch/Bunch#{version.csv.first}#{version.csv.second}.dmg",
       verified: "brettterpstra.com/updates/bunch/"
   name "Bunch"
   desc "Automation tool"

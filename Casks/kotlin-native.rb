@@ -1,50 +1,32 @@
 cask "kotlin-native" do
-  version "1.5.30"
+  arch arm: "aarch64", intel: "x86_64"
 
-  if Hardware::CPU.intel?
-    sha256 "de7e9f9601e5f91aa44c0d8629da8779afaf60d0622287d67a61e72432277001"
+  version "1.7.20"
+  sha256 arm:   "221aa20718cf81897ba682479da838e44f221424f3a867f7871fff231b50a799",
+         intel: "449d68b055ea5b45106d1cbc925bc43d7e1a9ab9d6b1cdd16722fa569b8fd8b1"
 
-    url "https://github.com/JetBrains/kotlin/releases/download/v#{version}/kotlin-native-macos-x86_64-#{version}.tar.gz",
-        verified: "github.com/JetBrains/kotlin/"
-  else
-    sha256 "7c04408bb98b59b4acc1c5a2c8837350a8ef0262bc19795da42c103e6a8c6bd0"
-
-    url "https://github.com/JetBrains/kotlin/releases/download/v#{version}/kotlin-native-macos-aarch64-#{version}.tar.gz",
-        verified: "github.com/JetBrains/kotlin/"
-  end
-
+  url "https://github.com/JetBrains/kotlin/releases/download/v#{version}/kotlin-native-macos-#{arch}-#{version}.tar.gz",
+      verified: "github.com/JetBrains/kotlin/"
   name "Kotlin Native"
   desc "LLVM backend for Kotlin"
   homepage "https://kotlinlang.org/docs/reference/native-overview.html"
 
   livecheck do
     url :url
-    regex(/^v?(\d+(?:\.\d+)+)$/)
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
   conflicts_with formula: "kotlin"
 
-  if Hardware::CPU.intel?
-    binary "kotlin-native-macos-x86_64-#{version}/bin/cinterop"
-    binary "kotlin-native-macos-x86_64-#{version}/bin/generate-platform"
-    binary "kotlin-native-macos-x86_64-#{version}/bin/jsinterop"
-    binary "kotlin-native-macos-x86_64-#{version}/bin/klib"
-    binary "kotlin-native-macos-x86_64-#{version}/bin/konan-lldb"
-    binary "kotlin-native-macos-x86_64-#{version}/bin/konanc"
-    binary "kotlin-native-macos-x86_64-#{version}/bin/kotlinc"
-    binary "kotlin-native-macos-x86_64-#{version}/bin/kotlinc-native"
-    binary "kotlin-native-macos-x86_64-#{version}/bin/run_konan"
-  else
-    binary "kotlin-native-macos-aarch64-#{version}/bin/cinterop"
-    binary "kotlin-native-macos-aarch64-#{version}/bin/generate-platform"
-    binary "kotlin-native-macos-aarch64-#{version}/bin/jsinterop"
-    binary "kotlin-native-macos-aarch64-#{version}/bin/klib"
-    binary "kotlin-native-macos-aarch64-#{version}/bin/konan-lldb"
-    binary "kotlin-native-macos-aarch64-#{version}/bin/konanc"
-    binary "kotlin-native-macos-aarch64-#{version}/bin/kotlinc"
-    binary "kotlin-native-macos-aarch64-#{version}/bin/kotlinc-native"
-    binary "kotlin-native-macos-aarch64-#{version}/bin/run_konan"
-  end
+  binary "kotlin-native-macos-#{arch}-#{version}/bin/cinterop"
+  binary "kotlin-native-macos-#{arch}-#{version}/bin/generate-platform"
+  binary "kotlin-native-macos-#{arch}-#{version}/bin/jsinterop"
+  binary "kotlin-native-macos-#{arch}-#{version}/bin/klib"
+  binary "kotlin-native-macos-#{arch}-#{version}/bin/konan-lldb"
+  binary "kotlin-native-macos-#{arch}-#{version}/bin/konanc"
+  binary "kotlin-native-macos-#{arch}-#{version}/bin/kotlinc"
+  binary "kotlin-native-macos-#{arch}-#{version}/bin/kotlinc-native"
+  binary "kotlin-native-macos-#{arch}-#{version}/bin/run_konan"
 
   caveats do
     depends_on_java "6+"

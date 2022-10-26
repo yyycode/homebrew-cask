@@ -1,8 +1,8 @@
 cask "qgis" do
-  version "3.20.2,20210813_152306"
-  sha256 "913a911c13e63f15e000eebd9be4513ba7a286a45915256ce6f487409671f9f0"
+  version "3.28.0,20221021_123104"
+  sha256 "8ce55028cfae3380a2cad628ce940b4dccb4ae3ea05de8423ca6e65b6ca9249d"
 
-  url "https://qgis.org/downloads/macos/pr/qgis_pr_final-#{version.before_comma.dots_to_underscores}_#{version.after_comma}.dmg"
+  url "https://qgis.org/downloads/macos/pr/qgis_pr_final-#{version.csv.first.dots_to_underscores}_#{version.csv.second}.dmg"
   name "QGIS"
   desc "Geographic Information System"
   homepage "https://www.qgis.org/"
@@ -11,9 +11,17 @@ cask "qgis" do
     url "https://qgis.org/downloads/macos/qgis-macos-pr.sha256sum"
     strategy :page_match do |page|
       match = page.match(/qgis_pr_final[._-]v?(\d+(?:_\d+)+)[._-](\d+_\d+)\.dmg/i)
+      next if match.blank?
+
       "#{match[1].tr("_", ".")},#{match[2]}"
     end
   end
 
   app "QGIS.app"
+
+  zap trash: [
+    "~/Library/Application Support/QGIS",
+    "~/Library/Caches/QGIS",
+    "~/Library/Saved Application State/org.qgis.qgis*.savedState",
+  ]
 end

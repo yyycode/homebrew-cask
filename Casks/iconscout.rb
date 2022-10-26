@@ -1,6 +1,6 @@
 cask "iconscout" do
-  version "1.0.1"
-  sha256 "610c8e2d3c9d5bc2c9f7907ecff4ffa4e6dd76bf6b1b6033aa53ebbd7a3a5859"
+  version "1.0.4"
+  sha256 "6798ac8fe13bc92962d14e61943553daaf9f7107b351836a9549c8d3d7be38ea"
 
   url "https://iconscout.com/download/v#{version}/Iconscout-#{version}.dmg"
   name "Iconscout"
@@ -9,8 +9,7 @@ cask "iconscout" do
 
   livecheck do
     url "https://iconscout.com/download"
-    strategy :page_match
-    regex(/Iconscout-(\d+(?:\.\d+)*)/i)
+    regex(/Iconscout[._-]v?(\d+(?:\.\d+)+)/i)
   end
 
   app "Iconscout.app"

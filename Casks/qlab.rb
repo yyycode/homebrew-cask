@@ -1,9 +1,10 @@
 cask "qlab" do
-  version "4.6.10,4610"
-  sha256 "659da450d83e1f30d9515190c873ec95b95bf9a2e231e8bda2566819d32c176e"
+  version "5.0.8,5008"
+  sha256 "828275562e0da2604697caac0dc2618d1a181789c47bb414d374908b92bf5164"
 
-  url "https://qlab.app/downloads/archive/QLab-#{version.before_comma}.zip"
+  url "https://qlab.app/downloads/archive/QLab-#{version.csv.first}.zip"
   name "QLab"
+  desc "Sound, video and lighting control"
   homepage "https://qlab.app/"
 
   livecheck do
@@ -14,4 +15,11 @@ cask "qlab" do
   auto_updates true
 
   app "QLab.app"
+
+  zap trash: [
+    "~/Library/Application Support/QLab",
+    "~/Library/HTTPStorages/com.figure53.QLab.#{version.major}",
+    "~/Library/Preferences/com.figure53.QLab.#{version.major}.plist",
+    "~/Library/Saved Application State/com.figure53.QLab.#{version.major}.savedState",
+  ]
 end

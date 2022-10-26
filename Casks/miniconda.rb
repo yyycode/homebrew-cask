@@ -1,8 +1,11 @@
 cask "miniconda" do
-  version "py38_4.10.3"
-  sha256 "93e514e01142866629175f5a9e2e1d0bac8bc705f61d1ed1da3c010b7225683a"
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://repo.anaconda.com/miniconda/Miniconda3-#{version}-MacOSX-x86_64.sh",
+  version "py39_4.12.0"
+  sha256 arm:   "4bd112168cc33f8a4a60d3ef7e72b52a85972d588cd065be803eb21d73b625ef",
+         intel: "007bae6f18dc7b6f2ca6209b5a0c9bd2f283154152f82becf787aac709a51633"
+
+  url "https://repo.anaconda.com/miniconda/Miniconda3-#{version}-MacOSX-#{arch}.sh",
       verified: "repo.anaconda.com/miniconda/"
   name "Continuum Analytics Miniconda"
   desc "Minimal installer for conda"
@@ -10,10 +13,10 @@ cask "miniconda" do
 
   # This regex restricts matching to a specific Python version. This will need
   # to be updated when the prefix changes in the latest version at the top of:
-  # https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+  # https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-#{arch}.sh
   livecheck do
     url "https://repo.anaconda.com/miniconda/"
-    regex(/>\s*Miniconda3-(py38[._-]\d+(?:\.\d+)+)-MacOSX-x86_64\.sh\s*</i)
+    regex(/>\s*Miniconda3-(py39[._-]\d+(?:\.\d+)+)-MacOSX-#{arch}\.sh\s*</i)
   end
 
   auto_updates true
@@ -21,7 +24,7 @@ cask "miniconda" do
   container type: :naked
 
   installer script: {
-    executable: "Miniconda3-#{version}-MacOSX-x86_64.sh",
+    executable: "Miniconda3-#{version}-MacOSX-#{arch}.sh",
     args:       ["-b", "-p", "#{caskroom_path}/base"],
   }
   binary "#{caskroom_path}/base/condabin/conda"

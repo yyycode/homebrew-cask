@@ -1,8 +1,11 @@
 cask "cutter" do
-  version "2.0.2"
-  sha256 "18df2677ebe016e77313fb2975e4a7be7551ade1878684e968ec7267b01a9e2a"
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://github.com/rizinorg/cutter/releases/download/v#{version}/Cutter-v#{version}-x64.macOS.dmg",
+  version "2.1.2"
+  sha256 arm:   "a261bc89a028f510641535a0463b82cd2e69ede0e828812d6b130318c11ed220",
+         intel: "6d37c18fd91f528c72f92fa7d79a4d0082d377bc02466aa59bf17be155b579c4"
+
+  url "https://github.com/rizinorg/cutter/releases/download/v#{version}/Cutter-v#{version}-macOS-#{arch}.dmg",
       verified: "github.com/rizinorg/cutter/"
   name "Cutter"
   desc "Reverse engineering platform powered by Rizin"
@@ -21,7 +24,7 @@ cask "cutter" do
   binary shimscript, target: "cutter"
 
   preflight do
-    IO.write shimscript, <<~EOS
+    File.write shimscript, <<~EOS
       #!/bin/sh
       '#{appdir}/Cutter.app/Contents/MacOS/Cutter' "$@"
     EOS

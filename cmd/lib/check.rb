@@ -1,6 +1,10 @@
+# typed: false
 # frozen_string_literal: true
 
 require "forwardable"
+
+APPLE_LAUNCHJOBS_REGEX =
+  /\A(?:application\.)?com\.apple\.(installer|Preview|Safari|systemevents|systempreferences|Terminal)(?:\.|$)/.freeze
 
 module Check
   CHECKS = {
@@ -48,9 +52,7 @@ module Check
         system_command!("/bin/launchctl", args: ["list"], print_stderr: false, sudo: sudo)
           .stdout
           .lines.drop(1)
-          .reject do |id|
-            id.match?(/\A(?:application\.)?com\.apple\.(installer|Safari|systemevents|systempreferences)(?:\.|$)/)
-          end
+          .grep_v(APPLE_LAUNCHJOBS_REGEX)
       end
 
       [false, true]
@@ -102,7 +104,9 @@ module Check
       errors << message
     end
 
-    installed_kexts = diff[:installed_kexts].added
+    installed_kexts = diff[:installed_kexts]
+                      .added
+                      .grep_v(/^com\.(softraid\.driver\.SoftRAID|highpoint-tech\.kext\.*)/)
     if installed_kexts.any?
       message = "Some kernel extensions are still installed, add them to #{Formatter.identifier("uninstall kext:")}\n"
       message += installed_kexts.join("\n")
@@ -125,12 +129,13 @@ module Check
 
     running_apps = diff[:loaded_launchjobs]
                    .added
-                   .select { |id| id.match?(/\.\d+\Z/) }
+                   .grep(/\.\d+\Z/)
+                   .grep_v(APPLE_LAUNCHJOBS_REGEX)
                    .map { |id| id.sub(/\A(?:application\.)?(.*?)(?:\.\d+){0,2}\Z/, '\1') }
 
     loaded_launchjobs = diff[:loaded_launchjobs]
                         .added
-                        .reject { |id| id.match?(/\.\d+\Z/) }
+                        .grep_v(/\.\d+\Z/)
 
     missing_running_apps = running_apps - Array(uninstall_directives[:quit])
     if missing_running_apps.any?

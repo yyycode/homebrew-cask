@@ -1,17 +1,22 @@
 cask "yuque" do
-  version "0.9.25"
-  sha256 "6b41da9062aa0019c15fd2f700115f24699a96d4625df7145505ffddea0a7e7d"
+  arch arm: "-arm64"
 
-  url "https://app.nlark.com/yuque-desktop/Yuque-#{version}.dmg",
+  version "1.7.1"
+  sha256 arm:   "8be364ffa6e932e7f79978638a3021091548964b04a79d85193eafd2dc192f71",
+         intel: "ad9169ab1d4d618cf19892d0d661c116fdd3f8c0f6d103c4d3ec9f34893ef8f7"
+
+  url "https://app.nlark.com/yuque-desktop/#{version}/Yuque-#{version}#{arch}.dmg",
       verified: "app.nlark.com/yuque-desktop/"
   name "Yuque"
   name "语雀"
   desc "Cloud knowledge base"
   homepage "https://www.yuque.com/"
 
+  # The stable version is that listed on the download page. See:
+  #   https://github.com/Homebrew/homebrew-cask/pull/111472
   livecheck do
-    url "https://www.yuque.com/yuque/yuque-desktop/changelog"
-    regex(/下载地址(\d+(?:\.\d+)*)/i)
+    url "https://www.yuque.com/download/"
+    regex(/desktopDownloadVersion%22%3A%22(\d+(?:\.\d+)+)/i)
   end
 
   app "语雀.app"

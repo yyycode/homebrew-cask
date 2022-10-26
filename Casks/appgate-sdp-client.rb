@@ -3,8 +3,8 @@ cask "appgate-sdp-client" do
     version "5.3.3"
     sha256 "935c87fcec29c6c7ab28ced0b3da8bb98db7f6b51303c3d651c53b14fc17fcbd"
   else
-    version "5.4.2"
-    sha256 "d0880947d92035cb2783f995f69404085096326b24d8d58ba7f83a0411ee8efe"
+    version "6.0.2"
+    sha256 "e052052094b5c92d94c74128bca3f1c90fef65b3bf441342d889a9b74ed58ac6"
 
     livecheck do
       url :homepage
@@ -41,11 +41,11 @@ cask "appgate-sdp-client" do
   pkg "AppGate SDP Installer.pkg"
 
   uninstall launchctl: [
-    "com.cyxtera.appgate.sdp.client.agent",
-    "com.cyxtera.appgate.sdp.helper",
-    "com.cyxtera.appgate.sdp.tun",
-    "com.cyxtera.appgate.sdp.updater",
-  ],
+              "com.cyxtera.appgate.sdp.client.agent",
+              "com.cyxtera.appgate.sdp.helper",
+              "com.cyxtera.appgate.sdp.tun",
+              "com.cyxtera.appgate.sdp.updater",
+            ],
             quit:      [
               "com.cyxtera.appgate.helper",
               "com.cyxtera.appgate.sdp",

@@ -1,18 +1,22 @@
 cask "kui" do
-  version "10.4.6"
-  sha256 "99ab0bef38acad6a29d8ecd914b6e1f7202290414dff5f5269566791f731f2f2"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://github.com/IBM/kui/releases/download/v#{version}/Kui-darwin-x64.tar.bz2",
-      verified: "github.com/IBM/kui/"
+  version "12.2.0"
+  sha256 arm:   "74fcfa060ddd6beae2ce620f917e0f75436eabd09ca32317bd6f47d8e3eaa145",
+         intel: "e1d246b8d0daaa3e03378f3d0cb826363ee985a7f26e1fe02e3e533c65e59857"
+
+  url "https://github.com/kubernetes-sigs/kui/releases/download/v#{version}/Kui-darwin-#{arch}.tar.bz2"
   name "Kui"
   desc "Hybrid command-line/UI development experience for cloud-native development"
-  homepage "https://kui.tools/"
+  homepage "https://github.com/kubernetes-sigs/kui"
 
   livecheck do
     url :url
     strategy :github_latest
   end
 
-  app "Kui-darwin-x64/Kui.app"
+  app "Kui-darwin-#{arch}/Kui.app"
   binary "#{appdir}/Kui.app/Contents/Resources/kubectl-kui"
+
+  zap trash: "~/Library/Application Support/Kui"
 end

@@ -9,8 +9,7 @@ cask "alt-c" do
 
   livecheck do
     url "https://altcopy.net/versionMac"
-    strategy :page_match
-    regex(/^(\d+(?:\.\d+)*)$/i)
+    regex(/^(\d+(?:\.\d+)+)$/i)
   end
 
   pkg "Alt-C_Setup_#{version}.pkg"

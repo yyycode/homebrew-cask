@@ -1,8 +1,11 @@
 cask "audacity" do
-  version "3.0.4"
-  sha256 "22d928bd9f1ac2b844c1059dda5d38fbe83f0e9273d2a83723d05a3716d689b9"
+  arch arm: "arm64", intel: "x86_64"
 
-  url "https://github.com/audacity/audacity/releases/download/Audacity-#{version}/audacity-macos-#{version}-Intel.dmg",
+  version "3.2.1"
+  sha256 arm:   "0afba6f74f152bc50ac271c92a02b94196a57248ed7219e796fede1f8b1f91e1",
+         intel: "b284dc858f8fdd770946c6894217ed16337e1fd2cd3472d6d87ea3bbd5ba3eaa"
+
+  url "https://github.com/audacity/audacity/releases/download/Audacity-#{version}/audacity-macOS-#{version}-#{arch}.dmg",
       verified: "github.com/audacity/audacity/"
   name "Audacity"
   desc "Multi-track audio editor and recorder"

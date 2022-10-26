@@ -1,8 +1,8 @@
 cask "xpra" do
-  version "4.2.2,0"
-  sha256 "16c6177e6f7773f421942bad1fa47c8626ecc12911f7d0c539feca38003305b5"
+  version "4.4.1,0"
+  sha256 "9f3c5ffbfb5c2e3137da4a01ccbe554d42fcabfea5f8830c3ca10806cd5c816d"
 
-  url "https://www.xpra.org/dists/osx/x86_64/Xpra-Python3-x86_64-#{version.before_comma}-r#{version.after_comma}.pkg"
+  url "https://www.xpra.org/dists/osx/x86_64/Xpra-Python3-x86_64-#{version.csv.first}-r#{version.csv.second}.pkg"
   name "Xpra"
   desc "Screen and application forwarding system"
   homepage "https://www.xpra.org/"
@@ -11,11 +11,13 @@ cask "xpra" do
     url "https://www.xpra.org/dists/osx/x86_64/Xpra-x86_64.pkg.sha1"
     strategy :page_match do |page|
       match = page.match(/x86_64[._-]v?(\d+(?:\.\d+)+)[._-]r(\d+)\.pkg/i)
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end
 
-  pkg "Xpra-Python3-x86_64-#{version.before_comma}-r#{version.after_comma}.pkg"
+  pkg "Xpra-Python3-x86_64-#{version.csv.first}-r#{version.csv.second}.pkg"
 
   uninstall pkgutil: "org.xpra.pkg"
 

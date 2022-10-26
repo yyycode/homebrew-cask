@@ -1,6 +1,6 @@
 cask "camunda-modeler" do
-  version "4.9.0"
-  sha256 "439fbb98f518edccab70b4ef19b1ad924331c08c6874eb9bee95ee004b60a217"
+  version "5.4.2"
+  sha256 "0b24881dfd77d2d63ed8c37add11fce5ce3ddd296c641a2a7d5c8fd1bd56c739"
 
   url "https://camunda.org/release/camunda-modeler/#{version}/camunda-modeler-#{version}-mac.zip"
   name "Camunda Modeler"
@@ -13,4 +13,11 @@ cask "camunda-modeler" do
   end
 
   app "Camunda Modeler.app"
+
+  zap trash: [
+    "~/Library/Application Support/camunda-modeler",
+    "~/Library/Logs/Camunda Modeler",
+    "~/Library/Preferences/com.camunda.CamundaModeler.plist",
+    "~/Library/Saved Application State/com.camunda.CamundaModeler.savedState",
+  ]
 end

@@ -1,6 +1,6 @@
 cask "sameboy" do
-  version "0.14.5"
-  sha256 "888c1fa24d00c03f9804b132ddb772f5835ba01324bac18dabbfa15b15360b59"
+  version "0.15.6"
+  sha256 "acbad05d236e8451069357c5c9e117cc32898c41b296b4b091c8c22500af1f2c"
 
   url "https://github.com/LIJI32/SameBoy/releases/download/v#{version}/sameboy_cocoa_v#{version}.zip",
       verified: "github.com/LIJI32/SameBoy/"
@@ -16,4 +16,11 @@ cask "sameboy" do
   depends_on macos: ">= :sierra"
 
   app "SameBoy.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.github.liji32.sameboy.sfl2",
+    "~/Library/Caches/com.github.liji32.sameboy",
+    "~/Library/Preferences/com.github.liji32.sameboy.plist",
+    "~/Library/Saved Application State/com.github.liji32.sameboy.savedState",
+  ]
 end

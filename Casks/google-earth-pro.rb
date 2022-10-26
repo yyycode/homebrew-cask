@@ -1,5 +1,5 @@
 cask "google-earth-pro" do
-  version "7.3.4.8248"
+  version "7.3.4.8642"
   sha256 :no_check
 
   url "https://dl.google.com/earth/client/advanced/current/GoogleEarthProMac-Intel.dmg"
@@ -16,12 +16,12 @@ cask "google-earth-pro" do
   uninstall pkgutil:  "com.Google.GoogleEarthPro"
 
   zap trash:     [
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.googleearthpro.sfl*",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.googleearthupdatehelper.sfl*",
-    "~/Library/Application Support/Google Earth",
-    "~/Library/Caches/Google Earth",
-    "~/Library/Caches/com.Google.GoogleEarthPro",
-  ],
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.googleearthpro.sfl*",
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.googleearthupdatehelper.sfl*",
+        "~/Library/Application Support/Google Earth",
+        "~/Library/Caches/Google Earth",
+        "~/Library/Caches/com.Google.GoogleEarthPro",
+      ],
       launchctl: [
         "com.google.keystone.agent",
         "com.google.keystone.system.agent",

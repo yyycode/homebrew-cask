@@ -1,10 +1,16 @@
 cask "middleclick" do
-  version "2.4.8.1"
-  sha256 "c17d944d9305d6da6c949ab1d5032326668d0e9dbd38ef3061955af4484d3f62"
+  version "2.5.0.1"
+  sha256 "4aecf835dcc3ccf3936e05e6cde7c3b5fa8e6d00bf9ebba52d3a608d7ba957b0"
 
-  url "https://github.com/DaFuqtor/MiddleClick/releases/download/#{version}/MiddleClick.zip"
+  url "https://github.com/artginzburg/MiddleClick-BigSur/releases/download/#{version}/MiddleClick.zip"
   name "MiddleClick"
-  homepage "https://github.com/DaFuqtor/MiddleClick"
+  desc "Utility to extend trackpad functionality"
+  homepage "https://github.com/artginzburg/MiddleClick-BigSur"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   app "MiddleClick.app"
 
@@ -12,8 +18,4 @@ cask "middleclick" do
             quit:       "com.rouge41.middleClick"
 
   zap trash: "~/Library/Preferences/com.rouge41.middleClick.plist"
-
-  caveats do
-    discontinued
-  end
 end

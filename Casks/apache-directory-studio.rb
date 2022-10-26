@@ -8,8 +8,8 @@ cask "apache-directory-studio" do
   homepage "https://directory.apache.org/studio/"
 
   livecheck do
-    url "https://archive.apache.org/dist/directory/studio/"
-    regex(%r{href="(\d+(?:\.\d+)*.*)/"}i)
+    url :url
+    regex(%r{href=["']?v?(\d+(?:\.\d+)+[^/]*?)/?["' >]}i)
   end
 
   app "ApacheDirectoryStudio.app"
@@ -17,6 +17,11 @@ cask "apache-directory-studio" do
   zap trash: "~/.ApacheDirectoryStudio"
 
   caveats do
-    depends_on_java "8+"
+    depends_on_java "11+"
+    <<~EOS
+      To set the Java VM to use:
+
+        https://directory.apache.org/studio/faqs.html#how-to-set-the-java-vm-to-use
+    EOS
   end
 end

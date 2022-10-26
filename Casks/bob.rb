@@ -1,18 +1,21 @@
 cask "bob" do
-  version "0.6.1"
-  sha256 "b3308f9cb17b5dfea2bfae30257f0d69743cc1f325fa198f1ad59a535a4651bf"
+  version "0.10.3"
+  sha256 "2e3ff79c0a7f7090ba17382d0e76a1299291d58bd97a3e4816b7eac3f020948d"
 
   url "https://github.com/ripperhe/Bob/releases/download/v#{version}/Bob.zip"
   name "Bob"
   desc "Translation application for text, pictures, and manual input"
   homepage "https://github.com/ripperhe/Bob"
 
+  auto_updates true
   depends_on macos: ">= :sierra"
 
   app "Bob.app"
 
   zap trash: [
-    "~/Library/Preferences/com.ripperhe.Bob.plist",
+    "~/Library/Application Support/com.ripperhe.Bob",
     "~/Library/Caches/com.ripperhe.Bob",
+    "~/Library/HTTPStorages/com.ripperhe.Bob",
+    "~/Library/Preferences/com.ripperhe.Bob.plist",
   ]
 end

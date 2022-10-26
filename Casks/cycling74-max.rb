@@ -1,6 +1,6 @@
 cask "cycling74-max" do
-  version "8.1.11_210413"
-  sha256 "6f6373ef8bfc6029b84805b01a9e6191ee0574833c41b9d188a7fa41e94eebac"
+  version "8.3.3_221006"
+  sha256 "a23d8e76179161430ceef228d1d09dba977fdb766baa21a26ba75a7aa65defd8"
 
   url "https://akiaj5esl75o5wbdcv2a-maxmspjitter.s3.amazonaws.com/Max#{version.no_dots}.dmg",
       verified: "akiaj5esl75o5wbdcv2a-maxmspjitter.s3.amazonaws.com/"
@@ -14,6 +14,8 @@ cask "cycling74-max" do
     strategy :page_match do |page|
       json = JSON.parse(page)
       match = json["release_date"].match(/^\d{2}(\d{2})[._-](\d{2})[._-](\d{2})/)
+      next if match.blank?
+
       "#{json["_id"]}_#{match[1]}#{match[2]}#{match[3]}"
     end
   end

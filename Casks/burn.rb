@@ -1,6 +1,6 @@
 cask "burn" do
-  version "3.1.4"
-  sha256 "e672869be18a0d1429bc866975b15f131ce3bbd22f4c8e2dd58fb030f66d0d54"
+  version "3.1.6"
+  sha256 "a943a9a66a664375cf92cfe4f04e23d1203b5e88013a06eff8adc858ab2e4fee"
 
   url "https://downloads.sourceforge.net/burn-osx/Burn/#{version}/burn-#{version}.zip",
       verified: "downloads.sourceforge.net/burn-osx/"
@@ -9,4 +9,6 @@ cask "burn" do
   homepage "https://burn-osx.sourceforge.io/"
 
   app "Burn.localized/Burn.app"
+
+  zap trash: "~/Library/Preferences/com.kiwifruitware.Burn.plist"
 end

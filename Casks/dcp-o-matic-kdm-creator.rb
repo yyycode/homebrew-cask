@@ -1,17 +1,17 @@
 cask "dcp-o-matic-kdm-creator" do
-  version "2.14.54"
-  sha256 "f1be4e7f4aa1432cd30e0569c0b76692ae3764ab8217bd14ddb21def6dc4133f"
+  version "2.16.31"
+  sha256 "5fc4bd199e17b7c59385bea2c3d3c2045b8150a75fdf65a39da734d63354f96b"
 
-  url "https://dcpomatic.com/dl.php?id=osx-10.9-kdm&version=#{version}"
+  url "https://dcpomatic.com/dl.php?id=osx-10.10-kdm&version=#{version}"
   name "DCP-o-matic KDM Creator"
   desc "Convert video, audio and subtitles into DCP (Digital Cinema Democratized)"
   homepage "https://dcpomatic.com/"
 
   livecheck do
-    url "https://dcpomatic.com/download"
-    strategy :page_match
-    regex(/stable\s*release:\s*(\d+(?:\.\d+)*)/i)
+    cask "dcp-o-matic"
   end
 
   app "DCP-o-matic #{version.major} KDM Creator.app"
+
+  # No zap stanza required
 end

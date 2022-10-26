@@ -7,8 +7,8 @@ cask "mounty" do
       skip "newer versions only available for Big Sur or higher"
     end
   else
-    version "1.12"
-    sha256 "c185824e56e0eb8595a5a4d4a810bfd25393df51e7cac082d16334d9e6694244"
+    version "1.15"
+    sha256 "8c678c87aa609a7222ca229acb3a650d4a4e2db9fa9ce89a09a9d45ea1b19af1"
 
     livecheck do
       url :homepage
@@ -22,4 +22,6 @@ cask "mounty" do
   homepage "https://mounty.app/"
 
   app "Mounty.app"
+
+  zap trash: "~/Library/Preferences/com.cu4uc.mounty.plist"
 end

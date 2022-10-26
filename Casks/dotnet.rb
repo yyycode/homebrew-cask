@@ -1,8 +1,16 @@
 cask "dotnet" do
-  version "5.0.9,a847df19-d530-41c8-b766-cb60ee8af9a4:7edd7c2eae38d25d0d7c90350eefea64"
-  sha256 "9bf2eba78ec85e035d07bef696cee8240c85cfd95639d876368e0066d6679f29"
+  arch arm: "arm64", intel: "x64"
 
-  url "https://download.visualstudio.microsoft.com/download/pr/#{version.after_comma.before_colon}/#{version.after_colon}/dotnet-runtime-#{version.before_comma}-osx-x64.pkg"
+  on_intel do
+    version "6.0.10,1cf60908-695c-4d98-a502-47ba21c9f9bf,8163b98d2c2a4f725af448adbe1047a7"
+    sha256 "ed095f2c05ecbda25ca9a5d45ae22aac1961940b8ef50ca1d11fe7d9cc9d77a1"
+  end
+  on_arm do
+    version "6.0.10,6afedb21-384c-4110-9856-189c169b231f,843a9a27982eaf00b0bb8ed5a9626401"
+    sha256 "a6b011bb043c2855192c1e6c5dbbbd0c04b7ecdacf043eae5a3f592e6cf45c55"
+  end
+
+  url "https://download.visualstudio.microsoft.com/download/pr/#{version.csv.second}/#{version.csv.third}/dotnet-runtime-#{version.csv.first}-osx-#{arch}.pkg"
   name ".Net Runtime"
   desc "Developer platform"
   homepage "https://www.microsoft.com/net/core#macos"
@@ -12,10 +20,9 @@ cask "dotnet" do
   # check will automatically update its behavior when the cask is updated.
   livecheck do
     url "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/#{version.major_minor}/releases.json"
-    strategy :page_match do |page|
-      page.scan(%r{/download/pr/([^/]+)/([^/]+)/dotnet-runtime-v?(\d+(?:\.\d+)+)-osx-x64\.pkg}i).map do |match|
-        "#{match[2]},#{match[0]}:#{match[1]}"
-      end
+    regex(%r{/download/pr/([^/]+)/([^/]+)/dotnet-runtime-v?(\d+(?:\.\d+)+)-osx-#{arch}\.pkg}i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[2]},#{match[0]},#{match[1]}" }
     end
   end
 
@@ -23,10 +30,10 @@ cask "dotnet" do
     "dotnet-sdk",
     "homebrew/cask-versions/dotnet-preview",
     "homebrew/cask-versions/dotnet-sdk-preview",
-  ]
-  depends_on macos: ">= :high_sierra"
+  ], formula: "dotnet"
+  depends_on macos: ">= :mojave"
 
-  pkg "dotnet-runtime-#{version.before_comma}-osx-x64.pkg"
+  pkg "dotnet-runtime-#{version.csv.first}-osx-#{arch}.pkg"
   binary "/usr/local/share/dotnet/dotnet"
 
   uninstall pkgutil: "com.microsoft.dotnet.*",
